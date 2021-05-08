@@ -1,7 +1,23 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
+import 'package:http/http.dart' as http;
+
+void main() async {
+  // runApp(MyApp());
+
+  // Http 연동 Get 예제
+  String url = "https://my-json-server.typicode.com/typicode/demo/posts";
+  var response = await http.get(Uri.parse(url));
+  var statusCode = response.statusCode;
+  var responseHeaders = response.headers;
+  var responseBody = response.body;
+
+  print("statusCode: ${statusCode}"); // console창에서 확인 가능
+  print("responseHeaders: ${responseHeaders}");
+  print("responseBody: ${responseBody}");
 }
 
 class MyApp extends StatelessWidget {
