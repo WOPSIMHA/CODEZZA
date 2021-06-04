@@ -1,8 +1,7 @@
 name: codezza
-description: A new codezza Flutter application.
+description: A new Flutter project.
 
 publish_to: 'none'
-
 version: 1.0.0+1
 
 environment:
@@ -12,32 +11,26 @@ dependencies:
   flutter:
     sdk: flutter
 
-  http: ^0.13.3
-
-  # ============ 민호 ============
-  # 로딩 화면 plugin
-  flutter_native_splash: ^1.1.8+4
-  
-  flutter_swiper: ^1.1.6
-  animated_button_bar: ^0.0.2+1
-
   # icon plugin
   cupertino_icons: ^1.0.3
   ionicons: ^0.1.2
   font_awesome_flutter: ^9.0.0
-  # ============ 민호 ============
+  equatable: ^2.0.2
+  flutter_form_builder: ^6.0.1
+  flip_card: ^0.5.0
 
-# ============ 민호 ============
+  # 로딩 화면 plugin
+  flutter_native_splash: ^1.1.8+4
+
 # 생성 명령어 flutter pub run flutter_native_splash:create
 # 제거 명령어 flutter pub run flutter_native_splash:remove
 flutter_native_splash:
   color: "#75F0AE"
-  image: assets/images/Logo1.png
+  image: assets/images/Logo/Logo1.png
   android: true
   ios: false
   web: false
-# ============ 민호 ============
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -45,25 +38,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # ============ 민호 ============
   # 이미지
   assets:
-    - assets/images/dog1.png
-    - assets/images/dog2.png
-    - assets/images/dog3.png
-    - assets/images/hand-made.png
-    - assets/images/hand-made2.png
-    - assets/images/hand-made3.png
-    - assets/images/Logo.png
-    - assets/images/Logo1.png
-    - assets/images/Logo2.png
-    - assets/images/Logo3.png
-    - assets/images/profile01.png
-    - assets/images/profile02.png
-    - assets/images/tack.png
-    - assets/images/user1.png
-    - assets/images/user2.png
-
     - assets/images/Item/HandMade.png
     - assets/images/Item/Tack.png
     - assets/images/Logo/Logo0.png
@@ -73,17 +49,16 @@ flutter:
     - assets/images/Profile/profile1.png
     - assets/images/Profile/profile2.png
     - assets/images/Profile/user.png
-  # ============ 민호 ============
 
-  # ============ 민호 ============
   fonts:
-    - family: NotoSansKR Regular
+    - family: GmarketSansBold
       fonts:
-        - asset: assets/fonts/NotoSansKR-Regular.otf
-          weight: 500
+        - asset: assets/fonts/GmarketSansTTFBold.ttf
 
-    - family: NotoSansKR Bold
+    - family: GmarketSansLight
       fonts:
-        - asset: assets/fonts/NotoSansKR-Bold.otf
-          weight: 600
-  # ============ 민호 ============
+        - asset: assets/fonts/GmarketSansTTFLight.ttf
+
+    - family: GmarketSansMedium
+      fonts:
+        - asset: assets/fonts/GmarketSansTTFMedium.ttf

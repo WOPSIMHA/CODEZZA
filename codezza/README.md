@@ -1,6 +1,6 @@
 # codezza
 
-A new codezza Flutter application.
+A new Flutter project.
 
 ## Getting Started
 
