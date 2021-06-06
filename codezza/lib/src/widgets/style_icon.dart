@@ -1,4 +1,4 @@
-import 'color.dart';
+import 'style_color.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

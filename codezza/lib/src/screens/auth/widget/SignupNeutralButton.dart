@@ -1,5 +1,4 @@
-import '../widgets/color.dart';
-import '../widgets/font.dart';
+import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
 class SignUpNeutralButton extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 // 일기 상세보기
 class DiaryDetail extends StatefulWidget {
   @override

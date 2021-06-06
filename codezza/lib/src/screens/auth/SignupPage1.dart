@@ -1,11 +1,11 @@
 import './../auth/SignupPage2.dart';
-import '../../utils/SignUpCheckButton.dart';
-import '../../utils/SingUpPrimaryButton.dart';
-import '../../widgets/font.dart';
+import '../../widgets/style_font.dart';
+import '../../widgets/PrimaryButton.dart';
+import 'widget/SignUpCheckButton.dart';
 
 import 'package:flutter/material.dart';
 
-// 아이디
+// 아이디 => 회원가입 완료로 데이터 전달 & 다음 페이지로 이동
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -33,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 textRow(),
                 renderId(),
                 SizedBox(height: 54),
-                SingUpPrimaryButton(
+                PrimaryButton(
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => SignUpPage2()),

@@ -1,6 +1,6 @@
 import './../profile/ProfileAuthPage3.dart';
-import '../../utils/SingUpPrimaryButton.dart';
-import '../../widgets/font.dart';
+import '../../widgets/PrimaryButton.dart';
+import '../../widgets/style_font.dart';
 
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,7 @@ class ProfileAuthPage2 extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 100),
-                child: SingUpPrimaryButton(
+                child: PrimaryButton(
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => ProfileAuthPage3()),

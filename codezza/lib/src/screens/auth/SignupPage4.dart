@@ -1,10 +1,10 @@
-import '../../utils/SingUpPrimaryButton.dart';
-import '../../widgets/font.dart';
+import '../../widgets/style_font.dart';
+import '../../widgets/PrimaryButton.dart';
 import 'LoginPage.dart';
 
 import 'package:flutter/material.dart';
 
-// 회원가입 완료
+// 회원가입 완료 => 각각에 데이터를 합쳐서 DB에 저장함
 class SignUpPage4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class SignUpPage4 extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 200),
-              child: SingUpPrimaryButton(
+              child: PrimaryButton(
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(

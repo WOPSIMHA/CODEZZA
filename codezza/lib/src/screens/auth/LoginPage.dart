@@ -1,12 +1,10 @@
 import './../profile/ProfileAuthPage1.dart';
-import '../../utils/SignupNeutralButton.dart';
-import '../../utils/LoginPrimaryButton.dart';
-import '../../widgets/color.dart';
-import '../../widgets/icon.dart';
-import '../../widgets/font.dart';
+import 'widget/LoginPrimaryButton.dart';
+import '../../widgets/style.dart';
 import 'SignupPage1.dart';
-
 import 'package:flutter/material.dart';
+
+import 'widget/SignupNeutralButton.dart';
 
 // 로그인 페이지
 class LoginPage extends StatefulWidget {
