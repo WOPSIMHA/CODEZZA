@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class LoginPrimaryButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
-  final Widget child;
+  final Widget? child;
 
   const LoginPrimaryButton({
-    Key key,
-    @required this.onPressed,
-    this.title,
+    Key? key,
+    required this.onPressed,
+    required this.title,
     this.child,
   }) : super(key: key);
 

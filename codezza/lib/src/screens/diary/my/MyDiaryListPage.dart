@@ -1,4 +1,4 @@
-import 'package:codezza/src/utils/ProfileCard.dart';
+import '/src/utils/ProfileCard.dart';
 import 'package:flutter/material.dart';
 // 개인일기 List
 class MyDiaryList extends StatelessWidget {

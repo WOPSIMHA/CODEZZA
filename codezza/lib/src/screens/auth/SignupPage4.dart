@@ -1,8 +1,8 @@
 import '../../utils/SingUpPrimaryButton.dart';
 import '../../widgets/font.dart';
-import 'package:flutter/material.dart';
-
 import 'LoginPage.dart';
+
+import 'package:flutter/material.dart';
 
 // 회원가입 완료
 class SignUpPage4 extends StatelessWidget {

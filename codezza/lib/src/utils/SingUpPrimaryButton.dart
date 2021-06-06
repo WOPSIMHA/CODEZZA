@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 class SingUpPrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
-  final Widget child;
+  final Widget? child;
   final String title;
 
   const SingUpPrimaryButton({
-    Key key,
-    this.title,
-    @required this.onPressed,
+    Key? key,
+    required this.title,
+    required this.onPressed,
     this.child,
   }) : super(key: key);
 

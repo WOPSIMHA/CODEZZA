@@ -1,8 +1,8 @@
 import '../../utils/SingUpPrimaryButton.dart';
 import '../../widgets/font.dart';
-import 'package:flutter/material.dart';
-
 import 'SignupPage3.dart';
+
+import 'package:flutter/material.dart';
 
 // 비밀번호
 class SignUpPage2 extends StatefulWidget {

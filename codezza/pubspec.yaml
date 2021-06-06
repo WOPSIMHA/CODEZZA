@@ -1,23 +1,29 @@
 name: codezza
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: 'none' 
+
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # icon plugin
   cupertino_icons: ^1.0.3
+
+  # icon plugin
   ionicons: ^0.1.2
   font_awesome_flutter: ^9.0.0
-  equatable: ^2.0.2
-  flutter_form_builder: ^6.0.1
   flip_card: ^0.5.0
+  dotted_border: ^2.0.0
+  flutter_form_builder: ^6.0.1
+
+  # 통신을 위한 plugin
+  http: ^0.13.3
+  freezed_annotation:
 
   # 로딩 화면 plugin
   flutter_native_splash: ^1.1.8+4
@@ -34,6 +40,9 @@ flutter_native_splash:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+  freezed:
+  json_serializable:
 
 flutter:
   uses-material-design: true
@@ -50,6 +59,7 @@ flutter:
     - assets/images/Profile/profile2.png
     - assets/images/Profile/user.png
 
+  # 폰트
   fonts:
     - family: GmarketSansBold
       fonts:

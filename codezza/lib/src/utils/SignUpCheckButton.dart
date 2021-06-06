@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class SignUpCheckButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
-  final Widget child;
+  final Widget? child;
 
   const SignUpCheckButton({
-    Key key,
-    @required this.onPressed,
+    Key? key,
+    required this.onPressed,
     this.child,
-    this.title,
+    required this.title,
   }) : super(key: key);
 
   @override

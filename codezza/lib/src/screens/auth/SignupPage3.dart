@@ -1,8 +1,9 @@
 import '../../utils/SingUpPrimaryButton.dart';
 import '../../widgets/font.dart';
+import 'SignupPage4.dart';
+
 import 'package:flutter/material.dart';
 
-import 'SignupPage4.dart';
 
 // 이메일
 class SignUpPage3 extends StatefulWidget {

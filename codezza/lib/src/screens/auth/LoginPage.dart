@@ -1,14 +1,14 @@
-import 'package:codezza/src/screens/profile/ProfileAuthPage1.dart';
-
+import './../profile/ProfileAuthPage1.dart';
 import '../../utils/SignupNeutralButton.dart';
 import '../../utils/LoginPrimaryButton.dart';
 import '../../widgets/color.dart';
 import '../../widgets/icon.dart';
 import '../../widgets/font.dart';
-import 'package:flutter/material.dart';
-
 import 'SignupPage1.dart';
 
+import 'package:flutter/material.dart';
+
+// 로그인 페이지
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // 로그인 페이지
+  // 로그인 위젯
   Widget _loginPage() {
     return Scaffold(
       backgroundColor: kWhite4,
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildLoginForm() {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 100,
+        top: 80,
         right: 44,
         left: 44,
         bottom: 16,
@@ -52,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset('assets/images/Logo/Logo3.png'),
+          SizedBox(height: 32),
           _loginForm(),
           SizedBox(height: 16),
           _loginCheckBox(),
@@ -62,14 +63,14 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // 로그인 폼
+  // 로그인 입력 폼
   Widget _loginForm() {
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _userIDField(),
-          SizedBox(height: 14),
+          SizedBox(height: 16),
           _passwordField(),
         ],
       ),
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
   // 로그인 버튼
   Widget _loginPrimaryButton() {
     return Padding(
-      padding: const EdgeInsets.only(top: 24, bottom: 24),
+      padding: const EdgeInsets.only(top: 24, bottom: 12),
       child: LoginPrimaryButton(
         onPressed: () {
           Navigator.of(context).push(

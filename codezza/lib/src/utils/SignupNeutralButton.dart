@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class SignUpNeutralButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
-  final Widget child;
+  final Widget? child;
 
   const SignUpNeutralButton({
-    Key key,
-    @required this.onPressed,
-    this.title,
+    Key? key,
+    required this.onPressed,
+    required this.title,
     this.child,
   }) : super(key: key);
 

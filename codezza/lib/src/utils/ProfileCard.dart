@@ -1,5 +1,5 @@
-import 'package:codezza/src/widgets/color.dart';
-import 'package:codezza/src/widgets/font.dart';
+import '/src/widgets/color.dart';
+import '/src/widgets/font.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
@@ -14,25 +14,35 @@ class _ProfileCardState extends State<ProfileCard> {
     return Center(
       child: FlipCard(
         direction: FlipDirection.HORIZONTAL,
-        front: Card(
-          child: Container(
-            color: kWhite1,
-            height: 280,
-            width: 324,
-            child: Center(
-              child: FontBold(title: '앞뒤가 똑같은\n전화번호\n1577-1577', size: 36),
-            ),
-          ),
+        front: buildFrontCard(),
+        back: buildBackCard(),
+      ),
+    );
+  }
+
+  // 카드 앞
+  Widget buildFrontCard() {
+    return Card(
+      child: Container(
+        color: kWhite1,
+        height: 280,
+        width: 324,
+        child: Center(
+          child: FontBold(title: '프로필 앞장', size: 36),
         ),
-        back: Card(
-          child: Container(
-            color: kWhite1,
-            height: 280,
-            width: 324,
-            child: Center(
-              child: FontBold(title: '이것은 프로필 입니다.', size: 30),
-            ),
-          ),
+      ),
+    );
+  }
+
+  // 카드 뒷
+  Widget buildBackCard() {
+    return Card(
+      child: Container(
+        color: kWhite1,
+        height: 280,
+        width: 324,
+        child: Center(
+          child: FontBold(title: '프로필 뒷장', size: 36),
         ),
       ),
     );

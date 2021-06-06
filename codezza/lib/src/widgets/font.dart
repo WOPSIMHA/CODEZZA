@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class FontBold extends StatelessWidget {
   final String title;
-  final double size;
-  final Color color;
+  final double? size;
+  final Color? color;
 
-  FontBold({this.title, this.size, this.color});
+  FontBold({required this.title, this.size, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,10 @@ class FontBold extends StatelessWidget {
 
 class FontLight extends StatelessWidget {
   final String title;
-  final double size;
-  final Color color;
+  final double? size;
+  final Color? color;
 
-  const FontLight({this.title, this.size, this.color});
+  const FontLight({required this.title, this.size, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +42,14 @@ class FontLight extends StatelessWidget {
 
 class FontMedium extends StatelessWidget {
   final String title;
-  final double size;
-  final Color color;
+  final double? size;
+  final Color? color;
 
-  const FontMedium({this.title, this.size, this.color});
+  const FontMedium({
+    required this.title,
+    this.size,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {

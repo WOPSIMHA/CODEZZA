@@ -8,10 +8,9 @@ class IconStyle extends StatelessWidget {
   final double size;
 
   const IconStyle({
-    Key key,
-    this.icon,
-    this.size,
-  }) : super(key: key);
+    required this.icon,
+    required this.size,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,36 +54,3 @@ class IconDataList {
     size: 28,
   );
 }
-
-// class IconDataList2 {
-//   IconDataList2._();
-//
-//   static const IconStyle CloseCircle = IconStyle(
-//     icon: Ionicons.close_circle_outline,
-//     size: 28,
-//   );
-//   static const IconStyle InformationCircle = IconStyle(
-//     icon: Ionicons.information_circle_outline,
-//     size: 28,
-//   );
-//   static const IconStyle Checkmark = IconStyle(
-//     icon: Ionicons.checkmark_circle_outline,
-//     size: 28,
-//   );
-//   static const IconStyle Add = IconStyle(
-//     icon: Ionicons.add,
-//     size: 28,
-//   );
-//   static const IconStyle Edit = IconStyle(
-//     icon: FontAwesomeIcons.edit,
-//     size: 24,
-//   );
-//   static const IconStyle PassWordOn = IconStyle(
-//     icon: Ionicons.lock_closed_outline,
-//     size: 28,
-//   );
-//   static const IconStyle PassWordOff = IconStyle(
-//     icon: Ionicons.lock_open_outline,
-//     size: 28,
-//   );
-// }

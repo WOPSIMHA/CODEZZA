@@ -1,8 +1,8 @@
-import 'package:codezza/src/screens/auth/SIgnupPage2.dart';
-
+import './../auth/SignupPage2.dart';
 import '../../utils/SignUpCheckButton.dart';
 import '../../utils/SingUpPrimaryButton.dart';
 import '../../widgets/font.dart';
+
 import 'package:flutter/material.dart';
 
 // 아이디

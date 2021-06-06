@@ -1,5 +1,4 @@
-import 'package:codezza/src/screens/HomePage.dart';
-
+import '/src/screens/HomePage.dart';
 import '../../utils/SingUpPrimaryButton.dart';
 import '../../widgets/font.dart';
 import 'package:flutter/material.dart';

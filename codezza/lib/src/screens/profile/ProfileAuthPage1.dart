@@ -1,7 +1,7 @@
-import 'package:codezza/src/screens/profile/ProfileAuthPage2.dart';
-
+import './../profile/ProfileAuthPage2.dart';
 import '../../utils/SingUpPrimaryButton.dart';
 import '../../widgets/font.dart';
+
 import 'package:flutter/material.dart';
 
 class ProfileAuthPage extends StatelessWidget {
