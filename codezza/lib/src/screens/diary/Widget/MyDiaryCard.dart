@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 개인 일기 카드
 class MyDiaryCard extends StatefulWidget {
   @override
   _MyDiaryCardState createState() => _MyDiaryCardState();

@@ -21,16 +21,16 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {required String uID,
-      required String uPW,
-      required String uName,
-      required String uPhoto,
-      required String uComment,
-      required String uCategory,
-      required String uPrivate,
-      required String insID,
-      required DateTime insDT,
-      required DateTime uptDT}) {
+      {String? uID,
+      String? uPW,
+      String? uName,
+      String? uPhoto,
+      String? uComment,
+      String? uCategory,
+      String? uPrivate,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT}) {
     return _User(
       uID: uID,
       uPW: uPW,
@@ -56,34 +56,34 @@ const $User = _$UserTearOff();
 /// @nodoc
 mixin _$User {
   ///pk 아이디
-  String get uID => throw _privateConstructorUsedError;
+  String? get uID => throw _privateConstructorUsedError;
 
   ///비밀번호
-  String get uPW => throw _privateConstructorUsedError;
+  String? get uPW => throw _privateConstructorUsedError;
 
   ///닉네임
-  String get uName => throw _privateConstructorUsedError;
+  String? get uName => throw _privateConstructorUsedError;
 
   ///프로필 사진 경로
-  String get uPhoto => throw _privateConstructorUsedError;
+  String? get uPhoto => throw _privateConstructorUsedError;
 
   ///자기소개
-  String get uComment => throw _privateConstructorUsedError;
+  String? get uComment => throw _privateConstructorUsedError;
 
   ///관심분야
-  String get uCategory => throw _privateConstructorUsedError;
+  String? get uCategory => throw _privateConstructorUsedError;
 
   ///계정 공개 비공개 여부
-  String get uPrivate => throw _privateConstructorUsedError;
+  String? get uPrivate => throw _privateConstructorUsedError;
 
   ///등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
 
   ///등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
 
   ///수정일
-  DateTime get uptDT => throw _privateConstructorUsedError;
+  DateTime? get uptDT => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -95,16 +95,16 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String uID,
-      String uPW,
-      String uName,
-      String uPhoto,
-      String uComment,
-      String uCategory,
-      String uPrivate,
-      String insID,
-      DateTime insDT,
-      DateTime uptDT});
+      {String? uID,
+      String? uPW,
+      String? uName,
+      String? uPhoto,
+      String? uComment,
+      String? uCategory,
+      String? uPrivate,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT});
 }
 
 /// @nodoc
@@ -132,43 +132,43 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       uID: uID == freezed
           ? _value.uID
           : uID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uPW: uPW == freezed
           ? _value.uPW
           : uPW // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uName: uName == freezed
           ? _value.uName
           : uName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uPhoto: uPhoto == freezed
           ? _value.uPhoto
           : uPhoto // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uComment: uComment == freezed
           ? _value.uComment
           : uComment // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uCategory: uCategory == freezed
           ? _value.uCategory
           : uCategory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uPrivate: uPrivate == freezed
           ? _value.uPrivate
           : uPrivate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       uptDT: uptDT == freezed
           ? _value.uptDT
           : uptDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -179,16 +179,16 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String uID,
-      String uPW,
-      String uName,
-      String uPhoto,
-      String uComment,
-      String uCategory,
-      String uPrivate,
-      String insID,
-      DateTime insDT,
-      DateTime uptDT});
+      {String? uID,
+      String? uPW,
+      String? uName,
+      String? uPhoto,
+      String? uComment,
+      String? uCategory,
+      String? uPrivate,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT});
 }
 
 /// @nodoc
@@ -217,43 +217,43 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       uID: uID == freezed
           ? _value.uID
           : uID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uPW: uPW == freezed
           ? _value.uPW
           : uPW // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uName: uName == freezed
           ? _value.uName
           : uName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uPhoto: uPhoto == freezed
           ? _value.uPhoto
           : uPhoto // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uComment: uComment == freezed
           ? _value.uComment
           : uComment // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uCategory: uCategory == freezed
           ? _value.uCategory
           : uCategory // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uPrivate: uPrivate == freezed
           ? _value.uPrivate
           : uPrivate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       uptDT: uptDT == freezed
           ? _value.uptDT
           : uptDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -262,16 +262,16 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User implements _User {
   _$_User(
-      {required this.uID,
-      required this.uPW,
-      required this.uName,
-      required this.uPhoto,
-      required this.uComment,
-      required this.uCategory,
-      required this.uPrivate,
-      required this.insID,
-      required this.insDT,
-      required this.uptDT});
+      {this.uID,
+      this.uPW,
+      this.uName,
+      this.uPhoto,
+      this.uComment,
+      this.uCategory,
+      this.uPrivate,
+      this.insID,
+      this.insDT,
+      this.uptDT});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -279,43 +279,43 @@ class _$_User implements _User {
   @override
 
   ///pk 아이디
-  final String uID;
+  final String? uID;
   @override
 
   ///비밀번호
-  final String uPW;
+  final String? uPW;
   @override
 
   ///닉네임
-  final String uName;
+  final String? uName;
   @override
 
   ///프로필 사진 경로
-  final String uPhoto;
+  final String? uPhoto;
   @override
 
   ///자기소개
-  final String uComment;
+  final String? uComment;
   @override
 
   ///관심분야
-  final String uCategory;
+  final String? uCategory;
   @override
 
   ///계정 공개 비공개 여부
-  final String uPrivate;
+  final String? uPrivate;
   @override
 
   ///등록자
-  final String insID;
+  final String? insID;
   @override
 
   ///등록일
-  final DateTime insDT;
+  final DateTime? insDT;
   @override
 
   ///수정일
-  final DateTime uptDT;
+  final DateTime? uptDT;
 
   @override
   String toString() {
@@ -378,59 +378,59 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {required String uID,
-      required String uPW,
-      required String uName,
-      required String uPhoto,
-      required String uComment,
-      required String uCategory,
-      required String uPrivate,
-      required String insID,
-      required DateTime insDT,
-      required DateTime uptDT}) = _$_User;
+      {String? uID,
+      String? uPW,
+      String? uName,
+      String? uPhoto,
+      String? uComment,
+      String? uCategory,
+      String? uPrivate,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
 
   ///pk 아이디
-  String get uID => throw _privateConstructorUsedError;
+  String? get uID => throw _privateConstructorUsedError;
   @override
 
   ///비밀번호
-  String get uPW => throw _privateConstructorUsedError;
+  String? get uPW => throw _privateConstructorUsedError;
   @override
 
   ///닉네임
-  String get uName => throw _privateConstructorUsedError;
+  String? get uName => throw _privateConstructorUsedError;
   @override
 
   ///프로필 사진 경로
-  String get uPhoto => throw _privateConstructorUsedError;
+  String? get uPhoto => throw _privateConstructorUsedError;
   @override
 
   ///자기소개
-  String get uComment => throw _privateConstructorUsedError;
+  String? get uComment => throw _privateConstructorUsedError;
   @override
 
   ///관심분야
-  String get uCategory => throw _privateConstructorUsedError;
+  String? get uCategory => throw _privateConstructorUsedError;
   @override
 
   ///계정 공개 비공개 여부
-  String get uPrivate => throw _privateConstructorUsedError;
+  String? get uPrivate => throw _privateConstructorUsedError;
   @override
 
   ///등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
   @override
 
   ///등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
   @override
 
   ///수정일
-  DateTime get uptDT => throw _privateConstructorUsedError;
+  DateTime? get uptDT => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

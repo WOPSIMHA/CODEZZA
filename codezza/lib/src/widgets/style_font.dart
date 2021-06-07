@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
+// font Bold 스타일
 class FontBold extends StatelessWidget {
-  final String title;
+  final String? title;
   final double? size;
   final Color? color;
 
-  FontBold({required this.title, this.size, this.color});
+  FontBold({this.title, this.size, this.color});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      title,
+      title!,
       style: TextStyle(
         color: color,
         fontSize: size,
@@ -20,17 +21,18 @@ class FontBold extends StatelessWidget {
   }
 }
 
+// font Light 스타일
 class FontLight extends StatelessWidget {
-  final String title;
+  final String? title;
   final double? size;
   final Color? color;
 
-  const FontLight({required this.title, this.size, this.color});
+  const FontLight({this.title, this.size, this.color});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      title,
+      title!,
       style: TextStyle(
         color: color,
         fontSize: size,
@@ -40,13 +42,16 @@ class FontLight extends StatelessWidget {
   }
 }
 
+
+// font Medium 스타일
 class FontMedium extends StatelessWidget {
-  final String title;
+  final String? title;
   final double? size;
   final Color? color;
 
   const FontMedium({
-    required this.title,
+    Key? key,
+    this.title,
     this.size,
     this.color,
   });
@@ -54,7 +59,7 @@ class FontMedium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      title,
+      title!,
       style: TextStyle(
         color: color,
         fontSize: size,

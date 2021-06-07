@@ -9,28 +9,28 @@ part 'group.g.dart';
 class Group with _$Group {
   factory Group({
     /// pk 그룹 일련번호
-    required int gSEQ,
+    int? gSEQ,
 
     /// pk, fk 구성원 아이디
-    required String gUID,
+    String? gUID,
 
     /// 그룹명
-    required String gName,
+    String? gName,
 
     /// 그룹 내 권한
-    required String gAuthority,
+    String? gAuthority,
 
     /// 등록자
-    required String insID,
+    String? insID,
 
     /// 등록일
-    required DateTime insDT,
+    DateTime? insDT,
 
     /// 수정자
-    required String uptID,
+    String? uptID,
 
     /// 수정일
-    required DateTime uptDT,
+    DateTime? uptDT,
   }) = _Group;
 
   factory Group.fromJson(Map<String, dynamic> json) =>

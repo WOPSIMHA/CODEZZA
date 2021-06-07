@@ -1,10 +1,10 @@
 import './../profile/ProfileAuthPage1.dart';
-import 'widget/LoginPrimaryButton.dart';
 import '../../widgets/style.dart';
-import 'SignupPage1.dart';
-import 'package:flutter/material.dart';
-
 import 'widget/SignupNeutralButton.dart';
+import 'widget/LoginPrimaryButton.dart';
+import 'SignupPage1.dart';
+
+import 'package:flutter/material.dart';
 
 // 로그인 페이지
 class LoginPage extends StatefulWidget {
@@ -13,9 +13,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _loginValue = false;
-  bool _isHidePassword = true;
-  var _controller = TextEditingController();
+  bool _loginValue = false; // 자동로그인 체크 박스 on/off
+  bool _isHidePassword = true; // 비밀번호 보이기/숨기기
+  var _controller = TextEditingController(); // TextFormField Controller
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
         labelText: 'ID',
         suffixIcon: GestureDetector(
           onTap: () => _controller.clear(),
-          child: IconDataList.kCloseCircle,
+          child: IconList.CloseCircle,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 2, color: kGray1),
@@ -106,8 +106,8 @@ class _LoginPageState extends State<LoginPage> {
         suffixIcon: GestureDetector(
           onTap: _togglePassword,
           child: _isHidePassword
-              ? IconDataList.kPassWordOn
-              : IconDataList.kPassWordOff,
+              ? IconList.PassWordOn
+              : IconList.PassWordOff,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 2, color: kGray1),

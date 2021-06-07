@@ -21,14 +21,14 @@ class _$GroupTearOff {
   const _$GroupTearOff();
 
   _Group call(
-      {required int gSEQ,
-      required String gUID,
-      required String gName,
-      required String gAuthority,
-      required String insID,
-      required DateTime insDT,
-      required String uptID,
-      required DateTime uptDT}) {
+      {int? gSEQ,
+      String? gUID,
+      String? gName,
+      String? gAuthority,
+      String? insID,
+      DateTime? insDT,
+      String? uptID,
+      DateTime? uptDT}) {
     return _Group(
       gSEQ: gSEQ,
       gUID: gUID,
@@ -52,28 +52,28 @@ const $Group = _$GroupTearOff();
 /// @nodoc
 mixin _$Group {
   /// pk 그룹 일련번호
-  int get gSEQ => throw _privateConstructorUsedError;
+  int? get gSEQ => throw _privateConstructorUsedError;
 
   /// pk, fk 구성원 아이디
-  String get gUID => throw _privateConstructorUsedError;
+  String? get gUID => throw _privateConstructorUsedError;
 
   /// 그룹명
-  String get gName => throw _privateConstructorUsedError;
+  String? get gName => throw _privateConstructorUsedError;
 
   /// 그룹 내 권한
-  String get gAuthority => throw _privateConstructorUsedError;
+  String? get gAuthority => throw _privateConstructorUsedError;
 
   /// 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
 
   /// 수정자
-  String get uptID => throw _privateConstructorUsedError;
+  String? get uptID => throw _privateConstructorUsedError;
 
   /// 수정일
-  DateTime get uptDT => throw _privateConstructorUsedError;
+  DateTime? get uptDT => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -85,14 +85,14 @@ abstract class $GroupCopyWith<$Res> {
   factory $GroupCopyWith(Group value, $Res Function(Group) then) =
       _$GroupCopyWithImpl<$Res>;
   $Res call(
-      {int gSEQ,
-      String gUID,
-      String gName,
-      String gAuthority,
-      String insID,
-      DateTime insDT,
-      String uptID,
-      DateTime uptDT});
+      {int? gSEQ,
+      String? gUID,
+      String? gName,
+      String? gAuthority,
+      String? insID,
+      DateTime? insDT,
+      String? uptID,
+      DateTime? uptDT});
 }
 
 /// @nodoc
@@ -118,35 +118,35 @@ class _$GroupCopyWithImpl<$Res> implements $GroupCopyWith<$Res> {
       gSEQ: gSEQ == freezed
           ? _value.gSEQ
           : gSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       gUID: gUID == freezed
           ? _value.gUID
           : gUID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gName: gName == freezed
           ? _value.gName
           : gName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gAuthority: gAuthority == freezed
           ? _value.gAuthority
           : gAuthority // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       uptID: uptID == freezed
           ? _value.uptID
           : uptID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uptDT: uptDT == freezed
           ? _value.uptDT
           : uptDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -157,14 +157,14 @@ abstract class _$GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
       __$GroupCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int gSEQ,
-      String gUID,
-      String gName,
-      String gAuthority,
-      String insID,
-      DateTime insDT,
-      String uptID,
-      DateTime uptDT});
+      {int? gSEQ,
+      String? gUID,
+      String? gName,
+      String? gAuthority,
+      String? insID,
+      DateTime? insDT,
+      String? uptID,
+      DateTime? uptDT});
 }
 
 /// @nodoc
@@ -191,35 +191,35 @@ class __$GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
       gSEQ: gSEQ == freezed
           ? _value.gSEQ
           : gSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       gUID: gUID == freezed
           ? _value.gUID
           : gUID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gName: gName == freezed
           ? _value.gName
           : gName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       gAuthority: gAuthority == freezed
           ? _value.gAuthority
           : gAuthority // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       uptID: uptID == freezed
           ? _value.uptID
           : uptID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uptDT: uptDT == freezed
           ? _value.uptDT
           : uptDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -228,14 +228,14 @@ class __$GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Group implements _Group {
   _$_Group(
-      {required this.gSEQ,
-      required this.gUID,
-      required this.gName,
-      required this.gAuthority,
-      required this.insID,
-      required this.insDT,
-      required this.uptID,
-      required this.uptDT});
+      {this.gSEQ,
+      this.gUID,
+      this.gName,
+      this.gAuthority,
+      this.insID,
+      this.insDT,
+      this.uptID,
+      this.uptDT});
 
   factory _$_Group.fromJson(Map<String, dynamic> json) =>
       _$_$_GroupFromJson(json);
@@ -243,35 +243,35 @@ class _$_Group implements _Group {
   @override
 
   /// pk 그룹 일련번호
-  final int gSEQ;
+  final int? gSEQ;
   @override
 
   /// pk, fk 구성원 아이디
-  final String gUID;
+  final String? gUID;
   @override
 
   /// 그룹명
-  final String gName;
+  final String? gName;
   @override
 
   /// 그룹 내 권한
-  final String gAuthority;
+  final String? gAuthority;
   @override
 
   /// 등록자
-  final String insID;
+  final String? insID;
   @override
 
   /// 등록일
-  final DateTime insDT;
+  final DateTime? insDT;
   @override
 
   /// 수정자
-  final String uptID;
+  final String? uptID;
   @override
 
   /// 수정일
-  final DateTime uptDT;
+  final DateTime? uptDT;
 
   @override
   String toString() {
@@ -326,49 +326,49 @@ class _$_Group implements _Group {
 
 abstract class _Group implements Group {
   factory _Group(
-      {required int gSEQ,
-      required String gUID,
-      required String gName,
-      required String gAuthority,
-      required String insID,
-      required DateTime insDT,
-      required String uptID,
-      required DateTime uptDT}) = _$_Group;
+      {int? gSEQ,
+      String? gUID,
+      String? gName,
+      String? gAuthority,
+      String? insID,
+      DateTime? insDT,
+      String? uptID,
+      DateTime? uptDT}) = _$_Group;
 
   factory _Group.fromJson(Map<String, dynamic> json) = _$_Group.fromJson;
 
   @override
 
   /// pk 그룹 일련번호
-  int get gSEQ => throw _privateConstructorUsedError;
+  int? get gSEQ => throw _privateConstructorUsedError;
   @override
 
   /// pk, fk 구성원 아이디
-  String get gUID => throw _privateConstructorUsedError;
+  String? get gUID => throw _privateConstructorUsedError;
   @override
 
   /// 그룹명
-  String get gName => throw _privateConstructorUsedError;
+  String? get gName => throw _privateConstructorUsedError;
   @override
 
   /// 그룹 내 권한
-  String get gAuthority => throw _privateConstructorUsedError;
+  String? get gAuthority => throw _privateConstructorUsedError;
   @override
 
   /// 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
   @override
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
   @override
 
   /// 수정자
-  String get uptID => throw _privateConstructorUsedError;
+  String? get uptID => throw _privateConstructorUsedError;
   @override
 
   /// 수정일
-  DateTime get uptDT => throw _privateConstructorUsedError;
+  DateTime? get uptDT => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GroupCopyWith<_Group> get copyWith => throw _privateConstructorUsedError;

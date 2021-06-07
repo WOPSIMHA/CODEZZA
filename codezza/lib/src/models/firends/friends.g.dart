@@ -8,10 +8,11 @@ part of 'friends.dart';
 
 _$_Friends _$_$_FriendsFromJson(Map<String, dynamic> json) {
   return _$_Friends(
-    followingID: json['followingID'] as String,
-    followedID: json['followedID'] as String,
-    insID: json['insID'] as String,
-    insDT: DateTime.parse(json['insDT'] as String),
+    followingID: json['followingID'] as String?,
+    followedID: json['followedID'] as String?,
+    insID: json['insID'] as String?,
+    insDT:
+        json['insDT'] == null ? null : DateTime.parse(json['insDT'] as String),
   );
 }
 
@@ -20,5 +21,5 @@ Map<String, dynamic> _$_$_FriendsToJson(_$_Friends instance) =>
       'followingID': instance.followingID,
       'followedID': instance.followedID,
       'insID': instance.insID,
-      'insDT': instance.insDT.toIso8601String(),
+      'insDT': instance.insDT?.toIso8601String(),
     };

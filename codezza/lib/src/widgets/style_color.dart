@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Color List
 const Color kMainColor = const Color(0xff75F0AE);
 const Color kGreen1 = const Color(0xff5EE29C);
 const Color kGreen2 = const Color(0xff0BBFAD);

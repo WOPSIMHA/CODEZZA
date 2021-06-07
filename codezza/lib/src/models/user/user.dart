@@ -9,34 +9,34 @@ part 'user.g.dart';
 class User with _$User {
   factory User({
     ///pk 아이디
-    required String uID,
+    String? uID,
 
     ///비밀번호
-    required String uPW,
+    String? uPW,
 
     ///닉네임
-    required String uName,
+    String? uName,
 
     ///프로필 사진 경로
-    required String uPhoto,
+    String? uPhoto,
 
     ///자기소개
-    required String uComment,
+    String? uComment,
 
     ///관심분야
-    required String uCategory,
+    String? uCategory,
 
     ///계정 공개 비공개 여부
-    required String uPrivate,
+    String? uPrivate,
 
     ///등록자
-    required String insID,
+    String? insID,
 
     ///등록일
-    required DateTime insDT,
+    DateTime? insDT,
 
     ///수정일
-    required DateTime uptDT,
+    DateTime? uptDT,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

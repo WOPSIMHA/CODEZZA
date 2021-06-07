@@ -1,5 +1,4 @@
-import 'package:codezza/src/screens/diary/GroupDiaryListPage.dart';
-
+import '/src/screens/diary/GroupDiaryListPage.dart';
 import '/src/widgets/style.dart';
 import 'diary/MyDiaryListPage.dart';
 import 'profile/Widget/ProfileCard.dart';
@@ -51,65 +50,72 @@ class _HomePageState extends State<HomePage> {
         height: 60,
         width: 400,
         child: Row(
-          children: [
-            Expanded(
-              child: GestureDetector(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: _index == 0 ? kMainColor : kWhite2,
-                    borderRadius: _index == 0
-                        ? BorderRadius.only(
-                      topLeft: Radius.circular(6),
-                      bottomLeft: Radius.circular(6),
-                    )
-                        : BorderRadius.only(
-                      topLeft: Radius.circular(6),
-                      bottomLeft: Radius.circular(6),
-                    ),
-                  ),
-                  child: Center(
-                    child: FontMedium(
-                      title: '개인일기',
-                      size: 20,
-                      color: _index == 0 ? Colors.black : Colors.black,
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  _tabIndex(0);
-                },
-              ),
-            ),
-            Expanded(
-              child: GestureDetector(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: _index == 1 ? kMainColor : kWhite2,
-                    borderRadius: _index == 0
-                        ? BorderRadius.only(
-                      topRight: Radius.circular(6),
-                      bottomRight: Radius.circular(6),
-                    )
-                        : BorderRadius.only(
-                      topRight: Radius.circular(6),
-                      bottomRight: Radius.circular(6),
-                    ),
-                  ),
-                  child: Center(
-                    child: FontMedium(
-                      title: '그룹일기',
-                      size: 20,
-                      color: _index == 1 ? Colors.black : Colors.black,
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  _tabIndex(1);
-                },
-              ),
-            ),
-          ],
+          children: [_myDiaryList(), _groupDiaryList()],
         ),
+      ),
+    );
+  }
+
+  // 개인 일기 List
+  Widget _myDiaryList() {
+    return Expanded(
+      child: GestureDetector(
+        child: Container(
+          decoration: BoxDecoration(
+            color: _index == 0 ? kMainColor : kWhite2,
+            borderRadius: _index == 0
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(6),
+                    bottomLeft: Radius.circular(6),
+                  )
+                : BorderRadius.only(
+                    topLeft: Radius.circular(6),
+                    bottomLeft: Radius.circular(6),
+                  ),
+          ),
+          child: Center(
+            child: FontMedium(
+              title: '개인일기',
+              size: 20,
+              color: _index == 0 ? Colors.black : Colors.black,
+            ),
+          ),
+        ),
+        onTap: () {
+          _tabIndex(0);
+        },
+      ),
+    );
+  }
+
+  // 그룹 일기 List
+  Widget _groupDiaryList() {
+    return Expanded(
+      child: GestureDetector(
+        child: Container(
+          decoration: BoxDecoration(
+            color: _index == 1 ? kMainColor : kWhite2,
+            borderRadius: _index == 0
+                ? BorderRadius.only(
+                    topRight: Radius.circular(6),
+                    bottomRight: Radius.circular(6),
+                  )
+                : BorderRadius.only(
+                    topRight: Radius.circular(6),
+                    bottomRight: Radius.circular(6),
+                  ),
+          ),
+          child: Center(
+            child: FontMedium(
+              title: '그룹일기',
+              size: 20,
+              color: _index == 1 ? Colors.black : Colors.black,
+            ),
+          ),
+        ),
+        onTap: () {
+          _tabIndex(1);
+        },
       ),
     );
   }

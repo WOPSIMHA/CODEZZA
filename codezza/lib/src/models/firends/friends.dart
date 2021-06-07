@@ -9,16 +9,16 @@ part 'friends.g.dart';
 class Friends with _$Friends {
   factory Friends({
     /// pk 팔로잉 대상
-    required String followingID,
+    String? followingID,
 
     /// pk, fk 팔로잉 주체
-    required String followedID,
+    String? followedID,
 
     /// 등록자
-    required String insID,
+    String? insID,
 
     /// 등록일
-    required DateTime insDT,
+    DateTime? insDT,
   }) = _Friends;
 
   factory Friends.fromJson(Map<String, dynamic> json) =>

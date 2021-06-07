@@ -4,6 +4,7 @@ import '../../widgets/style_font.dart';
 
 import 'package:flutter/material.dart';
 
+// 카테고리 => 각각에 데이터를 합쳐서 DB에 저장한 후 Home Page 로 이동
 class ProfileAuthPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

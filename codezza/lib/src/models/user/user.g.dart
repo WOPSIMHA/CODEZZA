@@ -8,16 +8,18 @@ part of 'user.dart';
 
 _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
   return _$_User(
-    uID: json['uID'] as String,
-    uPW: json['uPW'] as String,
-    uName: json['uName'] as String,
-    uPhoto: json['uPhoto'] as String,
-    uComment: json['uComment'] as String,
-    uCategory: json['uCategory'] as String,
-    uPrivate: json['uPrivate'] as String,
-    insID: json['insID'] as String,
-    insDT: DateTime.parse(json['insDT'] as String),
-    uptDT: DateTime.parse(json['uptDT'] as String),
+    uID: json['uID'] as String?,
+    uPW: json['uPW'] as String?,
+    uName: json['uName'] as String?,
+    uPhoto: json['uPhoto'] as String?,
+    uComment: json['uComment'] as String?,
+    uCategory: json['uCategory'] as String?,
+    uPrivate: json['uPrivate'] as String?,
+    insID: json['insID'] as String?,
+    insDT:
+        json['insDT'] == null ? null : DateTime.parse(json['insDT'] as String),
+    uptDT:
+        json['uptDT'] == null ? null : DateTime.parse(json['uptDT'] as String),
   );
 }
 
@@ -30,6 +32,6 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'uCategory': instance.uCategory,
       'uPrivate': instance.uPrivate,
       'insID': instance.insID,
-      'insDT': instance.insDT.toIso8601String(),
-      'uptDT': instance.uptDT.toIso8601String(),
+      'insDT': instance.insDT?.toIso8601String(),
+      'uptDT': instance.uptDT?.toIso8601String(),
     };

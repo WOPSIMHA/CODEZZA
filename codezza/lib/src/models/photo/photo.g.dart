@@ -8,11 +8,12 @@ part of 'photo.dart';
 
 _$_Photo _$_$_PhotoFromJson(Map<String, dynamic> json) {
   return _$_Photo(
-    pUUID: json['pUUID'] as String,
-    pgSEQ: json['pgSEQ'] as int,
-    pSaveName: json['pSaveName'] as String,
-    insID: json['insID'] as String,
-    insDT: DateTime.parse(json['insDT'] as String),
+    pUUID: json['pUUID'] as String?,
+    pgSEQ: json['pgSEQ'] as int?,
+    pSaveName: json['pSaveName'] as String?,
+    insID: json['insID'] as String?,
+    insDT:
+        json['insDT'] == null ? null : DateTime.parse(json['insDT'] as String),
   );
 }
 
@@ -21,5 +22,5 @@ Map<String, dynamic> _$_$_PhotoToJson(_$_Photo instance) => <String, dynamic>{
       'pgSEQ': instance.pgSEQ,
       'pSaveName': instance.pSaveName,
       'insID': instance.insID,
-      'insDT': instance.insDT.toIso8601String(),
+      'insDT': instance.insDT?.toIso8601String(),
     };

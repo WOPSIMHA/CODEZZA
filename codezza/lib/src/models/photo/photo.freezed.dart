@@ -21,11 +21,11 @@ class _$PhotoTearOff {
   const _$PhotoTearOff();
 
   _Photo call(
-      {required String pUUID,
-      required int pgSEQ,
-      required String pSaveName,
-      required String insID,
-      required DateTime insDT}) {
+      {String? pUUID,
+      int? pgSEQ,
+      String? pSaveName,
+      String? insID,
+      DateTime? insDT}) {
     return _Photo(
       pUUID: pUUID,
       pgSEQ: pgSEQ,
@@ -46,19 +46,19 @@ const $Photo = _$PhotoTearOff();
 /// @nodoc
 mixin _$Photo {
   /// pk 사진 고유 key
-  String get pUUID => throw _privateConstructorUsedError;
+  String? get pUUID => throw _privateConstructorUsedError;
 
   /// pk fk 일기 일련번호
-  int get pgSEQ => throw _privateConstructorUsedError;
+  int? get pgSEQ => throw _privateConstructorUsedError;
 
   /// 파일 저장명
-  String get pSaveName => throw _privateConstructorUsedError;
+  String? get pSaveName => throw _privateConstructorUsedError;
 
   /// 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,11 +70,11 @@ abstract class $PhotoCopyWith<$Res> {
   factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
       _$PhotoCopyWithImpl<$Res>;
   $Res call(
-      {String pUUID,
-      int pgSEQ,
-      String pSaveName,
-      String insID,
-      DateTime insDT});
+      {String? pUUID,
+      int? pgSEQ,
+      String? pSaveName,
+      String? insID,
+      DateTime? insDT});
 }
 
 /// @nodoc
@@ -97,23 +97,23 @@ class _$PhotoCopyWithImpl<$Res> implements $PhotoCopyWith<$Res> {
       pUUID: pUUID == freezed
           ? _value.pUUID
           : pUUID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       pgSEQ: pgSEQ == freezed
           ? _value.pgSEQ
           : pgSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       pSaveName: pSaveName == freezed
           ? _value.pSaveName
           : pSaveName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -124,11 +124,11 @@ abstract class _$PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
       __$PhotoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String pUUID,
-      int pgSEQ,
-      String pSaveName,
-      String insID,
-      DateTime insDT});
+      {String? pUUID,
+      int? pgSEQ,
+      String? pSaveName,
+      String? insID,
+      DateTime? insDT});
 }
 
 /// @nodoc
@@ -152,23 +152,23 @@ class __$PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res>
       pUUID: pUUID == freezed
           ? _value.pUUID
           : pUUID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       pgSEQ: pgSEQ == freezed
           ? _value.pgSEQ
           : pgSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       pSaveName: pSaveName == freezed
           ? _value.pSaveName
           : pSaveName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -176,12 +176,7 @@ class __$PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Photo implements _Photo {
-  _$_Photo(
-      {required this.pUUID,
-      required this.pgSEQ,
-      required this.pSaveName,
-      required this.insID,
-      required this.insDT});
+  _$_Photo({this.pUUID, this.pgSEQ, this.pSaveName, this.insID, this.insDT});
 
   factory _$_Photo.fromJson(Map<String, dynamic> json) =>
       _$_$_PhotoFromJson(json);
@@ -189,23 +184,23 @@ class _$_Photo implements _Photo {
   @override
 
   /// pk 사진 고유 key
-  final String pUUID;
+  final String? pUUID;
   @override
 
   /// pk fk 일기 일련번호
-  final int pgSEQ;
+  final int? pgSEQ;
   @override
 
   /// 파일 저장명
-  final String pSaveName;
+  final String? pSaveName;
   @override
 
   /// 등록자
-  final String insID;
+  final String? insID;
   @override
 
   /// 등록일
-  final DateTime insDT;
+  final DateTime? insDT;
 
   @override
   String toString() {
@@ -251,34 +246,34 @@ class _$_Photo implements _Photo {
 
 abstract class _Photo implements Photo {
   factory _Photo(
-      {required String pUUID,
-      required int pgSEQ,
-      required String pSaveName,
-      required String insID,
-      required DateTime insDT}) = _$_Photo;
+      {String? pUUID,
+      int? pgSEQ,
+      String? pSaveName,
+      String? insID,
+      DateTime? insDT}) = _$_Photo;
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$_Photo.fromJson;
 
   @override
 
   /// pk 사진 고유 key
-  String get pUUID => throw _privateConstructorUsedError;
+  String? get pUUID => throw _privateConstructorUsedError;
   @override
 
   /// pk fk 일기 일련번호
-  int get pgSEQ => throw _privateConstructorUsedError;
+  int? get pgSEQ => throw _privateConstructorUsedError;
   @override
 
   /// 파일 저장명
-  String get pSaveName => throw _privateConstructorUsedError;
+  String? get pSaveName => throw _privateConstructorUsedError;
   @override
 
   /// 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
   @override
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PhotoCopyWith<_Photo> get copyWith => throw _privateConstructorUsedError;

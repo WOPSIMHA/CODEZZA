@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 그룹 일기 카드
 class GroupDiaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

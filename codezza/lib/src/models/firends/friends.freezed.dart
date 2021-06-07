@@ -21,10 +21,10 @@ class _$FriendsTearOff {
   const _$FriendsTearOff();
 
   _Friends call(
-      {required String followingID,
-      required String followedID,
-      required String insID,
-      required DateTime insDT}) {
+      {String? followingID,
+      String? followedID,
+      String? insID,
+      DateTime? insDT}) {
     return _Friends(
       followingID: followingID,
       followedID: followedID,
@@ -44,16 +44,16 @@ const $Friends = _$FriendsTearOff();
 /// @nodoc
 mixin _$Friends {
   /// pk 팔로잉 대상
-  String get followingID => throw _privateConstructorUsedError;
+  String? get followingID => throw _privateConstructorUsedError;
 
   /// pk, fk 팔로잉 주체
-  String get followedID => throw _privateConstructorUsedError;
+  String? get followedID => throw _privateConstructorUsedError;
 
   /// 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +65,10 @@ abstract class $FriendsCopyWith<$Res> {
   factory $FriendsCopyWith(Friends value, $Res Function(Friends) then) =
       _$FriendsCopyWithImpl<$Res>;
   $Res call(
-      {String followingID, String followedID, String insID, DateTime insDT});
+      {String? followingID,
+      String? followedID,
+      String? insID,
+      DateTime? insDT});
 }
 
 /// @nodoc
@@ -87,19 +90,19 @@ class _$FriendsCopyWithImpl<$Res> implements $FriendsCopyWith<$Res> {
       followingID: followingID == freezed
           ? _value.followingID
           : followingID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       followedID: followedID == freezed
           ? _value.followedID
           : followedID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -110,7 +113,10 @@ abstract class _$FriendsCopyWith<$Res> implements $FriendsCopyWith<$Res> {
       __$FriendsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String followingID, String followedID, String insID, DateTime insDT});
+      {String? followingID,
+      String? followedID,
+      String? insID,
+      DateTime? insDT});
 }
 
 /// @nodoc
@@ -133,19 +139,19 @@ class __$FriendsCopyWithImpl<$Res> extends _$FriendsCopyWithImpl<$Res>
       followingID: followingID == freezed
           ? _value.followingID
           : followingID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       followedID: followedID == freezed
           ? _value.followedID
           : followedID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -153,11 +159,7 @@ class __$FriendsCopyWithImpl<$Res> extends _$FriendsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Friends implements _Friends {
-  _$_Friends(
-      {required this.followingID,
-      required this.followedID,
-      required this.insID,
-      required this.insDT});
+  _$_Friends({this.followingID, this.followedID, this.insID, this.insDT});
 
   factory _$_Friends.fromJson(Map<String, dynamic> json) =>
       _$_$_FriendsFromJson(json);
@@ -165,19 +167,19 @@ class _$_Friends implements _Friends {
   @override
 
   /// pk 팔로잉 대상
-  final String followingID;
+  final String? followingID;
   @override
 
   /// pk, fk 팔로잉 주체
-  final String followedID;
+  final String? followedID;
   @override
 
   /// 등록자
-  final String insID;
+  final String? insID;
   @override
 
   /// 등록일
-  final DateTime insDT;
+  final DateTime? insDT;
 
   @override
   String toString() {
@@ -221,29 +223,29 @@ class _$_Friends implements _Friends {
 
 abstract class _Friends implements Friends {
   factory _Friends(
-      {required String followingID,
-      required String followedID,
-      required String insID,
-      required DateTime insDT}) = _$_Friends;
+      {String? followingID,
+      String? followedID,
+      String? insID,
+      DateTime? insDT}) = _$_Friends;
 
   factory _Friends.fromJson(Map<String, dynamic> json) = _$_Friends.fromJson;
 
   @override
 
   /// pk 팔로잉 대상
-  String get followingID => throw _privateConstructorUsedError;
+  String? get followingID => throw _privateConstructorUsedError;
   @override
 
   /// pk, fk 팔로잉 주체
-  String get followedID => throw _privateConstructorUsedError;
+  String? get followedID => throw _privateConstructorUsedError;
   @override
 
   /// 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
   @override
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FriendsCopyWith<_Friends> get copyWith =>

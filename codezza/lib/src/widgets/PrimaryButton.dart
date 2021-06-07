@@ -1,6 +1,7 @@
 import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
+// 다음 버튼 스타일
 class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Widget? child;

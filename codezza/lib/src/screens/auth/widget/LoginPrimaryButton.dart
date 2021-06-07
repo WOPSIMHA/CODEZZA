@@ -1,6 +1,7 @@
 import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
+// 로그인 버튼 스타일
 class LoginPrimaryButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;

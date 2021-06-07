@@ -1,5 +1,5 @@
+import '../../widgets/style.dart';
 import './../auth/SignupPage2.dart';
-import '../../widgets/style_font.dart';
 import '../../widgets/PrimaryButton.dart';
 import 'widget/SignUpCheckButton.dart';
 
@@ -10,47 +10,44 @@ class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
-class _SignUpPageState extends State<SignUpPage> {
-  var _controller = TextEditingController();
 
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 168,
-              left: 44,
-              right: 44,
-              bottom: 24,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                textRow(),
-                renderId(),
-                SizedBox(height: 54),
-                PrimaryButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => SignUpPage2()),
-                    );
-                  },
-                  // onPressed: null,
-                  title: '다음',
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: buildBody(),
     );
   }
 
-  Widget textRow() {
+  // Body
+  Widget buildBody() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 168,
+            left: 44,
+            right: 44,
+            bottom: 24,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _textRow(),
+              _textFieldId(),
+              SizedBox(height: 54),
+              _nextButton(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // title
+  Widget _textRow() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -75,7 +72,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget renderId() {
+  // 아이디 텍스트 필드
+  Widget _textFieldId() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -83,22 +81,36 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Padding(
             padding: const EdgeInsets.only(right: 8),
             child: TextField(
-              controller: _controller,
               decoration: InputDecoration(
                 labelText: '아이디를 입력해주세요',
               ),
             ),
           ),
         ),
-        renderIdCheckButton(),
+        _textFieldIdCheckButton(),
       ],
     );
   }
 
-  renderIdCheckButton() {
+  // 아이디 중복 체크 버튼
+  Widget _textFieldIdCheckButton() {
     return SignUpCheckButton(
       onPressed: () {},
       title: '중복확인',
     );
   }
+
+  // 다음 버튼
+  Widget _nextButton() {
+    return PrimaryButton(
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => SignUpPage2()),
+        );
+      },
+      // onPressed: null,
+      title: '다음',
+    );
+  }
+
 }

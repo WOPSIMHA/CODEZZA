@@ -1,6 +1,7 @@
 import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
+// 아이디 체크 버튼 스타일
 class SignUpCheckButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;

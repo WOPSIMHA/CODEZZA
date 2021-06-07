@@ -9,19 +9,19 @@ part 'photo.g.dart';
 class Photo with _$Photo {
   factory Photo({
     /// pk 사진 고유 key
-    required String pUUID,
+    String? pUUID,
 
     /// pk fk 일기 일련번호
-    required int pgSEQ,
+    int? pgSEQ,
 
     /// 파일 저장명
-    required String pSaveName,
+    String? pSaveName,
 
     /// 등록자
-    required String insID,
+    String? insID,
 
     /// 등록일
-    required DateTime insDT,
+    DateTime? insDT,
   }) = _Photo;
 
   factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);

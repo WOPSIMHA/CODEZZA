@@ -1,6 +1,7 @@
 import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
+// 회원가입 버튼 스타일
 class SignUpNeutralButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;

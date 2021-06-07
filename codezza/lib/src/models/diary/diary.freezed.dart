@@ -21,16 +21,16 @@ class _$DiaryTearOff {
   const _$DiaryTearOff();
 
   _Diary call(
-      {required int dSEQ,
-      required String dTitle,
-      required String dText,
-      required String dThumbnail,
-      required String dPrivate,
-      required String dDiaryType,
-      required int dgSEQ,
-      required String insID,
-      required DateTime insDT,
-      required DateTime uptDT}) {
+      {int? dSEQ,
+      String? dTitle,
+      String? dText,
+      String? dThumbnail,
+      String? dPrivate,
+      String? dDiaryType,
+      int? dgSEQ,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT}) {
     return _Diary(
       dSEQ: dSEQ,
       dTitle: dTitle,
@@ -56,34 +56,34 @@ const $Diary = _$DiaryTearOff();
 /// @nodoc
 mixin _$Diary {
   /// pk 일기 일련번호
-  int get dSEQ => throw _privateConstructorUsedError;
+  int? get dSEQ => throw _privateConstructorUsedError;
 
   /// 일기 제목
-  String get dTitle => throw _privateConstructorUsedError;
+  String? get dTitle => throw _privateConstructorUsedError;
 
   /// 일기 내용
-  String get dText => throw _privateConstructorUsedError;
+  String? get dText => throw _privateConstructorUsedError;
 
   /// 썸네일 이미지 정보
-  String get dThumbnail => throw _privateConstructorUsedError;
+  String? get dThumbnail => throw _privateConstructorUsedError;
 
   /// 공개.비공개 플래그
-  String get dPrivate => throw _privateConstructorUsedError;
+  String? get dPrivate => throw _privateConstructorUsedError;
 
   /// 일기 타입 : 개인 or 그룹
-  String get dDiaryType => throw _privateConstructorUsedError;
+  String? get dDiaryType => throw _privateConstructorUsedError;
 
   /// pk, fk 그룹 일련번호
-  int get dgSEQ => throw _privateConstructorUsedError;
+  int? get dgSEQ => throw _privateConstructorUsedError;
 
   /// fk 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
 
   /// 수정일
-  DateTime get uptDT => throw _privateConstructorUsedError;
+  DateTime? get uptDT => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -95,16 +95,16 @@ abstract class $DiaryCopyWith<$Res> {
   factory $DiaryCopyWith(Diary value, $Res Function(Diary) then) =
       _$DiaryCopyWithImpl<$Res>;
   $Res call(
-      {int dSEQ,
-      String dTitle,
-      String dText,
-      String dThumbnail,
-      String dPrivate,
-      String dDiaryType,
-      int dgSEQ,
-      String insID,
-      DateTime insDT,
-      DateTime uptDT});
+      {int? dSEQ,
+      String? dTitle,
+      String? dText,
+      String? dThumbnail,
+      String? dPrivate,
+      String? dDiaryType,
+      int? dgSEQ,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT});
 }
 
 /// @nodoc
@@ -132,43 +132,43 @@ class _$DiaryCopyWithImpl<$Res> implements $DiaryCopyWith<$Res> {
       dSEQ: dSEQ == freezed
           ? _value.dSEQ
           : dSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       dTitle: dTitle == freezed
           ? _value.dTitle
           : dTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dText: dText == freezed
           ? _value.dText
           : dText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dThumbnail: dThumbnail == freezed
           ? _value.dThumbnail
           : dThumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dPrivate: dPrivate == freezed
           ? _value.dPrivate
           : dPrivate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dDiaryType: dDiaryType == freezed
           ? _value.dDiaryType
           : dDiaryType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dgSEQ: dgSEQ == freezed
           ? _value.dgSEQ
           : dgSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       uptDT: uptDT == freezed
           ? _value.uptDT
           : uptDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -179,16 +179,16 @@ abstract class _$DiaryCopyWith<$Res> implements $DiaryCopyWith<$Res> {
       __$DiaryCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int dSEQ,
-      String dTitle,
-      String dText,
-      String dThumbnail,
-      String dPrivate,
-      String dDiaryType,
-      int dgSEQ,
-      String insID,
-      DateTime insDT,
-      DateTime uptDT});
+      {int? dSEQ,
+      String? dTitle,
+      String? dText,
+      String? dThumbnail,
+      String? dPrivate,
+      String? dDiaryType,
+      int? dgSEQ,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT});
 }
 
 /// @nodoc
@@ -217,43 +217,43 @@ class __$DiaryCopyWithImpl<$Res> extends _$DiaryCopyWithImpl<$Res>
       dSEQ: dSEQ == freezed
           ? _value.dSEQ
           : dSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       dTitle: dTitle == freezed
           ? _value.dTitle
           : dTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dText: dText == freezed
           ? _value.dText
           : dText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dThumbnail: dThumbnail == freezed
           ? _value.dThumbnail
           : dThumbnail // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dPrivate: dPrivate == freezed
           ? _value.dPrivate
           : dPrivate // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dDiaryType: dDiaryType == freezed
           ? _value.dDiaryType
           : dDiaryType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dgSEQ: dgSEQ == freezed
           ? _value.dgSEQ
           : dgSEQ // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       insID: insID == freezed
           ? _value.insID
           : insID // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       insDT: insDT == freezed
           ? _value.insDT
           : insDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       uptDT: uptDT == freezed
           ? _value.uptDT
           : uptDT // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -262,16 +262,16 @@ class __$DiaryCopyWithImpl<$Res> extends _$DiaryCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Diary implements _Diary {
   _$_Diary(
-      {required this.dSEQ,
-      required this.dTitle,
-      required this.dText,
-      required this.dThumbnail,
-      required this.dPrivate,
-      required this.dDiaryType,
-      required this.dgSEQ,
-      required this.insID,
-      required this.insDT,
-      required this.uptDT});
+      {this.dSEQ,
+      this.dTitle,
+      this.dText,
+      this.dThumbnail,
+      this.dPrivate,
+      this.dDiaryType,
+      this.dgSEQ,
+      this.insID,
+      this.insDT,
+      this.uptDT});
 
   factory _$_Diary.fromJson(Map<String, dynamic> json) =>
       _$_$_DiaryFromJson(json);
@@ -279,43 +279,43 @@ class _$_Diary implements _Diary {
   @override
 
   /// pk 일기 일련번호
-  final int dSEQ;
+  final int? dSEQ;
   @override
 
   /// 일기 제목
-  final String dTitle;
+  final String? dTitle;
   @override
 
   /// 일기 내용
-  final String dText;
+  final String? dText;
   @override
 
   /// 썸네일 이미지 정보
-  final String dThumbnail;
+  final String? dThumbnail;
   @override
 
   /// 공개.비공개 플래그
-  final String dPrivate;
+  final String? dPrivate;
   @override
 
   /// 일기 타입 : 개인 or 그룹
-  final String dDiaryType;
+  final String? dDiaryType;
   @override
 
   /// pk, fk 그룹 일련번호
-  final int dgSEQ;
+  final int? dgSEQ;
   @override
 
   /// fk 등록자
-  final String insID;
+  final String? insID;
   @override
 
   /// 등록일
-  final DateTime insDT;
+  final DateTime? insDT;
   @override
 
   /// 수정일
-  final DateTime uptDT;
+  final DateTime? uptDT;
 
   @override
   String toString() {
@@ -378,59 +378,59 @@ class _$_Diary implements _Diary {
 
 abstract class _Diary implements Diary {
   factory _Diary(
-      {required int dSEQ,
-      required String dTitle,
-      required String dText,
-      required String dThumbnail,
-      required String dPrivate,
-      required String dDiaryType,
-      required int dgSEQ,
-      required String insID,
-      required DateTime insDT,
-      required DateTime uptDT}) = _$_Diary;
+      {int? dSEQ,
+      String? dTitle,
+      String? dText,
+      String? dThumbnail,
+      String? dPrivate,
+      String? dDiaryType,
+      int? dgSEQ,
+      String? insID,
+      DateTime? insDT,
+      DateTime? uptDT}) = _$_Diary;
 
   factory _Diary.fromJson(Map<String, dynamic> json) = _$_Diary.fromJson;
 
   @override
 
   /// pk 일기 일련번호
-  int get dSEQ => throw _privateConstructorUsedError;
+  int? get dSEQ => throw _privateConstructorUsedError;
   @override
 
   /// 일기 제목
-  String get dTitle => throw _privateConstructorUsedError;
+  String? get dTitle => throw _privateConstructorUsedError;
   @override
 
   /// 일기 내용
-  String get dText => throw _privateConstructorUsedError;
+  String? get dText => throw _privateConstructorUsedError;
   @override
 
   /// 썸네일 이미지 정보
-  String get dThumbnail => throw _privateConstructorUsedError;
+  String? get dThumbnail => throw _privateConstructorUsedError;
   @override
 
   /// 공개.비공개 플래그
-  String get dPrivate => throw _privateConstructorUsedError;
+  String? get dPrivate => throw _privateConstructorUsedError;
   @override
 
   /// 일기 타입 : 개인 or 그룹
-  String get dDiaryType => throw _privateConstructorUsedError;
+  String? get dDiaryType => throw _privateConstructorUsedError;
   @override
 
   /// pk, fk 그룹 일련번호
-  int get dgSEQ => throw _privateConstructorUsedError;
+  int? get dgSEQ => throw _privateConstructorUsedError;
   @override
 
   /// fk 등록자
-  String get insID => throw _privateConstructorUsedError;
+  String? get insID => throw _privateConstructorUsedError;
   @override
 
   /// 등록일
-  DateTime get insDT => throw _privateConstructorUsedError;
+  DateTime? get insDT => throw _privateConstructorUsedError;
   @override
 
   /// 수정일
-  DateTime get uptDT => throw _privateConstructorUsedError;
+  DateTime? get uptDT => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DiaryCopyWith<_Diary> get copyWith => throw _privateConstructorUsedError;

@@ -8,16 +8,18 @@ part of 'diary.dart';
 
 _$_Diary _$_$_DiaryFromJson(Map<String, dynamic> json) {
   return _$_Diary(
-    dSEQ: json['dSEQ'] as int,
-    dTitle: json['dTitle'] as String,
-    dText: json['dText'] as String,
-    dThumbnail: json['dThumbnail'] as String,
-    dPrivate: json['dPrivate'] as String,
-    dDiaryType: json['dDiaryType'] as String,
-    dgSEQ: json['dgSEQ'] as int,
-    insID: json['insID'] as String,
-    insDT: DateTime.parse(json['insDT'] as String),
-    uptDT: DateTime.parse(json['uptDT'] as String),
+    dSEQ: json['dSEQ'] as int?,
+    dTitle: json['dTitle'] as String?,
+    dText: json['dText'] as String?,
+    dThumbnail: json['dThumbnail'] as String?,
+    dPrivate: json['dPrivate'] as String?,
+    dDiaryType: json['dDiaryType'] as String?,
+    dgSEQ: json['dgSEQ'] as int?,
+    insID: json['insID'] as String?,
+    insDT:
+        json['insDT'] == null ? null : DateTime.parse(json['insDT'] as String),
+    uptDT:
+        json['uptDT'] == null ? null : DateTime.parse(json['uptDT'] as String),
   );
 }
 
@@ -30,6 +32,6 @@ Map<String, dynamic> _$_$_DiaryToJson(_$_Diary instance) => <String, dynamic>{
       'dDiaryType': instance.dDiaryType,
       'dgSEQ': instance.dgSEQ,
       'insID': instance.insID,
-      'insDT': instance.insDT.toIso8601String(),
-      'uptDT': instance.uptDT.toIso8601String(),
+      'insDT': instance.insDT?.toIso8601String(),
+      'uptDT': instance.uptDT?.toIso8601String(),
     };

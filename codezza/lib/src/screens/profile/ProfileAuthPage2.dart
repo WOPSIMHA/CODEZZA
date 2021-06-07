@@ -4,6 +4,7 @@ import '../../widgets/style_font.dart';
 
 import 'package:flutter/material.dart';
 
+// 자기소개 => 카테고리 페이지로 데이터 전달 & 다음 페이지로 이동
 class ProfileAuthPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

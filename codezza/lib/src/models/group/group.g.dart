@@ -8,14 +8,16 @@ part of 'group.dart';
 
 _$_Group _$_$_GroupFromJson(Map<String, dynamic> json) {
   return _$_Group(
-    gSEQ: json['gSEQ'] as int,
-    gUID: json['gUID'] as String,
-    gName: json['gName'] as String,
-    gAuthority: json['gAuthority'] as String,
-    insID: json['insID'] as String,
-    insDT: DateTime.parse(json['insDT'] as String),
-    uptID: json['uptID'] as String,
-    uptDT: DateTime.parse(json['uptDT'] as String),
+    gSEQ: json['gSEQ'] as int?,
+    gUID: json['gUID'] as String?,
+    gName: json['gName'] as String?,
+    gAuthority: json['gAuthority'] as String?,
+    insID: json['insID'] as String?,
+    insDT:
+        json['insDT'] == null ? null : DateTime.parse(json['insDT'] as String),
+    uptID: json['uptID'] as String?,
+    uptDT:
+        json['uptDT'] == null ? null : DateTime.parse(json['uptDT'] as String),
   );
 }
 
@@ -25,7 +27,7 @@ Map<String, dynamic> _$_$_GroupToJson(_$_Group instance) => <String, dynamic>{
       'gName': instance.gName,
       'gAuthority': instance.gAuthority,
       'insID': instance.insID,
-      'insDT': instance.insDT.toIso8601String(),
+      'insDT': instance.insDT?.toIso8601String(),
       'uptID': instance.uptID,
-      'uptDT': instance.uptDT.toIso8601String(),
+      'uptDT': instance.uptDT?.toIso8601String(),
     };
