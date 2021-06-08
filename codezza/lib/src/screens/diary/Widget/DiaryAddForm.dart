@@ -1,6 +1,7 @@
 import '/src/models/diary/diary.dart';
 import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
+import 'package:dotted_border/dotted_border.dart';
 
 typedef OnDelete();
 
@@ -76,15 +77,27 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
         left: 16,
         right: 16,
       ),
-      child: Container(
-        width: 400,
-        height: 200,
-        color: kWhite3,
-        child: InkWell(
-          child: Center(child: IconList.Add),
-          onTap: () {
-
-          },
+      child: DottedBorder(
+        dashPattern: [8, 4],
+        strokeWidth: 2,
+        child: Container(
+          width: 400,
+          height: 200,
+          color: kWhite4,
+          child: InkWell(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconList.Add,
+                Container(height: 10),
+                FontMedium(title: '사진 추가', size: 24, color: kGray2),
+              ],
+            ),
+            onTap: () {
+              print('사진 추가 클릭!');
+            },
+          ),
         ),
       ),
     );
