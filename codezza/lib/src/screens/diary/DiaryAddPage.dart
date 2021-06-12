@@ -172,6 +172,7 @@ class _DiaryAddState extends State<DiaryAdd> {
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 20, top: 8, bottom: 8),
       child: TextFormField(
+        controller: _title,
         decoration: InputDecoration(
           hintText: '제목',
           hintStyle: TextStyle(

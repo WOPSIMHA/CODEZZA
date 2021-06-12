@@ -113,6 +113,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
         bottom: 16,
       ),
       child: TextFormField(
+        controller: _text,
         decoration: InputDecoration(
           hintText: '내용을 입력해주세요.',
         ),
