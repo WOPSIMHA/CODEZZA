@@ -27,6 +27,7 @@ class DiaryAddForm extends StatefulWidget {
 
 class _DiaryAddFormState extends State<DiaryAddForm> {
   final form = GlobalKey<FormState>();
+  final _text = TextEditingController(); // 일기 내용
 
   @override
   Widget build(BuildContext context) {

@@ -18,6 +18,7 @@ class _DiaryAddState extends State<DiaryAdd> {
   int _index = 0; // 탭 페이지 index
   bool _value = false; // 공개 여부 value
   List<String> testGroupData = ['그룹1', '그룹2', '그룹3', '그룹4']; // test 그룹 데이터
+  final _title = TextEditingController(); // 일기 제목
 
   @override
   Widget build(BuildContext context) {
