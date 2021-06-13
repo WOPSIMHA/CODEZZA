@@ -1,3 +1,4 @@
+import '/src/sample/sampledb.dart';
 import '/src/screens/diary/Widget/MyDiaryCard.dart';
 
 import 'package:flutter/material.dart';
@@ -7,11 +8,9 @@ class MyDiaryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView(
-        children: [
-          MyDiaryCard(),
-          MyDiaryCard(),
-        ],
+      child: ListView.builder(
+        itemCount: user1Dairy.length,
+        itemBuilder: (context, index) => MyDiaryCard(diary: user1Dairy[index]),
       ),
     );
   }

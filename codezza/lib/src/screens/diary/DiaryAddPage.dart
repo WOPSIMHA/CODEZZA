@@ -234,16 +234,18 @@ class _DiaryAddState extends State<DiaryAdd> {
       child: diaryList.length <= 0
           ? Center(
               child: FontMedium(
-              title: '(+) 버튼을 누르면 추가됩니다.',
+              title: '(+) 버튼을 누르면 최대\n10개까지 추가됩니다.',
               size: 24,
             ))
           : ListView.builder(
-              itemCount: diaryList.length,
-              itemBuilder: (_, i) => DiaryAddForm(
-                title: '사진 ${i + 1}',
-                diary: diaryList[i],
-                onDelete: () => _diaryFormDelete(i),
-              ),
+              itemCount: diaryList.length < 10 ? diaryList.length : 10,
+              itemBuilder: (_, i) {
+                return DiaryAddForm(
+                  title: '사진 ${i + 1}',
+                  diary: diaryList[i],
+                  onDelete: () => _diaryFormDelete(i),
+                );
+              },
             ),
     );
   }

@@ -1,9 +1,14 @@
+import '/src/models/entitys.dart';
 import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
 // 프로필 카드
 class ProfileCard extends StatefulWidget {
+  final User? user;
+
+  const ProfileCard({Key? key, this.user}) : super(key: key);
+
   @override
   _ProfileCardState createState() => _ProfileCardState();
 }
@@ -65,7 +70,7 @@ class _ProfileCardState extends State<ProfileCard> {
             ),
             FontBold(
               size: 28,
-              title: '닉네임 Name',
+              title: '${widget.user!.uName}',
             ),
           ],
         ),
@@ -108,7 +113,19 @@ class _ProfileCardState extends State<ProfileCard> {
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Center(
-          child: FontBold(title: '프로필 뒷장', size: 36),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: FontMedium(
+                    title: '${widget.user!.uComment}',
+                    size: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

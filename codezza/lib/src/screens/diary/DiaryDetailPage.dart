@@ -9,6 +9,12 @@ class DiaryDetail extends StatefulWidget {
 class _DiaryDetailState extends State<DiaryDetail> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(
+      left: false,
+      right: false,
+      child: Scaffold(
+
+      ),
+    );
   }
 }
