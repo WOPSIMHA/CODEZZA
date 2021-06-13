@@ -18,7 +18,7 @@ class IconStyle extends StatelessWidget {
     return Icon(
       icon,
       size: size,
-      color: kGray2,
+      color: kGray1,
     );
   }
 }
@@ -83,8 +83,8 @@ class IconList {
 
   // 수정 아이콘
   static const IconStyle Edit = IconStyle(
-    icon: FontAwesomeIcons.edit,
-    size: 32,
+    icon: FontAwesomeIcons.userEdit,
+    size: 24,
   );
 
   // 비밀번호 비공개 아이콘

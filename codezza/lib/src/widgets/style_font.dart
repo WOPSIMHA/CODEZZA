@@ -4,9 +4,17 @@ import 'package:flutter/material.dart';
 class FontBold extends StatelessWidget {
   final String? title;
   final double? size;
+  final int? maxLines;
   final Color? color;
+  final TextOverflow? overflow;
 
-  FontBold({this.title, this.size, this.color});
+  FontBold({
+    this.title,
+    this.size,
+    this.color,
+    this.maxLines,
+    this.overflow,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +25,8 @@ class FontBold extends StatelessWidget {
         fontSize: size,
         fontFamily: 'GmarketSansBold',
       ),
+      overflow: overflow,
+      maxLines: maxLines,
     );
   }
 }
@@ -25,9 +35,17 @@ class FontBold extends StatelessWidget {
 class FontLight extends StatelessWidget {
   final String? title;
   final double? size;
+  final int? maxLines;
   final Color? color;
+  final TextOverflow? overflow;
 
-  const FontLight({this.title, this.size, this.color});
+  const FontLight({
+    this.title,
+    this.size,
+    this.color,
+    this.maxLines,
+    this.overflow,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,22 +56,27 @@ class FontLight extends StatelessWidget {
         fontSize: size,
         fontFamily: 'GmarketSansLight',
       ),
+      overflow: overflow,
+      maxLines: maxLines,
     );
   }
 }
-
 
 // font Medium 스타일
 class FontMedium extends StatelessWidget {
   final String? title;
   final double? size;
+  final int? maxLines;
   final Color? color;
+  final TextOverflow? overflow;
 
   const FontMedium({
     Key? key,
     this.title,
     this.size,
     this.color,
+    this.overflow,
+    this.maxLines,
   });
 
   @override
@@ -65,6 +88,8 @@ class FontMedium extends StatelessWidget {
         fontSize: size,
         fontFamily: 'GmarketSansMedium',
       ),
+      overflow: overflow,
+      maxLines: maxLines,
     );
   }
 }

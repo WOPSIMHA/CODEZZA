@@ -9,8 +9,8 @@ class MyDiaryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: user1Dairy.length,
-        itemBuilder: (context, index) => MyDiaryCard(diary: user1Dairy[index]),
+        itemCount: user2Dairy.length,
+        itemBuilder: (context, index) => MyDiaryCard(diary: user2Dairy[index]),
       ),
     );
   }

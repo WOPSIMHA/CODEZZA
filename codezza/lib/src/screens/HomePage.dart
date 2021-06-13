@@ -135,22 +135,24 @@ class _HomePageState extends State<HomePage> {
   // FAB 메뉴 버튼
   SpeedDial _fabButton() {
     return SpeedDial(
+      backgroundColor: Colors.white,
       animatedIcon: AnimatedIcons.menu_close,
-      animatedIconTheme: IconThemeData(size: 24.0),
+      animatedIconTheme: IconThemeData(size: 24.0, color: Colors.black),
       onOpen: () => print('Open'),
       onClose: () => print('Close'),
       curve: Curves.ease,
       visible: _fab,
       children: [
+        // 일기 작성
         SpeedDialChild(
           onTap: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => DiaryAdd()),
+              MaterialPageRoute(builder: (context) => DiaryAdd()),
             );
           },
           backgroundColor: Colors.tealAccent,
           child: Icon(Icons.edit, size: 36, color: kGray1),
-          label: '일기 추가',
+          label: '일기 작성',
           labelBackgroundColor: Colors.white,
           labelStyle: TextStyle(
             color: kGray2,
@@ -158,22 +160,11 @@ class _HomePageState extends State<HomePage> {
             fontFamily: 'GmarketSansMedium',
           ),
         ),
-        SpeedDialChild(
-          onTap: () {},
-          backgroundColor: Colors.yellow,
-          child: Icon(Icons.edit_outlined, size: 36, color: kGray1),
-          label: '일기 수정',
-          labelBackgroundColor: Colors.white,
-          labelStyle: TextStyle(
-            color: kGray2,
-            fontSize: 16,
-            fontFamily: 'GmarketSansMedium',
-          ),
-        ),
+        // 그룹 추가
         SpeedDialChild(
           onTap: () {},
           backgroundColor: Colors.lightBlueAccent,
-          child: Icon(Icons.group_rounded, size: 36, color: kGray1),
+          child: Icon(Icons.group_add_rounded, size: 36, color: kGray1),
           label: '그룹 추가',
           labelBackgroundColor: Colors.white,
           labelStyle: TextStyle(
@@ -182,6 +173,20 @@ class _HomePageState extends State<HomePage> {
             fontFamily: 'GmarketSansMedium',
           ),
         ),
+        // 프로필 수정
+        SpeedDialChild(
+          onTap: () {},
+          backgroundColor: Colors.amberAccent,
+          child: IconList.Edit,
+          label: '프로필 수정',
+          labelBackgroundColor: Colors.white,
+          labelStyle: TextStyle(
+            color: kGray2,
+            fontSize: 16,
+            fontFamily: 'GmarketSansMedium',
+          ),
+        ),
+        // IconList.Edit
       ],
     );
   }

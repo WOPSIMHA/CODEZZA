@@ -1,3 +1,4 @@
+import '/src/screens/diary/DiaryDetailPage.dart';
 import '/src/widgets/style.dart';
 import '/src/models/entitys.dart';
 
@@ -31,14 +32,30 @@ class _MyDiaryCardState extends State<MyDiaryCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Image.network(
-                  '${widget.diary!.dThumbnail}',
-                  width: 300,
-                  height: 200,
-                  fit: BoxFit.fill,
+                Hero(
+                  tag: '${widget.diary!.dSEQ}',
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return DiaryDetail(diary: widget.diary!);
+                        },
+                      ),
+                    ),
+                    child: Image.network(
+                      '${widget.diary!.dThumbnail}',
+                      width: 300,
+                      height: 200,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
                 SizedBox(height: 10),
-                FontMedium(title: '${widget.diary!.dTitle}', size: 24,),
+                FontMedium(
+                  title: '${widget.diary!.dTitle}',
+                  size: 24,
+                ),
               ],
             ),
           ),

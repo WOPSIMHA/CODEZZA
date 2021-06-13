@@ -53,23 +53,10 @@ class _ProfileCardState extends State<ProfileCard> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _profileImage(),
-                Column(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: IconList.Edit,
-                    ),
-                    FontMedium(
-                      title: '프로필 수정',
-                      size: 16,
-                      color: Colors.black,
-                    )
-                  ],
-                ),
               ],
             ),
             FontBold(
-              size: 28,
+              size: 20,
               title: '${widget.user!.uName}',
             ),
           ],
