@@ -29,6 +29,11 @@ dependencies:
   http: ^0.13.3
   freezed_annotation:
 
+  # session
+  flutter_session:
+  # cookie
+  cookie_jar: 3.0.1
+
   # 로딩 화면 plugin
   flutter_native_splash: ^1.2.0
 
