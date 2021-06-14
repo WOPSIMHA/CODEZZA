@@ -51,11 +51,14 @@ class _DiaryDetailState extends State<DiaryDetail> {
             children: [
               Hero(
                 tag: '${widget.diary!.dSEQ}',
-                child: Image.network(
-                  '${widget.diary!.dThumbnail}',
-                  width: 360,
-                  height: 240,
-                  fit: BoxFit.fill,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Image.network(
+                    '${widget.diary!.dThumbnail}',
+                    width: 360,
+                    height: 240,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               SizedBox(height: 16),
