@@ -256,9 +256,14 @@ class _DiaryAddState extends State<DiaryAdd> {
       backgroundColor: kMainColor,
       child: IconList.Add,
       onPressed: () {
-        setState(() {
-          diaryList.add(Diary());
-        });
+        if (diaryList.length < 10) {
+          setState(() {
+            diaryList.add(Diary());
+          });
+        }
+        // setState(() {
+        //   diaryList.add(Diary());
+        // });
       },
     );
   }
