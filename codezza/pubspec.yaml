@@ -37,6 +37,13 @@ dependencies:
   # 로딩 화면 plugin
   flutter_native_splash: ^1.2.0
 
+  # 이미지
+  image_picker:
+  multi_image_picker:
+  # 비디오
+  video_player:
+
+
 # 생성 명령어 flutter pub run flutter_native_splash:create
 # 제거 명령어 flutter pub run flutter_native_splash:remove
 flutter_native_splash:

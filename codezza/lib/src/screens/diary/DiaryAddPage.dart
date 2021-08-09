@@ -244,6 +244,7 @@ class _DiaryAddState extends State<DiaryAdd> {
                   title: '사진 ${i + 1}',
                   diary: diaryList[i],
                   onDelete: () => _diaryFormDelete(i),
+                  index: i,
                 );
               },
             ),

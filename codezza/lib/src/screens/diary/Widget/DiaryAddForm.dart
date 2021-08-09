@@ -19,12 +19,14 @@ class DiaryAddForm extends StatefulWidget {
   final state = _DiaryAddFormState();
   final OnDelete? onDelete;
   final String? title;
+  final int? index;
 
   DiaryAddForm({
     Key? key,
     this.diary,
     this.onDelete,
     this.title,
+    this.index,
   }) : super(key: key);
 
   @override
@@ -41,15 +43,12 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
   List<PickedFile>? _imageFileList;
   set _imageFile(PickedFile? value) {
     print(value!.path);
-    // _imageFileList = value == null ? null : _imageFileList! + [value];
     if (value == null) {
-      print('========================================1');
+      return;
     } else {
-      // _imageFileList!.add([value]);
-      int? size = _imageFileList?.length;
-      print('========================================2/${size}');
-      _imageFileList?[size!] = value;
+      _imageFileList?.add(value);
     }
+    // _imageFileList = value == null ? null : [value];
   }
 
   dynamic _pickImageError;
@@ -201,11 +200,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
         source: ImageSource.gallery,
       );
       setState(() {
-        // print("==============================");
-        // print(_imageFileList?.length);
         _imageFile = pickedFile;
-        // print(_imageFileList?.length);
-        // print("==============================");
       });
     } catch (e) {
       setState(() {
@@ -221,5 +216,21 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
       return result;
     }
     return null;
+  }
+
+  ListView _onImageAdd2(PickedFile) {
+    print('===================');
+    return ListView.builder(
+      key: UniqueKey(),
+      itemBuilder: (context, index) {
+        return Semantics(
+          label: 'image_picker_example_picked_image',
+          child: kIsWeb
+              ? Image.network(PickedFile.path)
+              : Image.file(File(PickedFile.path)),
+        );
+      },
+      // itemCount: _imageFileList!.length,
+    );
   }
 }
