@@ -87,6 +87,12 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
         color: Colors.black,
       ),
       centerTitle: true,
+      actions: [
+        IconButton(
+          onPressed: widget.onDelete,
+          icon: IconList.Close,
+        ),
+      ],
     );
   }
 

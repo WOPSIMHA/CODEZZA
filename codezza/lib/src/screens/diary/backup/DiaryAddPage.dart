@@ -14,9 +14,9 @@ class DiaryAdd extends StatefulWidget {
 }
 
 class _DiaryAddState extends State<DiaryAdd> {
-  List<Diary> diaryList = [Diary()]; // 일기 사진 Form List
+  List<Diary> diaryList = []; // 일기 사진 Form List
   int _index = 0; // 탭 페이지 index
-  bool _dPrivate = false; // 공개 여부 value
+  bool _value = false; // 공개 여부 value
   List<String> testGroupData = ['그룹1', '그룹2', '그룹3', '그룹4']; // test 그룹 데이터
   final _title = TextEditingController(); // 일기 제목
 
@@ -67,13 +67,13 @@ class _DiaryAddState extends State<DiaryAdd> {
         _tabButton(),
         _index == 0 ? _onOffListTile() : _formGroupList(),
         _diaryFormCard(),
-        // diaryList.length <= 0
-        //     ? Padding(
-        //         padding: const EdgeInsets.only(bottom: 36.0),
-        //         child: _addButton())
-        //     : Padding(
-        //         padding: const EdgeInsets.only(top: 8, bottom: 8),
-        //         child: _addButton()),
+        diaryList.length <= 0
+            ? Padding(
+                padding: const EdgeInsets.only(bottom: 36.0),
+                child: _addButton())
+            : Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                child: _addButton()),
       ],
     );
   }
@@ -190,17 +190,17 @@ class _DiaryAddState extends State<DiaryAdd> {
     return Padding(
       padding: const EdgeInsets.only(top: 16, left: 24, right: 24),
       child: ListTileSwitch(
-        value: _dPrivate,
-        leading: _dPrivate ? IconList.OpenOn : IconList.OpenOff,
+        value: _value,
+        leading: _value ? IconList.OpenOn : IconList.OpenOff,
         onChanged: (value) {
           setState(() {
-            _dPrivate = value;
+            _value = value;
           });
         },
         visualDensity: VisualDensity.comfortable,
         switchType: SwitchType.cupertino,
         switchActiveColor: Colors.indigo,
-        title: _dPrivate
+        title: _value
             ? FontMedium(title: '일기 공개', size: 18)
             : FontMedium(title: '일기 비공개', size: 18),
       ),
@@ -228,23 +228,6 @@ class _DiaryAddState extends State<DiaryAdd> {
     );
   }
 
-  // 사진 Form Card
-  Widget _diaryFormCard() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: diaryList.length < 10 ? diaryList.length : 10,
-        itemBuilder: (_, i) {
-          return DiaryAddForm(
-            title: '사진',
-            diary: diaryList[i],
-            index: i,
-          );
-        },
-      ),
-    );
-  }
-
-/*
   // 사진 Form Card
   Widget _diaryFormCard() {
     return Expanded(
@@ -289,5 +272,4 @@ class _DiaryAddState extends State<DiaryAdd> {
       diaryList.removeAt(i);
     });
   }
-*/
 }
