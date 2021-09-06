@@ -42,6 +42,8 @@ dependencies:
   multi_image_picker:
   # 비디오
   video_player:
+  # alert
+  rflutter_alert: ^1.0.2
 
 
 # 생성 명령어 flutter pub run flutter_native_splash:create

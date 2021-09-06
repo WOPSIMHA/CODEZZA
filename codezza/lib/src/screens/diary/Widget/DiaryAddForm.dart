@@ -18,15 +18,11 @@ class DiaryAddForm extends StatefulWidget {
   final Diary? diary;
   final state = _DiaryAddFormState();
   final OnDelete? onDelete;
-  final String? title;
-  final int? index;
 
   DiaryAddForm({
     Key? key,
     this.diary,
     this.onDelete,
-    this.title,
-    this.index,
   }) : super(key: key);
 
   @override
@@ -41,13 +37,8 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
 
   /** 이미지 업로드 */
   List<PickedFile>? _imageFileList;
-  set _imageFile(PickedFile value) {
-    if (value == null) {
-      return;
-    } else {
-      _imageFileList?.add(value);
-    }
-    // _imageFileList = value == null ? null : [value];
+  set _imageFile(PickedFile? value) {
+    _imageFileList = (value == null) ? null : [value];
   }
 
   dynamic _pickImageError;
@@ -82,7 +73,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
     return AppBar(
       backgroundColor: kMainColor,
       title: FontMedium(
-        title: widget.title,
+        title: '',
         size: 20,
         color: Colors.black,
       ),
@@ -134,18 +125,21 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                 width: 400,
                 height: 200,
                 color: kWhite4,
-                child: ListView.builder(
-                  // shrinkWrap: true,
-                  key: UniqueKey(),
-                  itemBuilder: (context, index) {
-                    return Semantics(
-                      label: 'diaryImage',
-                      child: kIsWeb
-                          ? Image.network(_imageFileList![index].path)
-                          : Image.file(File(_imageFileList![index].path)),
-                    );
+                child: Semantics(
+                  label: 'diaryImage',
+                  child: kIsWeb
+                      ? Image.network(_imageFileList![0].path)
+                      : Image.file(File(_imageFileList![0].path)),
+                  onTap: () async {
+                    print('사진 추가 클릭!');
+                    try {
+                      _onImageAdd();
+                    } catch (e) {
+                      setState(() {
+                        _pickImageError = e;
+                      });
+                    }
                   },
-                  itemCount: _imageFileList!.length,
                 ),
               )),
       ),
@@ -163,7 +157,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
       child: TextFormField(
         controller: _text,
         decoration: InputDecoration(
-          hintText: '내용을 입력해주세요.',
+          hintText: '내용을 입력해 주세요.',
         ),
       ),
     );
@@ -209,20 +203,5 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
       return result;
     }
     return null;
-  }
-
-  ListView _onImageAdd2(PickedFile) {
-    return ListView.builder(
-      key: UniqueKey(),
-      itemBuilder: (context, index) {
-        return Semantics(
-          label: 'image_picker_example_picked_image',
-          child: kIsWeb
-              ? Image.network(PickedFile.path)
-              : Image.file(File(PickedFile.path)),
-        );
-      },
-      // itemCount: _imageFileList!.length,
-    );
   }
 }

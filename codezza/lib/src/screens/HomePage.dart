@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:flutter_session/flutter_session.dart';
+
 import '/src/screens/diary/DiaryAddPage.dart';
 import '/src/sample/sampledb.dart';
 import '/src/screens/diary/GroupDiaryListPage.dart';
@@ -8,6 +12,9 @@ import 'profile/Widget/ProfileCard.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+
+import 'package:http/http.dart' as http;
 
 // Home Page
 class HomePage extends StatefulWidget {
@@ -18,6 +25,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _index = 0; // 탭 전환
   bool _fab = true; // FAB 버튼
+
+  final _gNm = TextEditingController(); // TextFormField Controller
+  final _searchText = TextEditingController(); // TextFormField Controller
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +172,9 @@ class _HomePageState extends State<HomePage> {
         ),
         // 그룹 추가
         SpeedDialChild(
-          onTap: () {},
+          onTap: () {
+            DiaryGroupDialog();
+          },
           backgroundColor: Colors.lightBlueAccent,
           child: Icon(Icons.group_add_rounded, size: 36, color: kGray1),
           label: '그룹 추가',
@@ -196,5 +208,219 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _fab = fab;
     });
+  }
+
+  // 그룹 Alert 띄우는 메소드
+  void DiaryGroupDialog() {
+    showDialog(
+        context: context,
+        barrierDismissible: false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+                borderRadius: BorderRadius.circular(10.0)),
+            //Dialog Main Title
+            title: Column(
+              children: <Widget>[
+                new Text("그룹방 만들기"),
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Text("친구들끼리 일기를 공유해요!"),
+                TextFormField(
+                    controller: _gNm,
+                    decoration: InputDecoration(
+                      labelText: '그룹방 이름',
+                      suffixIcon: GestureDetector(
+                        onTap: () => _gNm.clear(),
+                        child: IconList.CloseCircle,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: kGray1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: kGray1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onChanged: (text) {
+                      setState(() {});
+                    }),
+              ],
+            ),
+            actions: <Widget>[
+              SimpleDialogOption(
+                // onPressed: () {
+                //   Navigator.pop(context, 'user01@gmail.com');
+                // },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.account_circle,
+                        size: 36.0, color: Colors.orange),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 16.0),
+                      child: Text('user01@gmail.com'),
+                    ),
+                  ],
+                ),
+              ),
+              SimpleDialogOption(
+                // onPressed: () {
+                //   Navigator.pop(context, 'user02@gmail.com');
+                // },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.account_circle, size: 36.0, color: Colors.green),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 16.0),
+                      child: Text('user02@gmail.com'),
+                    ),
+                  ],
+                ),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  // Navigator.pop(context);
+                  searchUserDialog();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.add_circle, size: 36.0, color: Colors.grey),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 16.0),
+                      child: Text('Add account'),
+                    ),
+                  ],
+                ),
+              ),
+              DialogButton(
+                child: Text(
+                  "취소",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.pop(context),
+                gradient: LinearGradient(colors: [
+                  Color.fromRGBO(116, 116, 191, 1.0),
+                  Color.fromRGBO(52, 138, 199, 1.0)
+                ]),
+              ),
+              DialogButton(
+                child: Text(
+                  "확인",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.pop(context),
+                gradient: LinearGradient(colors: [
+                  Color.fromRGBO(116, 116, 191, 1.0),
+                  Color.fromRGBO(52, 138, 199, 1.0)
+                ]),
+              ),
+            ],
+          );
+        });
+  }
+
+  // 친구 검색
+  void searchUserDialog() {
+    showDialog(
+        context: context,
+        barrierDismissible: false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+                borderRadius: BorderRadius.circular(10.0)),
+            //Dialog Main Title
+            title: Column(
+              children: <Widget>[
+                new Text("친구 검색"),
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextFormField(
+                    controller: _searchText,
+                    decoration: InputDecoration(
+                      labelText: '아이디 또는 닉네임',
+                      suffixIcon: GestureDetector(
+                        onTap: () => _gNm.clear(),
+                        child: IconList.CloseCircle,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: kGray1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: kGray1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onChanged: (text) async {
+                      setState(() {});
+                      final response = await http.post(
+                        Uri.parse('http://192.168.0.110:5000/searchUser'),
+                        headers: <String, String>{
+                          'Content-Type': 'application/json; charset=UTF-8',
+                        },
+                        body: jsonEncode(<String, String>{
+                          'sessionUId': await FlutterSession().get("token"),
+                          'searchUId': _searchText.text,
+                          'searchUNm': _searchText.text,
+                        }),
+                      );
+                      if (response.statusCode == 200) {
+                        var result = json.decode(response.body);
+                        if (result) {
+                          print(result);
+                        }
+                      } else {
+                        throw Exception('Failed to search user');
+                      }
+                    }),
+              ],
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("확인"),
+                onPressed: () async {
+                  _searchText.dispose();
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  SimpleDialogOption addGroupMember_callback() {
+    return SimpleDialogOption(
+      // onPressed: () {
+      //   Navigator.pop(context, 'user03@gmail.com');
+      // },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(Icons.account_circle, size: 36.0, color: Colors.green),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 16.0),
+            child: Text('user03@gmail.com'),
+          ),
+        ],
+      ),
+    );
   }
 }

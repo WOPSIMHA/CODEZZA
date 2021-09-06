@@ -231,15 +231,8 @@ class _DiaryAddState extends State<DiaryAdd> {
   // 사진 Form Card
   Widget _diaryFormCard() {
     return Expanded(
-      child: ListView.builder(
-        itemCount: diaryList.length < 10 ? diaryList.length : 10,
-        itemBuilder: (_, i) {
-          return DiaryAddForm(
-            title: '사진',
-            diary: diaryList[i],
-            index: i,
-          );
-        },
+      child: DiaryAddForm(
+        diary: diaryList[0],
       ),
     );
   }
