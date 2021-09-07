@@ -78,6 +78,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
         color: Colors.black,
       ),
       centerTitle: true,
+      automaticallyImplyLeading: false,
     );
   }
 
@@ -120,7 +121,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                   },
                 ),
               )
-            : Container(
+            : /*Container(
                 // 이미지 추가했을 때
                 width: 400,
                 height: 200,
@@ -141,7 +142,27 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                     }
                   },
                 ),
-              )),
+              )),*/
+            Container(
+                // 이미지 추가했을 때
+                width: 400,
+                height: 200,
+                color: kWhite4,
+                child: InkWell(
+                  child: (kIsWeb
+                      ? Image.network(_imageFileList![0].path)
+                      : Image.file(File(_imageFileList![0].path))),
+                  onTap: () async {
+                    print('사진 변경 클릭!');
+                    try {
+                      _onImageAdd();
+                    } catch (e) {
+                      setState(() {
+                        _pickImageError = e;
+                      });
+                    }
+                  },
+                ))),
       ),
     );
   }
