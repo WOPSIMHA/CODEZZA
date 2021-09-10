@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '/src/screens/diary/DiaryDetailPage.dart';
 import '/src/widgets/style.dart';
-import '/src/models/entitys.dart';
-
-import 'package:flutter/material.dart';
+import '/src/models/entity.dart';
 
 // 개인 일기 카드
 class MyDiaryCard extends StatefulWidget {

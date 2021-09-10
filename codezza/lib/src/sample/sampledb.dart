@@ -1,11 +1,11 @@
 
-import '/src/models/entitys.dart';
+import '/src/models/entity.dart';
 
 // 사용자 샘플 데이터
 List<User> users = [
   User(
-    uID: 'user1',
-    uPW: 'user1234',
+    uId: 'user1',
+    uPw: 'user1234',
     uName: '사용자 유저1',
     uPhoto: 'https://tinyurl.com/yf8laugo',
     uComment: '안녕하세요 유저1입니다. 잘 부탁합니다.',
@@ -16,8 +16,8 @@ List<User> users = [
     uptDT: DateTime.parse('2022-06-13'),
   ),
   User(
-    uID: 'user2',
-    uPW: 'user1234',
+    uId: 'user2',
+    uPw: 'user1234',
     uName: '[THE SOY]루퐁이네',
     uPhoto: 'https://tinyurl.com/yfgndo3u',
     uComment: '안녕하세요. \n[THE SOY]루퐁이네입니다. \n잘 부탁합니다.',

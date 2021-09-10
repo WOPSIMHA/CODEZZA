@@ -1,17 +1,13 @@
-import 'dart:async';
 import 'dart:convert';
-
-import 'package:codezza/src/screens/profile/ProfileAuthPage.dart';
 import 'package:flutter_session/flutter_session.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
+import '/src/screens/profile/ProfileAuthPage.dart';
 import '../../widgets/style.dart';
 import '../../widgets/PrimaryButton.dart';
 import 'widget/SignUpCheckButton.dart';
-import 'package:codezza/src/models/User.dart';
-
-import 'package:flutter/material.dart';
-
-import 'package:http/http.dart' as http;
+import '/src/models/entity.dart';
 
 // 회원가입 페이지
 // SignUpPage 1. 아이디 페이지

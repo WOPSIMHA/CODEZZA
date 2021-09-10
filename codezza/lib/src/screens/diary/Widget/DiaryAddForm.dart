@@ -1,15 +1,11 @@
-import 'dart:async';
 import 'dart:io';
-
-import '/src/models/diary/diary.dart';
-import '/src/widgets/style.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '/src/models/entitys.dart';
+import '/src/models/entity.dart';
+import '/src/widgets/style.dart';
 
 typedef OnDelete();
 

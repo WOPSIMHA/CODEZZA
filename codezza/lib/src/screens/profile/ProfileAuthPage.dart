@@ -1,17 +1,12 @@
-import 'dart:async';
 import 'dart:convert';
-
-import 'package:codezza/src/screens/HomePage.dart';
-
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter_session/flutter_session.dart';
 
+import '/src/models/entity.dart';
+import '/src/screens/HomePage.dart';
 import '../../widgets/PrimaryButton.dart';
 import '../../widgets/style_font.dart';
-import 'package:codezza/src/models/User.dart';
-
-import 'package:flutter/material.dart';
-
-import 'package:http/http.dart' as http;
 
 // 프로필(회원정보) 업데이트 페이지
 // ProfileAuthPage  1. 닉네임

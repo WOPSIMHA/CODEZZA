@@ -1,11 +1,8 @@
-import 'package:codezza/src/models/user/user.dart';
+import 'package:flutter/material.dart';
 
+import '/src/models/entity.dart';
 import '../../widgets/style.dart';
 import '../../widgets/PrimaryButton.dart';
-import 'SignupPage3.dart';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 // 비밀번호 => 회원가입 완료로 데이터 전달 & 다음 페이지로 이동
 class SignUpPage2 extends StatelessWidget {

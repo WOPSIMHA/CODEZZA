@@ -1,4 +1,4 @@
-import '/src/models/entitys.dart';
+import '/src/models/entity.dart';
 import '/src/screens/diary/Widget/DiaryAddForm.dart';
 import '/src/widgets/style.dart';
 

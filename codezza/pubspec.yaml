@@ -27,7 +27,7 @@ dependencies:
 
   # 통신을 위한 plugin
   http: ^0.13.3
-  freezed_annotation:
+  equatable: ^2.0.3
 
   # session
   flutter_session:
