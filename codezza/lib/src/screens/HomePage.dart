@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:codezza/src/screens/diary/Widget/AddUserWidget.dart';
 import 'package:flutter_session/flutter_session.dart';
 
 import '/src/screens/diary/DiaryAddPage.dart';
@@ -254,42 +255,16 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             actions: <Widget>[
-              SimpleDialogOption(
-                // onPressed: () {
-                //   Navigator.pop(context, 'user01@gmail.com');
-                // },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.account_circle,
-                        size: 36.0, color: Colors.orange),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 16.0),
-                      child: Text('user01@gmail.com'),
-                    ),
-                  ],
-                ),
-              ),
-              SimpleDialogOption(
-                // onPressed: () {
-                //   Navigator.pop(context, 'user02@gmail.com');
-                // },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.account_circle, size: 36.0, color: Colors.green),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 16.0),
-                      child: Text('user02@gmail.com'),
-                    ),
-                  ],
-                ),
+              ListView.builder(
+                itemCount: 8,
+                itemBuilder: (BuildContext context, int i) {
+                  return AddUserWidget(
+                    index: i,
+                  );
+                },
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  // Navigator.pop(context);
                   searchUserDialog();
                 },
                 child: Row(
@@ -383,9 +358,12 @@ class _HomePageState extends State<HomePage> {
                       );
                       if (response.statusCode == 200) {
                         var result = json.decode(response.body);
-                        if (result) {
-                          print(result);
-                        }
+                        print(response.body);
+                        // if (result.suc) {
+                        //   print(result);
+                        // } else {
+                        //   print("fail");
+                        // }
                       } else {
                         throw Exception('Failed to search user');
                       }
@@ -393,6 +371,23 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             actions: <Widget>[
+              SimpleDialogOption(
+                // onPressed: () {
+                //   Navigator.pop(context, 'user01@gmail.com');
+                // },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.account_circle,
+                        size: 36.0, color: Colors.orange),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 16.0),
+                      child: Text('user01@gmail.com'),
+                    ),
+                  ],
+                ),
+              ),
               new FlatButton(
                 child: new Text("확인"),
                 onPressed: () async {
