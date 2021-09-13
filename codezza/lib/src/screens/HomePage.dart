@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:codezza/src/models/entity.dart';
+import 'package:codezza/src/screens/diary/Widget/AddUserWidget.dart';
 import 'package:flutter_session/flutter_session.dart';
 
 import '/src/screens/diary/DiaryAddPage.dart';
@@ -28,6 +30,9 @@ class _HomePageState extends State<HomePage> {
 
   final _gNm = TextEditingController(); // TextFormField Controller
   final _searchText = TextEditingController(); // TextFormField Controller
+
+  List<User?>? searchUserList;
+  List<User?>? groupAddUserList;
 
   @override
   Widget build(BuildContext context) {
@@ -254,56 +259,26 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             actions: <Widget>[
-              SimpleDialogOption(
-                // onPressed: () {
-                //   Navigator.pop(context, 'user01@gmail.com');
-                // },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.account_circle,
-                        size: 36.0, color: Colors.orange),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 16.0),
-                      child: Text('user01@gmail.com'),
+              (groupAddUserList != null)
+                  ? AddUserWidget(userList: groupAddUserList)
+                  : SimpleDialogOption(
+                      onPressed: () {
+                        searchUserDialog();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.add_circle,
+                              size: 36.0, color: Colors.grey),
+                          Padding(
+                            padding:
+                                const EdgeInsetsDirectional.only(start: 16.0),
+                            child: Text('Add account'),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              SimpleDialogOption(
-                // onPressed: () {
-                //   Navigator.pop(context, 'user02@gmail.com');
-                // },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.account_circle, size: 36.0, color: Colors.green),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 16.0),
-                      child: Text('user02@gmail.com'),
-                    ),
-                  ],
-                ),
-              ),
-              SimpleDialogOption(
-                onPressed: () {
-                  // Navigator.pop(context);
-                  searchUserDialog();
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.add_circle, size: 36.0, color: Colors.grey),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 16.0),
-                      child: Text('Add account'),
-                    ),
-                  ],
-                ),
-              ),
               DialogButton(
                 child: Text(
                   "취소",
@@ -383,9 +358,15 @@ class _HomePageState extends State<HomePage> {
                       );
                       if (response.statusCode == 200) {
                         var result = json.decode(response.body);
-                        if (result) {
-                          print(result);
-                        }
+                        print(response.body);
+                        setState(() {
+                          searchUserList = json.decode(result);
+                        });
+                        // if (result.suc) {
+                        //   print(result);
+                        // } else {
+                        //   print("fail");
+                        // }
                       } else {
                         throw Exception('Failed to search user');
                       }
@@ -393,6 +374,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             actions: <Widget>[
+              AddUserWidget(userList: searchUserList),
               new FlatButton(
                 child: new Text("확인"),
                 onPressed: () async {
