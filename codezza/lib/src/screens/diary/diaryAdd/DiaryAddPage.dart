@@ -1,5 +1,5 @@
 import '/src/models/entity.dart';
-import '/src/screens/diary/Widget/DiaryAddForm.dart';
+import '/src/screens/diary/diaryAdd/DiaryAddForm.dart';
 import '/src/widgets/style.dart';
 
 import 'package:flutter/cupertino.dart';
