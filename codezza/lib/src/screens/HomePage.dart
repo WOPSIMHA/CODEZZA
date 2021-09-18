@@ -4,11 +4,11 @@ import 'package:codezza/src/models/entity.dart';
 import 'package:codezza/src/screens/diary/Widget/AddUserWidget.dart';
 import 'package:flutter_session/flutter_session.dart';
 
-import '/src/screens/diary/DiaryAddPage.dart';
+import 'diary/GroupDairy/GroupDiaryListPage.dart';
+import 'diary/MyDiary/MyDiaryListPage.dart';
+import 'diary/diaryAdd/DiaryAddPage.dart';
 import '/src/sample/sampledb.dart';
-import '/src/screens/diary/GroupDiaryListPage.dart';
 import '/src/widgets/style.dart';
-import 'diary/MyDiaryListPage.dart';
 import 'profile/Widget/ProfileCard.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 16),
-        ProfileCard(user: users[1]),
+        ProfileCard(user: TestData.users[1]),
         SizedBox(height: 16),
         _tabButton(),
         _index == 0 ? MyDiaryList() : GroupDiaryList(),

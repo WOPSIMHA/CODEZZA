@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/src/screens/diary/DiaryDetailPage.dart';
+import 'MyDiaryDetailPage.dart';
 import '/src/widgets/style.dart';
 import '/src/models/entity.dart';
 
