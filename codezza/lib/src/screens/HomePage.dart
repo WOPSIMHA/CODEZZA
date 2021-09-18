@@ -31,8 +31,19 @@ class _HomePageState extends State<HomePage> {
   final _gNm = TextEditingController(); // TextFormField Controller
   final _searchText = TextEditingController(); // TextFormField Controller
 
-  List<User?>? searchUserList;
-  List<User?>? groupAddUserList;
+  // List<User?>? searchUserList;
+  // List<User?>? groupAddUserList;
+  List<dynamic>? searchUserList;
+  List<dynamic>? groupAddUserList;
+
+  set _searchUserList(List<dynamic>? value) {
+    searchUserList = (value == null) ? null : value;
+  }
+
+  set _groupAddUserList(List<dynamic>? value) {
+    groupAddUserList = (value == null) ? null : value;
+    print(groupAddUserList);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -259,26 +270,25 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             actions: <Widget>[
-              (groupAddUserList != null)
+              ((groupAddUserList != null)
                   ? AddUserWidget(userList: groupAddUserList)
-                  : SimpleDialogOption(
-                      onPressed: () {
-                        searchUserDialog();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.add_circle,
-                              size: 36.0, color: Colors.grey),
-                          Padding(
-                            padding:
-                                const EdgeInsetsDirectional.only(start: 16.0),
-                            child: Text('Add account'),
-                          ),
-                        ],
-                      ),
+                  : Container()),
+              SimpleDialogOption(
+                onPressed: () {
+                  searchUserDialog();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.add_circle, size: 36.0, color: Colors.grey),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 16.0),
+                      child: Text('Add account'),
                     ),
+                  ],
+                ),
+              ),
               DialogButton(
                 child: Text(
                   "취소",
@@ -310,79 +320,86 @@ class _HomePageState extends State<HomePage> {
   void searchUserDialog() {
     showDialog(
         context: context,
-        barrierDismissible: false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+        barrierDismissible: false,
         builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-                borderRadius: BorderRadius.circular(10.0)),
-            //Dialog Main Title
-            title: Column(
-              children: <Widget>[
-                new Text("친구 검색"),
-              ],
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TextFormField(
-                    controller: _searchText,
-                    decoration: InputDecoration(
-                      labelText: '아이디 또는 닉네임',
-                      suffixIcon: GestureDetector(
-                        onTap: () => _gNm.clear(),
-                        child: IconList.CloseCircle,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: kGray1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: kGray1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onChanged: (text) async {
-                      setState(() {});
-                      final response = await http.post(
-                        Uri.parse('http://192.168.0.110:5000/searchUser'),
-                        headers: <String, String>{
-                          'Content-Type': 'application/json; charset=UTF-8',
-                        },
-                        body: jsonEncode(<String, String>{
-                          'sessionUId': await FlutterSession().get("token"),
-                          'searchUId': _searchText.text,
-                          'searchUNm': _searchText.text,
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                //Dialog Main Title
+                title: Column(
+                  children: <Widget>[
+                    new Text("친구 검색"),
+                  ],
+                ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    TextFormField(
+                        controller: _searchText,
+                        decoration: InputDecoration(
+                          labelText: '아이디 또는 닉네임',
+                          suffixIcon: GestureDetector(
+                            onTap: () => _gNm.clear(),
+                            child: IconList.CloseCircle,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 2, color: kGray1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 2, color: kGray1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        onChanged: (text) async {
+                          setState(() {});
+                          final response = await http.post(
+                            Uri.parse('http://192.168.0.110:5000/searchUser'),
+                            headers: <String, String>{
+                              'Content-Type': 'application/json; charset=UTF-8',
+                            },
+                            body: jsonEncode(<String, String>{
+                              'sessionUId': await FlutterSession().get("token"),
+                              'searchUId': _searchText.text,
+                              'searchUNm': _searchText.text,
+                            }),
+                          );
+                          if (response.statusCode == 200) {
+                            // var result = json.decode(response.body);
+                            // print((json.decode(result))
+                            //     .map((value) => User.fromMap(value))
+                            //     .toList());
+                            setState(() {
+                              String responseBody =
+                                  utf8.decode(response.bodyBytes);
+                              List<dynamic> list = jsonDecode(responseBody);
+                              // _groupAddUserList =
+                              //     jsonDecode(response.body).toList();
+                              _groupAddUserList = list;
+                            });
+                          } else {
+                            throw Exception('Failed to search user');
+                          }
                         }),
-                      );
-                      if (response.statusCode == 200) {
-                        var result = json.decode(response.body);
-                        print(response.body);
-                        setState(() {
-                          searchUserList = json.decode(result);
-                        });
-                        // if (result.suc) {
-                        //   print(result);
-                        // } else {
-                        //   print("fail");
-                        // }
-                      } else {
-                        throw Exception('Failed to search user');
-                      }
-                    }),
-              ],
-            ),
-            actions: <Widget>[
-              AddUserWidget(userList: searchUserList),
-              new FlatButton(
-                child: new Text("확인"),
-                onPressed: () async {
-                  _searchText.dispose();
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+                  ],
+                ),
+                actions: <Widget>[
+                  ((searchUserList != null)
+                      ? AddUserWidget(userList: searchUserList)
+                      : Container()),
+                  new FlatButton(
+                    child: new Text("확인"),
+                    onPressed: () async {
+                      _searchText.dispose();
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            },
           );
         });
   }

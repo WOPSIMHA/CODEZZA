@@ -44,6 +44,8 @@ dependencies:
   video_player:
   # alert
   rflutter_alert: ^1.0.2
+  # permission
+  path_provider: ^1.4.0
 
 
 # 생성 명령어 flutter pub run flutter_native_splash:create

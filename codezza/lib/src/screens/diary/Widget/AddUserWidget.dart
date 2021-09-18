@@ -7,7 +7,8 @@ typedef OnDelete();
 
 // 사용자 목록 리스트
 class AddUserWidget extends StatefulWidget {
-  final List<User?>? userList;
+  // final List<User?>? userList;
+  final List<dynamic>? userList;
   final state = _AddUserWidgetState();
   // final OnDelete? onDelete;
 
@@ -32,42 +33,25 @@ class _AddUserWidgetState extends State<AddUserWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return (widget.userList! != null)
-        ? ListView.builder(
-            itemCount: widget.userList!.length,
-            itemBuilder: (_, i) {
-              return SimpleDialogOption(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(Icons.account_circle,
-                        size: 36.0,
-                        color: ColorList[Random().nextInt(ColorList.length)]),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 16.0),
-                      child: Text(widget.userList![i]!.uName.toString()),
-                    ),
-                  ],
-                ),
-              );
-            },
-          )
-        : SimpleDialogOption(
-            onPressed: () {
-              // searchUserDialog();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.add_circle, size: 36.0, color: Colors.grey),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 16.0),
-                  child: Text('Add account'),
-                ),
-              ],
-            ),
-          );
+    return ListView.builder(
+      itemCount: widget.userList!.length,
+      itemBuilder: (_, i) {
+        return SimpleDialogOption(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.account_circle,
+                  size: 36.0,
+                  color: ColorList[Random().nextInt(ColorList.length)]),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start: 16.0),
+                child: Text(widget.userList![i]['u_id'].toString()),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
