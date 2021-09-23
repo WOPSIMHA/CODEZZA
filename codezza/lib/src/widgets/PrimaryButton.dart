@@ -21,7 +21,7 @@ class PrimaryButton extends StatelessWidget {
       child: FontMedium(title: title, size: 20),
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.resolveWith(
-              (states) {
+          (states) {
             if (states.contains(MaterialState.disabled)) {
               return kGray2;
             } else {
@@ -30,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
           },
         ),
         backgroundColor: MaterialStateProperty.resolveWith(
-              (states) {
+          (states) {
             if (states.contains(MaterialState.disabled)) {
               return kWhite3;
             } else {

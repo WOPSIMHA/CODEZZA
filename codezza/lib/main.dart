@@ -1,15 +1,15 @@
-import 'dart:async';
-import 'dart:convert';
+// import 'dart:async';
+// import 'dart:convert';
 
-import 'package:codezza/src/screens/HomePage.dart';
+import 'package:codezza/src/screens/home/HomePage.dart';
 import 'package:codezza/src/screens/auth/LoginPage.dart';
+import 'package:codezza/src/widgets/flutter_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_session/flutter_session.dart';
 
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
-import 'package:codezza/src/screens/PhotoPickExample.dart';
+// import 'package:codezza/src/screens/PhotoPickExample.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

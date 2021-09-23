@@ -1,17 +1,13 @@
-import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-import 'package:codezza/src/screens/HomePage.dart';
-import 'package:flutter_session/flutter_session.dart';
-
-import '../../widgets/style.dart';
+import '/src/widgets/style.dart';
+import '/src/screens/home/HomePage.dart';
+import '/src/widgets/flutter_session.dart';
 import 'widget/SignupNeutralButton.dart';
 import 'widget/LoginPrimaryButton.dart';
 import 'SignupPage.dart';
-
-import 'package:flutter/material.dart';
-
-import 'package:http/http.dart' as http;
 
 // 로그인 페이지
 class LoginPage extends StatefulWidget {
@@ -20,7 +16,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _autologin = false; // 자동로그인 체크 박스 on/off
   bool _isHidePassword = true; // 비밀번호 보이기/숨기기
   final _uId = TextEditingController(); // TextFormField Controller
   final _uPw = TextEditingController(); // 텍스트필드 입력 값을 가져오기 위한 컨트롤러
@@ -134,42 +129,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // 자동로그인 선택 체크 박스
-  Widget _loginCheckBox() {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _autologin = !_autologin;
-            });
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: _autologin ? kMainColor : Colors.white,
-              border: Border.all(
-                color: kMainColor,
-                width: 3,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: _autologin
-                  ? Icon(Icons.check, size: 18.0, color: Colors.white)
-                  : Icon(Icons.check, size: 18.0, color: Colors.white),
-            ),
-          ),
-        ),
-        SizedBox(width: 10),
-        FontMedium(
-          title: '자동로그인',
-          size: 16,
-        ),
-      ],
-    );
-  }
-
   // 로그인 버튼
   Widget _loginPrimaryButton() {
     return Padding(
@@ -177,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
       child: LoginPrimaryButton(
         onPressed: () async {
           if (_uId.text == "" || _uPw.text == "") {
-            LoginAlertDialog();
+            loginAlertDialog();
             return;
           }
           final response = await http.post(
@@ -198,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                 MaterialPageRoute(builder: (_) => HomePage()),
               );
             } else {
-              LoginAlertDialog();
+              loginAlertDialog();
             }
           } else {
             throw Exception('Failed to login');
@@ -276,39 +235,40 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   // 로그인 관련 Alert 띄우는 메소드
-  void LoginAlertDialog() {
+  void loginAlertDialog() {
     showDialog(
-        context: context,
-        barrierDismissible: false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-                borderRadius: BorderRadius.circular(10.0)),
-            //Dialog Main Title
-            // title: Column(
-            //   children: <Widget>[
-            //     new Text("로그인"),
-            //   ],
-            // ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "아이디와 비밀번호를 확인해 주세요!",
-                ),
-              ],
-            ),
-            actions: <Widget>[
-              new FlatButton(
-                child: new Text("확인"),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+      context: context,
+      barrierDismissible: false, //barrierDismissible - Dialog 를 제외한 다른 화면 터치 x
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+              borderRadius: BorderRadius.circular(10.0)),
+          //Dialog Main Title
+          // title: Column(
+          //   children: <Widget>[
+          //     new Text("로그인"),
+          //   ],
+          // ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "아이디와 비밀번호를 확인해 주세요!",
               ),
             ],
-          );
-        });
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text("확인"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

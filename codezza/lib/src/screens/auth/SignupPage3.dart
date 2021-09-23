@@ -1,6 +1,5 @@
-import '../../widgets/style_font.dart';
-import '../../widgets/PrimaryButton.dart';
-import 'SignupPage4.dart';
+import '/src/widgets/PrimaryButton.dart';
+import '/src/widgets/style.dart';
 
 import 'package:flutter/material.dart';
 
@@ -64,9 +63,9 @@ class _SignUpPage3State extends State<SignUpPage3> {
       padding: const EdgeInsets.only(top: 174),
       child: PrimaryButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => SignUpPage4()),
-          );
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(builder: (context) => SignUpPage4()),
+          // );
         },
         title: '회원가입 완료하기',
       ),

@@ -1,12 +1,12 @@
 import 'dart:convert';
+import 'package:codezza/src/widgets/flutter_session.dart';
+import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_session/flutter_session.dart';
 
 import '/src/models/entity.dart';
-import '/src/screens/HomePage.dart';
+import '../home/HomePage.dart';
 import '../../widgets/PrimaryButton.dart';
-import '../../widgets/style_font.dart';
 
 // 프로필(회원정보) 업데이트 페이지
 // ProfileAuthPage  1. 닉네임
@@ -48,7 +48,7 @@ class ProfileAuthPage extends StatelessWidget {
             onPressed: () async {
               User user = User();
               user.uName = _uName.text;
-              final result = await Navigator.push(
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => ProfileAuthPage2(user: user)),
@@ -61,7 +61,6 @@ class ProfileAuthPage extends StatelessWidget {
     );
   }
 
-  @override
   void dispose() {
     // 텍스트에디터컨트롤러 초기화
     _uName.dispose();
@@ -70,7 +69,7 @@ class ProfileAuthPage extends StatelessWidget {
 }
 
 class ProfileAuthPage2 extends StatelessWidget {
-  User user;
+  final User user;
   ProfileAuthPage2({required this.user});
 
   final _uComment = TextEditingController();
@@ -145,8 +144,8 @@ class ProfileAuthPage2 extends StatelessWidget {
                                   ],
                                 ),
                                 actions: <Widget>[
-                                  new FlatButton(
-                                    child: new Text("확인"),
+                                  TextButton(
+                                    child: Text("확인"),
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },

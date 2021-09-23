@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:codezza/src/models/entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +19,7 @@ class AddUserWidget extends StatefulWidget {
 
 class _AddUserWidgetState extends State<AddUserWidget> {
   final form = GlobalKey<FormState>();
-  final ColorList = [
+  final List<Color?> colorList = [
     Colors.orange,
     Colors.amber,
     Colors.orange[100],
@@ -43,7 +42,7 @@ class _AddUserWidgetState extends State<AddUserWidget> {
             children: [
               Icon(Icons.account_circle,
                   size: 36.0,
-                  color: ColorList[Random().nextInt(ColorList.length)]),
+                  color: colorList[Random().nextInt(colorList.length)]),
               Padding(
                 padding: const EdgeInsetsDirectional.only(start: 16.0),
                 child: Text(widget.userList![i]['u_id'].toString()),

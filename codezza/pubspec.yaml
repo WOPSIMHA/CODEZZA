@@ -18,34 +18,39 @@ dependencies:
   ionicons: ^0.1.2
   font_awesome_flutter: ^9.1.0
 
-  extended_tabs: ^2.2.0
+  extended_tabs: ^2.3.0
   flip_card: ^0.5.0
-  dotted_border: ^2.0.0
+  dotted_border: ^2.0.0+1
   list_tile_switch: ^1.0.0
-  flutter_form_builder: ^6.0.1
-  flutter_speed_dial: ^3.0.5
+  flutter_form_builder: ^6.1.0+1
+  flutter_speed_dial: ^4.4.0+1
 
   # 통신을 위한 plugin
   http: ^0.13.3
   equatable: ^2.0.3
 
   # session
-  flutter_session:
+  # flutter_session:
+  shared_preferences: ^2.0.8
+
   # cookie
   cookie_jar: 3.0.1
 
   # 로딩 화면 plugin
-  flutter_native_splash: ^1.2.0
+  flutter_native_splash: ^1.2.3
 
   # 이미지
   image_picker:
   multi_image_picker:
+
   # 비디오
   video_player:
+
   # alert
-  rflutter_alert: ^1.0.2
+  rflutter_alert: ^2.0.4
+
   # permission
-  path_provider: ^1.4.0
+  path_provider: ^2.0.5
 
 
 # 생성 명령어 flutter pub run flutter_native_splash:create

@@ -31,16 +31,18 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
   final form = GlobalKey<FormState>();
   final _text = TextEditingController(); // 일기 내용
 
-  /** 이미지 업로드 */
+  /* 이미지 업로드 */
   List<PickedFile>? _imageFileList;
+
   set _imageFile(PickedFile? value) {
     _imageFileList = (value == null) ? null : [value];
   }
 
-  dynamic _pickImageError;
-  String? _retrieveDataError;
+  var pickImageError;
+  String? retrieveDataError;
   final ImagePicker _picker = ImagePicker();
-  /** 이미지 업로드 */
+
+  /* 이미지 업로드 */
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +113,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                       _onImageAdd();
                     } catch (e) {
                       setState(() {
-                        _pickImageError = e;
+                        pickImageError = e;
                       });
                     }
                   },
@@ -154,7 +156,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                       _onImageAdd();
                     } catch (e) {
                       setState(() {
-                        _pickImageError = e;
+                        pickImageError = e;
                       });
                     }
                   },
@@ -208,15 +210,15 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
       });
     } catch (e) {
       setState(() {
-        _pickImageError = e;
+        pickImageError = e;
       });
     }
   }
 
   Text? _getRetrieveErrorWidget() {
-    if (_retrieveDataError != null) {
-      final Text result = Text(_retrieveDataError!);
-      _retrieveDataError = null;
+    if (retrieveDataError != null) {
+      final Text result = Text(retrieveDataError!);
+      retrieveDataError = null;
       return result;
     }
     return null;

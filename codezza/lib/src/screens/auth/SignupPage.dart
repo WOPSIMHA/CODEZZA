@@ -1,18 +1,18 @@
 import 'dart:convert';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '/src/screens/profile/ProfileAuthPage.dart';
-import '../../widgets/style.dart';
-import '../../widgets/PrimaryButton.dart';
-import 'widget/SignUpCheckButton.dart';
+import '/src/widgets/PrimaryButton.dart';
+import '/src/widgets/flutter_session.dart';
+import '/src/widgets/style.dart';
 import '/src/models/entity.dart';
+import '/src/screens/profile/ProfileAuthPage.dart';
+import 'widget/SignUpCheckButton.dart';
 
 // 회원가입 페이지
 // SignUpPage 1. 아이디 페이지
 // SignUpPage2 2. 비밀번호 페이지
-// SignUpPage4 3. 회원가입 완료 페이지
+// SignUpPage3 3. 회원가입 완료 페이지
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -110,10 +110,10 @@ class _SignUpPageState extends State<SignUpPage> {
     return SignUpCheckButton(
       onPressed: () async {
         if (_uId.text == "") {
-          IdCheckAlertDialog(1);
+          setIdCheckAlertDialog(1);
           return;
         } else if (_uId.text.length < 6) {
-          IdCheckAlertDialog(4);
+          setIdCheckAlertDialog(4);
           return;
         }
         final response = await http.post(
@@ -128,10 +128,10 @@ class _SignUpPageState extends State<SignUpPage> {
         if (response.statusCode == 200) {
           var result = json.decode(response.body);
           if (result) {
-            IdCheckAlertDialog(3);
+            setIdCheckAlertDialog(3);
             _confirmId = _uId.text;
           } else {
-            IdCheckAlertDialog(1);
+            setIdCheckAlertDialog(1);
           }
         } else {
           throw Exception('Failed to register');
@@ -146,12 +146,12 @@ class _SignUpPageState extends State<SignUpPage> {
     return PrimaryButton(
       onPressed: () async {
         if (_uId.text != _confirmId || _confirmId == "") {
-          IdCheckAlertDialog(2);
+          setIdCheckAlertDialog(2);
           return;
         } else {
           final User user = User();
           user.uId = _uId.text;
-          final result = await Navigator.push(
+          await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => SignUpPage2(user: user)),
           );
@@ -169,7 +169,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   // 아이디 중복 체크 관련 Alert 띄우는 메소드
-  void IdCheckAlertDialog(_type) {
+  void setIdCheckAlertDialog(_type) {
     String msg = "";
     if (_type == 1) {
       // 공백 또는 중복
@@ -186,7 +186,8 @@ class _SignUpPageState extends State<SignUpPage> {
     }
     showDialog(
         context: this.context,
-        barrierDismissible: false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+        barrierDismissible: false,
+        //barrierDismissible - Dialog 를 제외한 다른 화면 터치 x
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(
@@ -200,8 +201,8 @@ class _SignUpPageState extends State<SignUpPage> {
               ],
             ),
             actions: <Widget>[
-              new FlatButton(
-                child: new Text("확인"),
+              TextButton(
+                child: Text("확인"),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -212,24 +213,28 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 }
 
-class SignUpPage2 extends StatelessWidget {
-  // SignUpPage에서 넘어온 User 받을 변수
-  User user;
+class SignUpPage2 extends StatefulWidget {
+  // SignUp Page 에서 넘어온 User 받을 변수
+  final User user;
 
   // 생성자에 User 인자 선언
   SignUpPage2({required this.user});
 
-  var _uPw = TextEditingController(); // 비밀번호 텍스트 필드 Controller
-  var _uPwChecked = TextEditingController(); // 비밀번호 확인 텍스트 필드 Controller
+  @override
+  State<SignUpPage2> createState() => _SignUpPage2State();
+}
+
+class _SignUpPage2State extends State<SignUpPage2> {
+  var _uPw = TextEditingController();
+  var _uPwChecked = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: buildBody(context, user),
+      body: buildBody(context, widget.user),
     );
   }
 
-  // Body
   Widget buildBody(BuildContext context, User user) {
     return Padding(
       padding: const EdgeInsets.only(top: 168, left: 44, right: 44),
@@ -247,7 +252,6 @@ class SignUpPage2 extends StatelessWidget {
     );
   }
 
-  // 비밀번호 텍스트 필드
   Widget _textFormFieldPassword1() {
     return Flexible(
       child: Padding(
@@ -267,7 +271,6 @@ class SignUpPage2 extends StatelessWidget {
     );
   }
 
-  // 비밀번호 확인 텍스트 필드
   Widget _textFormFieldPassword2() {
     return Flexible(
       child: Padding(
@@ -287,24 +290,24 @@ class SignUpPage2 extends StatelessWidget {
     );
   }
 
-  // 다음 버튼
   Widget _nextButton2(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 54),
       child: PrimaryButton(
         onPressed: () async {
           if (_uPw.text.length < 6) {
-            PwCheckAlertDialog(context, 1);
+            setPwCheckAlertDialog(context, 1);
             return;
           }
           if (_uPw.text != _uPwChecked.text) {
-            PwCheckAlertDialog(context, 2);
+            setPwCheckAlertDialog(context, 2);
             return;
           }
-          user.uPw = _uPw.text;
-          final result = await Navigator.push(
+          widget.user.uPw = _uPw.text;
+          await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SignUpPage4(user: user)),
+            MaterialPageRoute(
+                builder: (context) => SignUpPage3(user: widget.user)),
           );
         },
         title: '다음',
@@ -312,8 +315,7 @@ class SignUpPage2 extends StatelessWidget {
     );
   }
 
-  // 비밀번호 관련 Alert 띄우는 메소드
-  void PwCheckAlertDialog(BuildContext context, _type) {
+  void setPwCheckAlertDialog(BuildContext context, _type) {
     String msg = "";
     if (_type == 1) {
       // 자리 수 6자 미만
@@ -324,7 +326,8 @@ class SignUpPage2 extends StatelessWidget {
     }
     showDialog(
         context: context,
-        barrierDismissible: false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+        //barrierDismissible - Dialog 를 제외한 다른 화면 터치 x
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(
@@ -338,8 +341,8 @@ class SignUpPage2 extends StatelessWidget {
               ],
             ),
             actions: <Widget>[
-              new FlatButton(
-                child: new Text("확인"),
+              TextButton(
+                child: Text("확인"),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -350,12 +353,12 @@ class SignUpPage2 extends StatelessWidget {
   }
 }
 
-class SignUpPage4 extends StatelessWidget {
-  // SignUpPage에서 넘어온 User 받을 변수
-  User user;
+class SignUpPage3 extends StatelessWidget {
+  // SignUp Page 에서 넘어온 User 받을 변수
+  final User user;
 
   // 생성자에 User 인자 선언
-  SignUpPage4({required this.user});
+  SignUpPage3({required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -417,31 +420,33 @@ class SignUpPage4 extends StatelessWidget {
               );
             } else {
               showDialog(
-                  context: context,
-                  barrierDismissible:
-                      false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(
-                          // Dialog 화면 모서리 둥글게 조절
-                          borderRadius: BorderRadius.circular(10.0)),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('회원가입에 실패하였습니다.\n다시 시도해 주세요!'),
-                        ],
-                      ),
-                      actions: <Widget>[
-                        new FlatButton(
-                          child: new Text("확인"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
+                context: context,
+                //barrierDismissible - Dialog 를 제외한 다른 화면 터치 x
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      // Dialog 화면 모서리 둥글게 조절
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('회원가입에 실패하였습니다.\n다시 시도해 주세요!'),
                       ],
-                    );
-                  });
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        child: Text("확인"),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
             }
           } else {
             throw Exception('Failed to login');
