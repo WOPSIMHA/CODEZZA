@@ -113,19 +113,17 @@ class _HomeFabState extends State<HomeFab> {
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-              // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-              borderRadius: BorderRadius.circular(10.0)),
-          //Dialog Main Title
-          title: Column(
-            children: <Widget>[
-              new Text("그룹방 만들기"),
-            ],
+            // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+            borderRadius: BorderRadius.circular(10.0),
           ),
+          //Dialog Main Title
+          title: Center(child: FontMedium(title: "그룹방 만들기")),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Text("친구들끼리 일기를 공유해요!"),
+              FontMedium(title: '친구들끼리 일기를 공유해요!'),
+              Container(height: 10),
               TextFormField(
                   controller: _gNm,
                   decoration: InputDecoration(
@@ -146,49 +144,57 @@ class _HomeFabState extends State<HomeFab> {
                   onChanged: (text) {
                     setState(() {});
                   }),
+              ListTile(
+                title: FontMedium(title: 'Add account'),
+                leading: Icon(
+                  Icons.add_circle,
+                  size: 36.0,
+                  color: Colors.grey,
+                ),
+                onTap: () => searchUserDialog(),
+              ),
+              // SimpleDialogOption(
+              //   onPressed: () {
+              //     searchUserDialog();
+              //   },
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     children: [
+              //       Icon(Icons.add_circle, size: 36.0, color: Colors.grey),
+              //       FontMedium(title: 'Add account'),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
           actions: <Widget>[
             ((groupAddUserList != null)
                 ? AddUserWidget(userList: groupAddUserList)
                 : Container()),
-            SimpleDialogOption(
+            DialogButton(
+              child: FontMedium(title: '취소', color: Colors.white, size: 20),
               onPressed: () {
-                searchUserDialog();
+                _gNm.clear();
+                _searchText.clear();
+                Navigator.pop(context);
               },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.add_circle, size: 36.0, color: Colors.grey),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.only(start: 16.0),
-                    child: Text('Add account'),
-                  ),
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(116, 116, 191, 1.0),
+                  Color.fromRGBO(52, 138, 199, 1.0),
                 ],
               ),
             ),
             DialogButton(
-              child: Text(
-                "취소",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
+              child: FontMedium(title: '확인', color: Colors.white, size: 20),
               onPressed: () => Navigator.pop(context),
-              gradient: LinearGradient(colors: [
-                Color.fromRGBO(116, 116, 191, 1.0),
-                Color.fromRGBO(52, 138, 199, 1.0)
-              ]),
-            ),
-            DialogButton(
-              child: Text(
-                "확인",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(116, 116, 191, 1.0),
+                  Color.fromRGBO(52, 138, 199, 1.0),
+                ],
               ),
-              onPressed: () => Navigator.pop(context),
-              gradient: LinearGradient(colors: [
-                Color.fromRGBO(116, 116, 191, 1.0),
-                Color.fromRGBO(52, 138, 199, 1.0)
-              ]),
             ),
           ],
         );
@@ -206,64 +212,55 @@ class _HomeFabState extends State<HomeFab> {
             builder: (BuildContext context, StateSetter setState) {
               return AlertDialog(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                //Dialog Main Title
-                title: Column(
-                  children: <Widget>[
-                    new Text("친구 검색"),
-                  ],
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
+                //Dialog Main Title
+                title: FontMedium(title: "친구 검색"),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TextFormField(
-                        controller: _searchText,
-                        decoration: InputDecoration(
-                          labelText: '아이디 또는 닉네임',
-                          suffixIcon: GestureDetector(
-                            onTap: () => _gNm.clear(),
-                            child: IconList.CloseCircle,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: kGray1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 2, color: kGray1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+                      controller: _searchText,
+                      decoration: InputDecoration(
+                        labelText: '아이디 또는 닉네임',
+                        suffixIcon: GestureDetector(
+                          onTap: () => _gNm.clear(),
+                          child: IconList.CloseCircle,
                         ),
-                        onChanged: (text) async {
-                          setState(() {});
-                          final response = await http.post(
-                            Uri.parse('http://192.168.0.110:5000/searchUser'),
-                            headers: <String, String>{
-                              'Content-Type': 'application/json; charset=UTF-8',
-                            },
-                            body: jsonEncode(<String, String>{
-                              'sessionUId': await FlutterSession().get("token"),
-                              'searchUId': _searchText.text,
-                              'searchUNm': _searchText.text,
-                            }),
-                          );
-                          if (response.statusCode == 200) {
-                            // var result = json.decode(response.body);
-                            // print((json.decode(result))
-                            //     .map((value) => User.fromMap(value))
-                            //     .toList());
-                            setState(() {
-                              String responseBody =
-                              utf8.decode(response.bodyBytes);
-                              List<dynamic> list = jsonDecode(responseBody);
-                              // _groupAddUserList =
-                              //     jsonDecode(response.body).toList();
-                              _groupAddUserList = list;
-                            });
-                          } else {
-                            throw Exception('Failed to search user');
-                          }
-                        }),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 2, color: kGray1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 2, color: kGray1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onChanged: (text) async {
+                        final response = await http.post(
+                          Uri.parse('http://192.168.0.110:5000/searchUser'),
+                          headers: <String, String>{
+                            'Content-Type': 'application/json; charset=UTF-8',
+                          },
+                          body: jsonEncode(<String, String>{
+                            'sessionUId': await FlutterSession().get("token"),
+                            'searchUId': _searchText.text,
+                            'searchUNm': _searchText.text,
+                          }),
+                        );
+                        if (response.statusCode == 200) {
+                          setState(() {
+                            String responseBody =
+                                utf8.decode(response.bodyBytes);
+                            List<dynamic> list = jsonDecode(responseBody);
+                            _groupAddUserList = list;
+                          });
+                        } else {
+                          throw Exception('Failed to search user');
+                        }
+                      },
+                    ),
                   ],
                 ),
                 actions: <Widget>[
@@ -271,9 +268,8 @@ class _HomeFabState extends State<HomeFab> {
                       ? AddUserWidget(userList: searchUserList)
                       : Container()),
                   TextButton(
-                    child: Text("확인"),
-                    onPressed: () async {
-                      _searchText.dispose();
+                    child: FontMedium(title: "확인"),
+                    onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
@@ -301,5 +297,12 @@ class _HomeFabState extends State<HomeFab> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _gNm.dispose();
+    _searchText.dispose();
+    super.dispose();
   }
 }

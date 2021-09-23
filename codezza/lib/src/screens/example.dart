@@ -35,9 +35,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<PickedFile>? _imageFileList;
+  // List<PickedFile>? _imageFileList;
+  List<XFile>? _imageFileList;
 
-  set _imageFile(PickedFile? value) {
+  // set _imageFile(PickedFile? value) {
+  //   _imageFileList = value == null ? null : [value];
+  // }
+  set _imageFile(XFile? value) {
     _imageFileList = value == null ? null : [value];
   }
 
@@ -49,8 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onImageButtonPressed(ImageSource source,
       {BuildContext? context}) async {
     try {
-      final pickedFile = await _picker.getImage(
+      // final pickedFile = await _picker.getImage(
+      //   source: source,
+      // );
+      final pickedFile = await _picker.pickImage(
         source: source,
+        maxHeight: 480, // 높이
+        maxWidth: 640, // 넒이
+        imageQuality: 30, // 이미지 압축
       );
       setState(() {
         _imageFile = pickedFile;
@@ -108,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> retrieveLostData() async {
-    final LostData response = await _picker.getLostData();
+    // final LostData response = await _picker.getLostData();
+    final LostDataResponse response = await _picker.retrieveLostData();
     if (response.isEmpty) {
       return;
     }
@@ -186,45 +197,45 @@ class _MyHomePageState extends State<MyHomePage> {
     return null;
   }
 
-  Future<void> _displayPickImageDialog(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Add optional parameters'),
-            content: Column(
-              children: <Widget>[
-                TextField(
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  decoration:
-                      InputDecoration(hintText: "Enter maxWidth if desired"),
-                ),
-                TextField(
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  decoration:
-                      InputDecoration(hintText: "Enter maxHeight if desired"),
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  decoration:
-                      InputDecoration(hintText: "Enter quality if desired"),
-                ),
-              ],
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: const Text('CANCEL'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              TextButton(
-                  child: const Text('PICK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }),
-            ],
-          );
-        });
-  }
+// Future<void> _displayPickImageDialog(BuildContext context) async {
+//   return showDialog(
+//       context: context,
+//       builder: (context) {
+//         return AlertDialog(
+//           title: Text('Add optional parameters'),
+//           content: Column(
+//             children: <Widget>[
+//               TextField(
+//                 keyboardType: TextInputType.numberWithOptions(decimal: true),
+//                 decoration:
+//                     InputDecoration(hintText: "Enter maxWidth if desired"),
+//               ),
+//               TextField(
+//                 keyboardType: TextInputType.numberWithOptions(decimal: true),
+//                 decoration:
+//                     InputDecoration(hintText: "Enter maxHeight if desired"),
+//               ),
+//               TextField(
+//                 keyboardType: TextInputType.number,
+//                 decoration:
+//                     InputDecoration(hintText: "Enter quality if desired"),
+//               ),
+//             ],
+//           ),
+//           actions: <Widget>[
+//             TextButton(
+//               child: const Text('CANCEL'),
+//               onPressed: () {
+//                 Navigator.of(context).pop();
+//               },
+//             ),
+//             TextButton(
+//                 child: const Text('PICK'),
+//                 onPressed: () {
+//                   Navigator.of(context).pop();
+//                 }),
+//           ],
+//         );
+//       });
+// }
 }

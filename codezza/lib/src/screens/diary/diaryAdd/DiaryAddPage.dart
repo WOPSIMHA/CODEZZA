@@ -30,7 +30,9 @@ class _DiaryAddState extends State<DiaryAdd> {
             padding: const EdgeInsets.only(left: 10),
             child: InkWell(
               child: IconList.Back,
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
           ),
           backgroundColor: kWhite2,

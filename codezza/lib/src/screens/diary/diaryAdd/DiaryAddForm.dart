@@ -32,9 +32,9 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
   final _text = TextEditingController(); // 일기 내용
 
   /* 이미지 업로드 */
-  List<PickedFile>? _imageFileList;
+  List<XFile>? _imageFileList;
 
-  set _imageFile(PickedFile? value) {
+  set imageFile(XFile? value) {
     _imageFileList = (value == null) ? null : [value];
   }
 
@@ -160,7 +160,8 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                       });
                     }
                   },
-                ))),
+                ),
+              )),
       ),
     );
   }
@@ -202,11 +203,9 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
 
   void _onImageAdd() async {
     try {
-      final pickedFile = await _picker.getImage(
-        source: ImageSource.gallery,
-      );
+      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
       setState(() {
-        _imageFile = pickedFile!;
+        imageFile = pickedFile!;
       });
     } catch (e) {
       setState(() {

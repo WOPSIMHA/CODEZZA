@@ -84,6 +84,8 @@ flutter:
     - assets/images/Profile/profile1.png
     - assets/images/Profile/profile2.png
     - assets/images/Profile/user.png
+    - assets/images/background.png
+    - assets/images/background_group.png
 
   # 폰트
   fonts:
