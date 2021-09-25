@@ -54,7 +54,8 @@ class _MyDiaryCardState extends State<MyDiaryCard> {
                 SizedBox(height: 10),
                 FontMedium(
                   title: '${widget.diary!.dTitle}',
-                  size: 24,
+                  size: 20,
+                  overflow: TextOverflow.fade,
                 ),
               ],
             ),

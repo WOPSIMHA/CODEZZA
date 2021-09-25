@@ -37,7 +37,7 @@ dependencies:
   cookie_jar: 3.0.1
 
   # 로딩 화면 plugin
-  flutter_native_splash: ^1.2.3
+  flutter_native_splash: ^1.2.4
 
   # 이미지
   image_picker:

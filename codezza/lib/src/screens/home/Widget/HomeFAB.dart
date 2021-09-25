@@ -243,7 +243,7 @@ class _HomeFabState extends State<HomeFab> {
                           headers: <String, String>{
                             'Content-Type': 'application/json; charset=UTF-8',
                           },
-                          body: jsonEncode(<String, String>{
+                          body: jsonEncode(<String, dynamic>{
                             'sessionUId': await FlutterSession().get("token"),
                             'searchUId': _searchText.text,
                             'searchUNm': _searchText.text,
