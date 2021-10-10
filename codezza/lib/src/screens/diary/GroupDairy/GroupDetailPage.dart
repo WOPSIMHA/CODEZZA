@@ -2,7 +2,6 @@ import '/src/sample/sampledb.dart';
 import '/src/widgets/style.dart';
 import '/src/models/entity.dart';
 import 'GroupDiaryCard.dart';
-
 import 'package:flutter/material.dart';
 
 class GroupDetail extends StatelessWidget {
@@ -15,13 +14,15 @@ class GroupDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height; // 전체 화면 세로 사이즈
     return SafeArea(
+      right: false,
+      left: false,
       child: Scaffold(
-        // backgroundColor: const Color(0xFFBEE8CD),
-        // backgroundColor: const Color(0xFFc1d6f5),
         backgroundColor: const Color(0xFF9DCDB8),
         appBar: appBar(context),
         body: Container(
+          height: h,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_group.png'),

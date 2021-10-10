@@ -20,6 +20,7 @@ void main() async {
       // 로그인 세션 있은 경우 메인 페이지로 없을 경우 로그인 페이지로
       home:
           await FlutterSession().get("token") != "" ? HomePage() : LoginPage(),
+          // await FlutterSession().get("token") != "" ? LoginPage() : HomePage(),
     ),
   );
 }

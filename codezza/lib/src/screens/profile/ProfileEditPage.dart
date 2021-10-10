@@ -7,11 +7,13 @@ class ProfileEdit extends StatefulWidget {
 }
 
 class _ProfileEditState extends State<ProfileEdit> {
+  static const leftRight = 32.0; // Card 양쪽 여백 Padding
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: _buildAppBar(),
         body: _buildBody(),
       ),
@@ -70,24 +72,25 @@ class _ProfileEditState extends State<ProfileEdit> {
 
   // body
   _buildBody() {
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          profileCard(),
-          profileTextFiled(),
-        ],
-      ),
+    return ListView(
+      children: [
+        profileCard(),
+        profileTextFiled(),
+      ],
     );
   }
 
   // 프로필 카드
   Widget profileCard() {
+    double h = MediaQuery.of(context).size.height; // 전체 화면 세로 사이즈
+    double w = MediaQuery.of(context).size.width; // 전체 화면 세로 사이즈
+
     return Container(
-      padding: const EdgeInsets.only(top: 24.0),
+      padding:
+          const EdgeInsets.only(top: 14.0, right: leftRight, left: leftRight),
       color: kWhite2,
-      height: 300,
-      width: 342,
+      height: h * 0.36,
+      width: w * 0.34,
       child: Card(
         elevation: 8,
         shape: RoundedRectangleBorder(
@@ -113,11 +116,13 @@ class _ProfileEditState extends State<ProfileEdit> {
 
   // 프로필 사진
   Widget profileImage() {
+    double w = MediaQuery.of(context).size.width;
+
     return Stack(
       children: [
         Container(
-          height: 140,
-          width: 140,
+          height: w * 0.3,
+          width: w * 0.3,
           //margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
           child: CircleAvatar(
             backgroundImage: AssetImage('assets/images/Profile/user.png'),
@@ -141,10 +146,11 @@ class _ProfileEditState extends State<ProfileEdit> {
 
     return Container(
       margin: const EdgeInsets.only(
-          right: rightLeft,
-          left: rightLeft,
-          top: topBottom / 2,
-          bottom: topBottom),
+        right: rightLeft,
+        left: rightLeft,
+        top: topBottom / 2,
+        bottom: topBottom,
+      ),
       child: TextField(
         decoration: InputDecoration(
           hintText: '닉네임',
@@ -155,19 +161,22 @@ class _ProfileEditState extends State<ProfileEdit> {
 
   // 프로필 자기소개 TextFiled
   Widget profileTextFiled() {
-    const leftRight = 32.0;
+    double h = MediaQuery.of(context).size.height; // 전체 화면 세로 사이즈
+    double w = MediaQuery.of(context).size.width; // 전체 화면 세로 사이즈
+
     const topBottom = 16.0;
     const maxLines = 12;
 
     return Padding(
-      padding: const EdgeInsets.only(right: leftRight, left: leftRight, top: topBottom, bottom: topBottom),
+      padding: const EdgeInsets.only(
+          right: leftRight, left: leftRight, top: topBottom, bottom: topBottom),
       child: Card(
         elevation: 8,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Container(
-          height: maxLines * 28,
+          height: h * 0.4,
           child: TextField(
             maxLines: maxLines,
             decoration: InputDecoration(
@@ -184,5 +193,4 @@ class _ProfileEditState extends State<ProfileEdit> {
       ),
     );
   }
-
 }

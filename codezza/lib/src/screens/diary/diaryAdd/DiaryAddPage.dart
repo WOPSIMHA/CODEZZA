@@ -62,20 +62,13 @@ class _DiaryAddState extends State<DiaryAdd> {
 
   // Body
   Widget buildBody() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return ListView(
+      // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _textTitle(),
         _tabButton(),
         _index == 0 ? _onOffListTile() : _formGroupList(),
         _diaryFormCard(),
-        // diaryList.length <= 0
-        //     ? Padding(
-        //         padding: const EdgeInsets.only(bottom: 36.0),
-        //         child: _addButton())
-        //     : Padding(
-        //         padding: const EdgeInsets.only(top: 8, bottom: 8),
-        //         child: _addButton()),
       ],
     );
   }
