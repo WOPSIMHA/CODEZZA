@@ -27,9 +27,9 @@ class TestData {
   static final user2 = User(
     uId: 'user2',
     uPw: 'user1234',
-    uName: '[THE SOY]루퐁이네1',
+    uName: '사용자 유저2',
     uPhoto: 'https://tinyurl.com/yfgndo3u',
-    uComment: '안녕하세요. \n[THE SOY]루퐁이네입니다. \n잘 부탁합니다.',
+    uComment: '안녕하세요. \n사용자 유저2입니다. \n잘 부탁합니다.',
     uCategory: '여우',
     uPrivate: 'Y',
     insDT: DateTime.parse('2020-03-14'),
@@ -51,9 +51,9 @@ class TestData {
   static final user4 = User(
     uId: 'user4',
     uPw: 'user1234',
-    uName: '[THE SOY]루퐁이네2',
+    uName: '사용자 유저2',
     uPhoto: 'https://tinyurl.com/yfgndo3u',
-    uComment: '안녕하세요. \n[THE SOY]루퐁이네입니다. \n잘 부탁합니다.',
+    uComment: '안녕하세요. \n사용자 유저2입니다. \n잘 부탁합니다.',
     uCategory: '여우',
     uPrivate: 'Y',
     insDT: DateTime.parse('2020-03-14'),
@@ -75,9 +75,9 @@ class TestData {
   static final user6 = User(
     uId: 'user2',
     uPw: 'user1234',
-    uName: '[THE SOY]루퐁이네1',
+    uName: '사용자 유저2',
     uPhoto: 'https://tinyurl.com/yfgndo3u',
-    uComment: '안녕하세요. \n[THE SOY]루퐁이네입니다. \n잘 부탁합니다.',
+    uComment: '안녕하세요. \n사용자 유저2입니다. \n잘 부탁합니다.',
     uCategory: '여우',
     uPrivate: 'Y',
     insDT: DateTime.parse('2020-03-14'),
@@ -99,9 +99,9 @@ class TestData {
   static final user8 = User(
     uId: 'user4',
     uPw: 'user1234',
-    uName: '[THE SOY]루퐁이네2',
+    uName: '사용자 유저2',
     uPhoto: 'https://tinyurl.com/yfgndo3u',
-    uComment: '안녕하세요. \n[THE SOY]루퐁이네입니다. \n잘 부탁합니다.',
+    uComment: '안녕하세요. \n사용자 유저2입니다. \n잘 부탁합니다.',
     uCategory: '여우',
     uPrivate: 'Y',
     insDT: DateTime.parse('2020-03-14'),
@@ -170,7 +170,7 @@ class TestData {
     Diary(
       dSEQ: 1,
       dTitle: 'user2 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yzf3x8fy',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -181,7 +181,7 @@ class TestData {
     Diary(
       dSEQ: 2,
       dTitle: 'user2 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/ydrkweuk',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -192,7 +192,7 @@ class TestData {
     Diary(
       dSEQ: 3,
       dTitle: 'user2 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yfrrqnmg',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -203,7 +203,7 @@ class TestData {
     Diary(
       dSEQ: 4,
       dTitle: 'user2 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/ye8qnn9l',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -214,7 +214,7 @@ class TestData {
     Diary(
       dSEQ: 5,
       dTitle: 'user2 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yz4pujsx',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -227,7 +227,7 @@ class TestData {
     Diary(
       dSEQ: 1,
       dTitle: 'user3 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yzf3x8fy',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -238,7 +238,7 @@ class TestData {
     Diary(
       dSEQ: 2,
       dTitle: 'user3 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/ydrkweuk',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -249,7 +249,7 @@ class TestData {
     Diary(
       dSEQ: 3,
       dTitle: 'user3 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yfrrqnmg',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -260,7 +260,7 @@ class TestData {
     Diary(
       dSEQ: 4,
       dTitle: 'user3 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/ye8qnn9l',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -271,7 +271,7 @@ class TestData {
     Diary(
       dSEQ: 5,
       dTitle: 'user3 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yz4pujsx',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -284,7 +284,7 @@ class TestData {
     Diary(
       dSEQ: 1,
       dTitle: 'user4 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yzf3x8fy',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -295,7 +295,7 @@ class TestData {
     Diary(
       dSEQ: 2,
       dTitle: 'user4 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/ydrkweuk',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -306,7 +306,7 @@ class TestData {
     Diary(
       dSEQ: 3,
       dTitle: 'user4 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yfrrqnmg',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -317,7 +317,7 @@ class TestData {
     Diary(
       dSEQ: 4,
       dTitle: 'user4 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/ye8qnn9l',
       dPrivate: 'N',
       dDiaryType: '개인',
@@ -328,7 +328,7 @@ class TestData {
     Diary(
       dSEQ: 5,
       dTitle: 'user4 넘 귀여워서 공유해요',
-      dText: '얼마 전 집에서 2022 루퐁이 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
+      dText: '얼마 전 집에서 2022 사용자 유저2 캘린더에 넣을 사진 촬영을 했었어요\n사진 촬영 영상은 곧 업로드\n예정이에요',
       dThumbnail: 'https://tinyurl.com/yz4pujsx',
       dPrivate: 'N',
       dDiaryType: '개인',

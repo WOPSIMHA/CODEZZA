@@ -76,13 +76,13 @@ class _ProfileCardState extends State<ProfileCard> {
           child: CircleAvatar(
             backgroundImage: AssetImage('assets/images/Profile/user.png'),
           ),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: kGreen2,
-              width: 4.0,
-            ),
-          ),
+          // decoration: BoxDecoration(
+          //   shape: BoxShape.circle,
+          //   border: Border.all(
+          //     color: kGreen2,
+          //     width: 4.0,
+          //   ),
+          // ),
         ),
       ],
     );
