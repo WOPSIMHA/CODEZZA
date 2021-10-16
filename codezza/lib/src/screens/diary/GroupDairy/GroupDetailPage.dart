@@ -2,7 +2,6 @@ import '/src/sample/sampledb.dart';
 import '/src/widgets/style.dart';
 import '/src/models/entity.dart';
 import 'GroupDiaryCard.dart';
-
 import 'package:flutter/material.dart';
 
 class GroupDetail extends StatelessWidget {
@@ -16,27 +15,42 @@ class GroupDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      right: false,
+      left: false,
       child: Scaffold(
-        // backgroundColor: const Color(0xFFBEE8CD),
-        // backgroundColor: const Color(0xFFc1d6f5),
-        backgroundColor: const Color(0xFF9DCDB8),
         appBar: appBar(context),
-        body: Container(
+        body: body(context),
+      ),
+    );
+  }
+
+  // body
+  body(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_group.png'),
               fit: BoxFit.cover,
             ),
           ),
-          child: ListView.builder(
-            itemCount: TestData.groupDariy.length,
-            itemBuilder: (context, index) => GroupDiaryCard(
-              diary: TestData.groupDariy[index],
-              name: TestData.users[index].uName,
+        ),
+        Center(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.8,
+            width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+              itemCount: TestData.groupDariy.length,
+              itemBuilder: (context, index) => GroupDiaryCard(
+                diary: TestData.groupDariy[index],
+                name: TestData.users[index].uName,
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 

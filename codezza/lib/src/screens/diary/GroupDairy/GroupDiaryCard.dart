@@ -1,12 +1,13 @@
 import '/src/widgets/style.dart';
 import '/src/models/entity.dart';
-
+import 'GroupDiaryCardDetail.dart';
 import 'package:flutter/material.dart';
 
 // 그룹 일기 카드
 class GroupDiaryCard extends StatefulWidget {
   final Diary? diary;
   final String? name;
+
   // final User? user;
 
   const GroupDiaryCard({Key? key, this.diary, this.name}) : super(key: key);
@@ -18,20 +19,21 @@ class GroupDiaryCard extends StatefulWidget {
 class _GroupDiaryCardState extends State<GroupDiaryCard> {
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height; // 전체 화면 세로 사이즈
     return Padding(
       padding: const EdgeInsets.only(top: 16, left: 14, right: 14, bottom: 16),
       child: Container(
-        width: 240,
-        height: 348,
-        child: groupCard(),
+        height: h * 0.45,
+        child: groupCard(context),
       ),
     );
   }
 
   // group card
-  Widget groupCard() {
+  Widget groupCard(BuildContext context) {
+    double h = MediaQuery.of(context).size.height; // 전체 화면 세로 사이즈
     return Card(
-      elevation: 6,
+      elevation: 8,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -58,18 +60,17 @@ class _GroupDiaryCardState extends State<GroupDiaryCard> {
             Hero(
               tag: '${widget.diary!.dSEQ}',
               child: GestureDetector(
-                // onTap: () => Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (BuildContext context) {
-                //       return DiaryDetail(diary: widget.diary!);
-                //     },
-                //   ),
-                // ),
+                onTap: () => Navigator.of(context).push(
+                  PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (BuildContext context, _, __) {
+                      return GroupDiaryCardDetail(diary: widget.diary!);
+                    },
+                  ),
+                ),
                 child: Image.network(
                   '${widget.diary!.dThumbnail}',
-                  width: 300,
-                  height: 200,
+                  height: h * 0.27,
                   fit: BoxFit.fill,
                 ),
               ),

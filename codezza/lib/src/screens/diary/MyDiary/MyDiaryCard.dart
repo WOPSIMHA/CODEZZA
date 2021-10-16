@@ -17,13 +17,15 @@ class MyDiaryCard extends StatefulWidget {
 class _MyDiaryCardState extends State<MyDiaryCard> {
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height; // 전체 화면 세로 사이즈
+    double w = MediaQuery.of(context).size.width; // 전체 화면 세로 사이즈
     return Padding(
       padding: const EdgeInsets.only(top: 16, left: 14, right: 14, bottom: 16),
       child: Container(
-        width: 240,
-        height: 300,
+        height: h * 0.42,
+        width: w * 0.9,
         child: Card(
-          elevation: 6,
+          elevation: 8,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -35,18 +37,18 @@ class _MyDiaryCardState extends State<MyDiaryCard> {
                 Hero(
                   tag: '${widget.diary!.dSEQ}',
                   child: GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) {
+                    onTap: () => Navigator.of(context).push(
+                      PageRouteBuilder(
+                        opaque: false,
+                        pageBuilder: (BuildContext context, _, __) {
                           return DiaryDetail(diary: widget.diary!);
                         },
                       ),
                     ),
                     child: Image.network(
                       '${widget.diary!.dThumbnail}',
-                      width: 300,
-                      height: 200,
+                      height: h * 0.2,
+                      width: w * 0.3,
                       fit: BoxFit.fill,
                     ),
                   ),
