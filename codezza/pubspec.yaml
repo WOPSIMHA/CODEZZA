@@ -1,7 +1,7 @@
 name: codezza
 description: A new Team Codezza Flutter project.
 
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -52,6 +52,25 @@ dependencies:
   # permission
   path_provider: ^2.0.5
 
+  # image upload, resize
+  photo_manager: 0.4.8
+  photo: 0.4.8
+  image: 3.0.7
+  heic_to_jpg: 0.1.2
+  # firebase_core: 0.4.0+8
+  # firebase_storage: 3.0.4
+  # image_cropper: 1.4.1
+
+  # uuid
+  uuid: ^3.0.4
+
+  string_validator: ^0.3.0
+
+  # ////////////////////
+  animator:
+  timeago:
+  cached_network_image:
+  geolocator: ^5.0.0
 
 # 생성 명령어 flutter pub run flutter_native_splash:create
 # 제거 명령어 flutter pub run flutter_native_splash:remove
@@ -68,7 +87,6 @@ dev_dependencies:
   build_runner:
   freezed:
   json_serializable:
-
 
 flutter:
   uses-material-design: true

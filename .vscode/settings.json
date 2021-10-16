@@ -1,3 +1,13 @@
 {
-    "python.pythonPath": "codezza_backend\\venv\\Scripts\\python.exe"
+    "python.pythonPath": "codezza_backend\\Scripts\\python.exe",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "dart.flutterTestAdditionalArgs": [
+        "--no-sound-null-safety"
+    ],
+    "dart.flutterAdditionalArgs": [
+        "--no-sound-null-safety"
+    ],
+    "dart.vmAdditionalArgs": [
+        "--no-sound-null-safety"
+    ]
 }
