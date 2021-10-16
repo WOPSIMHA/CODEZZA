@@ -1,10 +1,10 @@
+import 'package:codezza/src/screens/diary/GroupDairy/GroupDiaryListPage.dart';
+import 'package:codezza/src/screens/diary/MyDiary/MyDiaryListPage.dart';
 import 'package:codezza/src/screens/home/Widget/HomeDiaryList.dart';
 import 'package:codezza/src/screens/home/Widget/HomeFAB.dart';
-import '../diary/GroupDairy/GroupDiaryListPage.dart';
-import '../diary/MyDiary/MyDiaryListPage.dart';
-import '/src/sample/sampledb.dart';
-import '/src/widgets/style.dart';
-import '../profile/Widget/ProfileCard.dart';
+import 'package:codezza/src/screens/profile/Widget/ProfileCard.dart';
+import 'package:codezza/src/widgets/style.dart';
+import 'package:codezza/src/sample/sampledb.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,6 @@ class _HomePageState extends State<HomePage> {
   // Body
   Widget buildBody() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 16),
         ProfileCard(user: TestData.users[1]),

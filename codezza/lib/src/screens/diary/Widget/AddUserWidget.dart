@@ -6,7 +6,6 @@ typedef OnDelete();
 
 // 사용자 목록 리스트
 class AddUserWidget extends StatefulWidget {
-  // final List<User?>? userList;
   final List<dynamic>? userList;
   final state = _AddUserWidgetState();
   // final OnDelete? onDelete;

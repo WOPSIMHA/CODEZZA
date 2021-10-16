@@ -1,10 +1,9 @@
-import 'dart:convert';
+import 'package:codezza/src/common/CommonModule.dart';
+import 'package:codezza/src/common/AuthModule.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import '/src/widgets/style.dart';
 import '/src/screens/home/HomePage.dart';
-import '/src/widgets/flutter_session.dart';
 import 'widget/SignupNeutralButton.dart';
 import 'widget/LoginPrimaryButton.dart';
 import 'SignupPage.dart';
@@ -136,31 +135,32 @@ class _LoginPageState extends State<LoginPage> {
       child: LoginPrimaryButton(
         onPressed: () async {
           if (_uId.text == "" || _uPw.text == "") {
-            loginAlertDialog();
+            textAlertDialog(context, "아이디와 비밀번호를\n정확하게 입력해 주세요!");
             return;
           }
-          final response = await http.post(
-            Uri.parse('http://192.168.0.110:5000/login'),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, String>{
-              'uId': _uId.text,
-              'uPw': _uPw.text,
-            }),
-          );
-          if (response.statusCode == 200) {
-            var result = json.decode(response.body);
-            if (result) {
-              await FlutterSession().set("token", _uId.text);
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => HomePage()),
-              );
-            } else {
-              loginAlertDialog();
-            }
-          } else {
-            throw Exception('Failed to login');
+
+          var params = {};
+          var sqlParams = {
+            'uId': _uId.text,
+            'uPw': _uPw.text,
+          };
+          params['sqlParams'] = sqlParams;
+          params['sqlType'] = "S";
+
+          dynamic result = await postHttp("login", params);
+          if (result['success'] == false) {
+            textAlertDialog(context, "로그인에 실패했습니다!\n아이디와 비밀번호를 확인해 주세요.");
+            return;
+          } else if (result['success'] == true) {
+            dynamic returnList = result['returnObj']['list'];
+            await set_uid(returnList[0]['u_id']);
+            await set_uname(returnList[0]['u_name']);
+            await set_uphoto(returnList[0]['u_photo']);
+
+            dispose();
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => HomePage()),
+            );
           }
         },
         title: '로그인',
@@ -175,7 +175,6 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => SignUpPage()),
         );
-        print('회원가입 버튼');
       },
       title: '회원가입',
     );
@@ -228,47 +227,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    // 텍스트에디터컨트롤러 초기화
     _uId.dispose();
     _uPw.dispose();
     super.dispose();
-  }
-
-  // 로그인 관련 Alert 띄우는 메소드
-  void loginAlertDialog() {
-    showDialog(
-      context: context,
-      barrierDismissible: false, //barrierDismissible - Dialog 를 제외한 다른 화면 터치 x
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-              // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
-              borderRadius: BorderRadius.circular(10.0)),
-          //Dialog Main Title
-          // title: Column(
-          //   children: <Widget>[
-          //     new Text("로그인"),
-          //   ],
-          // ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "아이디와 비밀번호를 확인해 주세요!",
-              ),
-            ],
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text("확인"),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 }

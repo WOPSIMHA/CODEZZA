@@ -7,18 +7,20 @@ import 'package:image_picker/image_picker.dart';
 import '/src/models/entity.dart';
 import '/src/widgets/style.dart';
 
-typedef OnDelete();
+typedef void SetImgFile(PickedFile img);
 
 // 사진 추가 폼
 class DiaryAddForm extends StatefulWidget {
-  final Diary? diary;
   final state = _DiaryAddFormState();
-  final OnDelete? onDelete;
+  final Diary? diary;
+  final TextEditingController? textController;
+  SetImgFile? setImgFile; // DiaryAddPage image file setter
 
   DiaryAddForm({
     Key? key,
     this.diary,
-    this.onDelete,
+    this.textController,
+    this.setImgFile,
   }) : super(key: key);
 
   @override
@@ -29,20 +31,17 @@ class DiaryAddForm extends StatefulWidget {
 
 class _DiaryAddFormState extends State<DiaryAddForm> {
   final form = GlobalKey<FormState>();
-  final _text = TextEditingController(); // 일기 내용
 
-  /* 이미지 업로드 */
-  List<XFile>? _imageFileList;
-
-  set imageFile(XFile? value) {
-    _imageFileList = (value == null) ? null : [value];
+  final ImagePicker picker = ImagePicker();
+  List<PickedFile>? imageFile;
+  set setImage(PickedFile value) {
+    if (value == null) {
+      return;
+    } else {
+      imageFile = [value];
+      widget.setImgFile!(value);
+    }
   }
-
-  var pickImageError;
-  String? retrieveDataError;
-  final ImagePicker _picker = ImagePicker();
-
-  /* 이미지 업로드 */
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +56,12 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _appbar(),
-            _addCard(),
-            _textForm(),
+            appbar(),
+            diaryPhoto(),
+            Container(
+              height: 5,
+            ),
+            diaryText(),
           ],
         ),
       ),
@@ -67,7 +69,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
   }
 
   // Card: appbar
-  Widget _appbar() {
+  Widget appbar() {
     return AppBar(
       backgroundColor: kMainColor,
       title: FontMedium(
@@ -80,8 +82,8 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
     );
   }
 
-  // Card: add Card
-  Widget _addCard() {
+  Widget diaryPhoto() {
+    // Card: diary image
     return Padding(
       padding: const EdgeInsets.only(
         top: 16,
@@ -91,7 +93,7 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
       child: DottedBorder(
         dashPattern: [8, 4],
         strokeWidth: 2,
-        child: (_imageFileList == null
+        child: (imageFile == null
             ? Container(
                 // 이미지 없을 때
                 width: 400,
@@ -108,77 +110,57 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                     ],
                   ),
                   onTap: () async {
-                    print('사진 추가 클릭!');
                     try {
-                      _onImageAdd();
-                    } catch (e) {
-                      setState(() {
-                        pickImageError = e;
-                      });
-                    }
+                      imageUpload();
+                    } catch (e) {}
                   },
                 ),
               )
-            : /*Container(
-                // 이미지 추가했을 때
-                width: 400,
-                height: 200,
-                color: kWhite4,
-                child: Semantics(
-                  label: 'diaryImage',
-                  child: kIsWeb
-                      ? Image.network(_imageFileList![0].path)
-                      : Image.file(File(_imageFileList![0].path)),
-                  onTap: () async {
-                    print('사진 추가 클릭!');
-                    try {
-                      _onImageAdd();
-                    } catch (e) {
-                      setState(() {
-                        _pickImageError = e;
-                      });
-                    }
-                  },
-                ),
-              )),*/
-            Container(
+            : Container(
                 // 이미지 추가했을 때
                 width: 400,
                 height: 200,
                 color: kWhite4,
                 child: InkWell(
                   child: (kIsWeb
-                      ? Image.network(_imageFileList![0].path)
-                      : Image.file(File(_imageFileList![0].path))),
+                      ? Image.network(imageFile![0].path)
+                      : Image.file(File(imageFile![0].path))),
                   onTap: () async {
-                    print('사진 변경 클릭!');
                     try {
-                      _onImageAdd();
-                    } catch (e) {
-                      setState(() {
-                        pickImageError = e;
-                      });
-                    }
+                      imageUpload();
+                    } catch (e) {}
                   },
-                ),
-              )),
+                ))),
       ),
     );
   }
 
-  // Card: text Form Field
-  Widget _textForm() {
+  Widget diaryText() {
+    // 일기 내용
     return Padding(
       padding: const EdgeInsets.only(
         left: 16,
         right: 16,
         bottom: 16,
       ),
-      child: TextFormField(
-        controller: _text,
-        decoration: InputDecoration(
-          hintText: '내용을 입력해 주세요.',
-        ),
+      child: DottedBorder(
+        dashPattern: [8, 4],
+        strokeWidth: 2,
+        color: Colors.grey,
+        child: TextFormField(
+            controller: widget.textController,
+            maxLines: 10,
+            decoration: InputDecoration(
+              hintText: ' 일기를 작성해 주세요!',
+              hintStyle: TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+                fontFamily: 'GmarketSansMedium',
+              ),
+            ),
+            onChanged: (text) {
+              setState(() {});
+            }),
       ),
     );
   }
@@ -201,25 +183,14 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
     super.dispose();
   }
 
-  void _onImageAdd() async {
+  void imageUpload() async {
     try {
-      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      final pickedFile = await picker.getImage(
+        source: ImageSource.gallery,
+      );
       setState(() {
-        imageFile = pickedFile!;
+        setImage = pickedFile!;
       });
-    } catch (e) {
-      setState(() {
-        pickImageError = e;
-      });
-    }
-  }
-
-  Text? _getRetrieveErrorWidget() {
-    if (retrieveDataError != null) {
-      final Text result = Text(retrieveDataError!);
-      retrieveDataError = null;
-      return result;
-    }
-    return null;
+    } catch (e) {}
   }
 }

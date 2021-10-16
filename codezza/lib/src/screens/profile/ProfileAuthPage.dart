@@ -1,18 +1,19 @@
-import 'dart:convert';
-import 'package:codezza/src/widgets/flutter_session.dart';
+import 'package:codezza/src/common/AuthModule.dart';
+import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-import '/src/models/entity.dart';
 import '../home/HomePage.dart';
 import '../../widgets/PrimaryButton.dart';
 
 // 프로필(회원정보) 업데이트 페이지
 // ProfileAuthPage  1. 닉네임
 // ProfileAuthPage2 2. 자기소개(한줄소개)
+
+final _uName = TextEditingController();
+final _uComment = TextEditingController();
+
 class ProfileAuthPage extends StatelessWidget {
-  final _uName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,12 +47,9 @@ class ProfileAuthPage extends StatelessWidget {
           SizedBox(height: 36),
           PrimaryButton(
             onPressed: () async {
-              User user = User();
-              user.uName = _uName.text;
               await Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => ProfileAuthPage2(user: user)),
+                MaterialPageRoute(builder: (context) => ProfileAuthPage2()),
               );
             },
             title: '다음',
@@ -60,19 +58,10 @@ class ProfileAuthPage extends StatelessWidget {
       ),
     );
   }
-
-  void dispose() {
-    // 텍스트에디터컨트롤러 초기화
-    _uName.dispose();
-    dispose();
-  }
 }
 
 class ProfileAuthPage2 extends StatelessWidget {
-  final User user;
-  ProfileAuthPage2({required this.user});
-
-  final _uComment = TextEditingController();
+  ProfileAuthPage2();
 
   @override
   Widget build(BuildContext context) {
@@ -108,54 +97,28 @@ class ProfileAuthPage2 extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 100),
                 child: PrimaryButton(
                   onPressed: () async {
-                    final response = await http.post(
-                      Uri.parse('http://172.30.1.8:5000/uptProfile'),
-                      headers: <String, String>{
-                        'Content-Type': 'application/json; charset=UTF-8',
-                      },
-                      body: jsonEncode(<String, String>{
-                        'uName': user.uName.toString(),
-                        'uComment': _uComment.text,
-                        'uId': await FlutterSession().get("token"),
-                      }),
-                    );
-                    if (response.statusCode == 200) {
-                      var result = json.decode(response.body);
-                      if (result) {
-                        await FlutterSession().set("uName", user.uName);
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => HomePage()),
-                        );
-                      } else {
-                        showDialog(
-                            context: context,
-                            barrierDismissible:
-                                false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                shape: RoundedRectangleBorder(
-                                    // Dialog 화면 모서리 둥글게 조절
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('실패하였습니다.\n다시 시도해 주세요.'),
-                                  ],
-                                ),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: Text("확인"),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                      }
-                    } else {
-                      throw Exception('Failed to update profile');
+                    var params = {};
+                    var sqlParams = {
+                      'uName': _uName.text,
+                      'uComment': _uComment.text,
+                      'uId': await uid(),
+                    };
+                    params['sqlParams'] = sqlParams;
+                    params['sqlType'] = "U";
+
+                    dynamic result = await postHttp("updateProfile", params);
+                    if (result['success'] == false) {
+                      textAlertDialog(context, "실패하였습니다.\n다시 시도해 주세요.");
+                      return;
+                    } else if (result['success'] == true) {
+                      dynamic returnUname = result['returnObj']['uName'];
+                      await set_uname(returnUname);
+
+                      _uName.dispose();
+                      _uComment.dispose();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => HomePage()),
+                      );
                     }
                   },
                   title: '프로필 작성 완료',

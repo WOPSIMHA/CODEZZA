@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/screens/diary/Widget/AddUserWidget.dart';
-import 'package:codezza/src/widgets/flutter_session.dart';
 import '/src/screens/profile/ProfileEditPage.dart';
 import '/src/screens/diary/diaryAdd/DiaryAddPage.dart';
 import '/src/widgets/style.dart';
@@ -9,6 +9,7 @@ import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:http/http.dart' as http;
+import 'package:codezza/src/widgets/flutter_session.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 // Home FAB 메뉴 버튼
@@ -109,18 +110,21 @@ class _HomeFabState extends State<HomeFab> {
   void setDiaryGroupDialog() {
     showDialog(
       context: context,
-      barrierDismissible: false, //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
             borderRadius: BorderRadius.circular(10.0),
           ),
           //Dialog Main Title
-          title: Center(child: FontMedium(title: "그룹방 만들기")),
+          title: Center(
+              child: FontMedium(
+            title: "그룹방 만들기",
+            color: kMainColor,
+          )),
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               FontMedium(title: '친구들끼리 일기를 공유해요!'),
               Container(height: 10),
@@ -145,11 +149,14 @@ class _HomeFabState extends State<HomeFab> {
                     setState(() {});
                   }),
               ListTile(
-                title: FontMedium(title: 'Add account'),
+                title: FontMedium(
+                  title: "친구 찾아보기",
+                  color: Colors.black,
+                ),
                 leading: Icon(
                   Icons.add_circle,
                   size: 36.0,
-                  color: Colors.grey,
+                  color: kMainColor,
                 ),
                 onTap: () => searchUserDialog(),
               ),
@@ -215,10 +222,14 @@ class _HomeFabState extends State<HomeFab> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 //Dialog Main Title
-                title: FontMedium(title: "친구 검색"),
+                title: Center(
+                    child: FontMedium(
+                  title: "친구 검색",
+                  color: kMainColor,
+                )),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     TextFormField(
                       controller: _searchText,
@@ -238,26 +249,23 @@ class _HomeFabState extends State<HomeFab> {
                         ),
                       ),
                       onChanged: (text) async {
-                        final response = await http.post(
-                          Uri.parse('http://192.168.0.110:5000/searchUser'),
-                          headers: <String, String>{
-                            'Content-Type': 'application/json; charset=UTF-8',
-                          },
-                          body: jsonEncode(<String, dynamic>{
-                            'sessionUId': await FlutterSession().get("token"),
-                            'searchUId': _searchText.text,
-                            'searchUNm': _searchText.text,
-                          }),
-                        );
-                        if (response.statusCode == 200) {
-                          setState(() {
-                            String responseBody =
-                                utf8.decode(response.bodyBytes);
-                            List<dynamic> list = jsonDecode(responseBody);
-                            _groupAddUserList = list;
-                          });
-                        } else {
-                          throw Exception('Failed to search user');
+                        var params = {};
+                        var sqlParams = {
+                          'sessionUId': await uid(),
+                          'searchUId': _searchText.text,
+                          'searchUNm': _searchText.text,
+                        };
+                        params['sqlParams'] = sqlParams;
+                        params['sqlType'] = "S";
+                        print(params);
+/**/
+                        dynamic result = await postHttp("searchUser", params);
+                        print(result['returnObj']['cnt']);
+                        if (result['success'] == false) {
+                          return;
+                        } else if (result['success'] == true) {
+                          dynamic returnList = result['returnObj']['list'];
+                          // _groupAddUserList = list;
                         }
                       },
                     ),
@@ -268,7 +276,10 @@ class _HomeFabState extends State<HomeFab> {
                       ? AddUserWidget(userList: searchUserList)
                       : Container()),
                   TextButton(
-                    child: FontMedium(title: "확인"),
+                    child: FontMedium(
+                      title: "확인",
+                      color: kMainColor,
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },

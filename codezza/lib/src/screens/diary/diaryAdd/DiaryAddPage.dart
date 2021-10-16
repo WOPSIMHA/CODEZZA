@@ -1,3 +1,9 @@
+import 'dart:io';
+
+import 'package:codezza/src/common/CommonModule.dart';
+import 'package:codezza/src/screens/home/HomePage.dart';
+import 'package:image_picker/image_picker.dart';
+
 import '/src/models/entity.dart';
 import '/src/screens/diary/diaryAdd/DiaryAddForm.dart';
 import '/src/widgets/style.dart';
@@ -15,10 +21,13 @@ class DiaryAdd extends StatefulWidget {
 
 class _DiaryAddState extends State<DiaryAdd> {
   List<Diary> diaryList = [Diary()]; // 일기 사진 Form List
-  int _index = 0; // 탭 페이지 index
-  bool _dPrivate = false; // 공개 여부 value
   List<String> testGroupData = ['그룹1', '그룹2', '그룹3', '그룹4']; // test 그룹 데이터
-  final _title = TextEditingController(); // 일기 제목
+  List<String> testGroupSeqData = ['100', '101', '102', '103']; // test 그룹 데이터
+  final title = TextEditingController(); // 제목
+  final text = TextEditingController(); // 내용
+  String dPublic = "N"; // 공개여부 N => 비공개(default), Y => 공개
+  String dDiaryType = "P"; // 타입 P => 개인일기(default), G => 그룹일기
+  PickedFile? img; // 사진
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +51,50 @@ class _DiaryAddState extends State<DiaryAdd> {
             Padding(
               padding: const EdgeInsets.all(14.0),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (img?.path == null) {
+                    textAlertDialog(context, "일기 사진을 추가해 주세요!");
+                    return;
+                  }
+
+                  dynamic fileResult = await fileUpload(File(img!.path));
+                  if (fileResult['success'] == false) {
+                    textAlertDialog(context, "오류가 발생했습니다\n다시 시도해 주세요!");
+                    return;
+                  }
+
+                  var params = {};
+                  var sqlParams = {
+                    "dTitle": title.text,
+                    "dText": text.text,
+                    "dThumbnail": fileResult['fileName'],
+                    "dPublic": (dDiaryType == "P") ? dPublic : "Y",
+                    "dDiaryType": dDiaryType,
+                    "dGSeq": (dDiaryType == "P") ? null : 100,
+                    "sessionUId": await uid(),
+                  };
+                  // if(){
+                  // sqlParams['dSeq'] = 100;
+                  // }
+                  params['sqlParams'] = sqlParams;
+                  params['sqlType'] = "I";
+
+                  dynamic result = await postHttp("/writeDiary", params);
+                  if (result['success'] == false) {
+                    textAlertDialog(context, "오류가 발생했습니다\n다시 시도해 주세요!");
+                    return;
+                  } else {
+                    textAlertDialog(context, "일기가 등록되었습니다!");
+                    title.dispose();
+                    text.dispose();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => HomePage()),
+                    );
+                  }
+                  return;
+                },
                 child: FontMedium(
-                  title: '등록',
+                  title: '작성',
                   size: 14,
                   color: kGray1,
                 ),
@@ -62,26 +112,18 @@ class _DiaryAddState extends State<DiaryAdd> {
 
   // Body
   Widget buildBody() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return ListView(
       children: [
-        _textTitle(),
-        _tabButton(),
-        _index == 0 ? _onOffListTile() : _formGroupList(),
-        _diaryFormCard(),
-        // diaryList.length <= 0
-        //     ? Padding(
-        //         padding: const EdgeInsets.only(bottom: 36.0),
-        //         child: _addButton())
-        //     : Padding(
-        //         padding: const EdgeInsets.only(top: 8, bottom: 8),
-        //         child: _addButton()),
+        diaryTitle(),
+        diaryTypeTab(),
+        (dDiaryType == "P") ? dPublicSwitch() : formGroupList(),
+        diaryFormCard(),
       ],
     );
   }
 
   // 일기장 선택 Tab
-  Widget _tabButton() {
+  Widget diaryTypeTab() {
     return Padding(
       padding: const EdgeInsets.only(top: 10, left: 40, right: 40),
       child: Container(
@@ -92,130 +134,91 @@ class _DiaryAddState extends State<DiaryAdd> {
         height: 60,
         width: 400,
         child: Row(
-          children: [_myDiary(), _groupDiary()],
+          children: [diaryType("P", "개인일기"), diaryType("G", "그룹일기")],
         ),
       ),
     );
   }
 
-  // 개인 일기
-  Widget _myDiary() {
+  // 일기 타입 Tab
+  Widget diaryType(String diaryType, String diaryTypeText) {
     return Expanded(
       child: InkWell(
         child: Container(
           decoration: BoxDecoration(
-            color: _index == 0 ? kMainColor : kWhite2,
-            borderRadius: _index == 0
-                ? BorderRadius.only(
-                    topLeft: Radius.circular(6),
-                    bottomLeft: Radius.circular(6),
-                  )
-                : BorderRadius.only(
-                    topLeft: Radius.circular(6),
-                    bottomLeft: Radius.circular(6),
-                  ),
+            color: (dDiaryType == diaryType) ? kMainColor : kWhite2,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(6),
+              bottomLeft: Radius.circular(6),
+            ),
           ),
           child: Center(
             child: FontMedium(
-              title: '개인일기',
+              title: diaryTypeText,
               size: 20,
-              color: _index == 0 ? Colors.black : Colors.black,
+              color: Colors.black,
             ),
           ),
         ),
         onTap: () {
-          _tabIndex(0);
+          setState(() {
+            dDiaryType = diaryType; // Tab 전환
+          });
         },
       ),
     );
   }
 
-  // 그룹 일기
-  Widget _groupDiary() {
-    return Expanded(
-      child: InkWell(
-        child: Container(
-          decoration: BoxDecoration(
-            color: _index == 1 ? kMainColor : kWhite2,
-            borderRadius: _index == 0
-                ? BorderRadius.only(
-                    topRight: Radius.circular(6),
-                    bottomRight: Radius.circular(6),
-                  )
-                : BorderRadius.only(
-                    topRight: Radius.circular(6),
-                    bottomRight: Radius.circular(6),
-                  ),
-          ),
-          child: Center(
-            child: FontMedium(
-              title: '그룹일기',
-              size: 20,
-              color: _index == 1 ? Colors.black : Colors.black,
-            ),
-          ),
-        ),
-        onTap: () {
-          _tabIndex(1);
-        },
-      ),
-    );
-  }
-
-  // Tab 전환 함수
-  void _tabIndex(int index) {
-    setState(() {
-      _index = index;
-    });
-  }
-
-  // 일기 제목
-  Widget _textTitle() {
+  // 제목
+  Widget diaryTitle() {
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 20, top: 8, bottom: 8),
       child: TextFormField(
-        controller: _title,
-        decoration: InputDecoration(
-          hintText: '제목',
-          hintStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontFamily: 'GmarketSansMedium',
+          controller: title,
+          decoration: InputDecoration(
+            hintText: '일기의 제목을 지어 주세요!',
+            hintStyle: TextStyle(
+              color: Colors.grey,
+              fontSize: 20,
+              fontFamily: 'GmarketSansMedium',
+            ),
           ),
-        ),
-      ),
+          onChanged: (text) {
+            setState(() {});
+          }),
     );
   }
 
-  // 개인 일기 공개 여부 Switch ListTile
-  Widget _onOffListTile() {
+  // 개인일기 공개여부 Switch
+  Widget dPublicSwitch() {
     return Padding(
       padding: const EdgeInsets.only(top: 16, left: 24, right: 24),
       child: ListTileSwitch(
-        value: _dPrivate,
-        leading: _dPrivate ? IconList.OpenOn : IconList.OpenOff,
+        value: (dPublic == "N") ? false : true,
+        leading: (dPublic == "N") ? IconList.OpenOff : IconList.OpenOn,
         onChanged: (value) {
           setState(() {
-            _dPrivate = value;
+            (value == true) ? dPublic = "Y" : dPublic = "N";
           });
         },
         visualDensity: VisualDensity.comfortable,
         switchType: SwitchType.cupertino,
         switchActiveColor: Colors.indigo,
-        title: _dPrivate
-            ? FontMedium(title: '일기 공개', size: 18)
-            : FontMedium(title: '일기 비공개', size: 18),
+        title: (dPublic == "N")
+            ? FontMedium(title: '일기 비공개', size: 18)
+            : FontMedium(title: '일기 공개', size: 18),
       ),
     );
   }
 
-  // 그룹 선택 박스(임시)
-  Widget _formGroupList() {
+  // 그룹 선택(임시)
+  Widget formGroupList() {
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 8, bottom: 8),
       child: FormBuilderDropdown(
         name: 'group',
-        hint: FontMedium(title: '그룹을 선택해주세요', size: 18, color: Colors.black),
+        hint: FontMedium(
+            title: '일기를 공유할 그룹을 선택해 주세요', size: 15, color: Colors.grey),
         items: testGroupData
             .map((g) => DropdownMenuItem(
                   child: FontMedium(
@@ -230,59 +233,14 @@ class _DiaryAddState extends State<DiaryAdd> {
     );
   }
 
-  // 사진 Form Card
-  Widget _diaryFormCard() {
+  // 일기 content
+  Widget diaryFormCard() {
     return Expanded(
       child: DiaryAddForm(
         diary: diaryList[0],
+        textController: text,
+        setImgFile: (imgFile) => setState(() => img = imgFile),
       ),
     );
   }
-
-/*
-  // 사진 Form Card
-  Widget _diaryFormCard() {
-    return Expanded(
-      child: diaryList.length <= 0
-          ? Center(
-              child: FontMedium(
-              title: '(+) 버튼을 누르면 최대\n10개까지 추가됩니다.',
-              size: 24,
-            ))
-          : ListView.builder(
-              itemCount: diaryList.length < 10 ? diaryList.length : 10,
-              itemBuilder: (_, i) {
-                return DiaryAddForm(
-                  title: '사진 ${i + 1}',
-                  diary: diaryList[i],
-                  onDelete: () => _diaryFormDelete(i),
-                  index: i,
-                );
-              },
-            ),
-    );
-  }
-
-  // 사진 Form Card 추가 버튼
-  Widget _addButton() {
-    return FloatingActionButton(
-      backgroundColor: kMainColor,
-      child: IconList.Add,
-      onPressed: () {
-        if (diaryList.length < 10) {
-          setState(() {
-            diaryList.add(Diary());
-          });
-        }
-      },
-    );
-  }
-
-  // 사진 Form Card 삭제 함수
-  void _diaryFormDelete(int i) {
-    setState(() {
-      diaryList.removeAt(i);
-    });
-  }
-*/
 }
