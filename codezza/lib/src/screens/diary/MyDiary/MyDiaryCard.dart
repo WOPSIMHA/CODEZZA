@@ -1,9 +1,7 @@
 import 'package:codezza/src/common/CommonModule.dart';
+import 'package:codezza/src/screens/diary/MyDiary/MyDiaryDetailPage.dart';
 import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
-
-import 'MyDiaryDetailPage.dart';
-import '/src/models/entity.dart';
 
 // 개인 일기 카드
 class MyDiaryCard extends StatefulWidget {

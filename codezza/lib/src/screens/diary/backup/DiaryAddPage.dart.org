@@ -1,6 +1,6 @@
-import '/src/models/entitys.dart';
-import '/src/screens/diary/Widget/DiaryAddForm.dart';
-import '/src/widgets/style.dart';
+import 'package:codezza/src/models/entitys.dart';
+import 'package:codezza/src/screens/diary/Widget/DiaryAddForm.dart';
+import 'package:codezza/src/widgets/style.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

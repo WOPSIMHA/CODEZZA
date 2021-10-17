@@ -4,9 +4,9 @@ import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/screens/home/HomePage.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '/src/models/entity.dart';
-import '/src/screens/diary/diaryAdd/DiaryAddForm.dart';
-import '/src/widgets/style.dart';
+import 'package:codezza/src/models/entity.dart';
+import 'package:codezza/src/screens/diary/diaryAdd/DiaryAddForm.dart';
+import 'package:codezza/src/widgets/style.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -87,8 +87,12 @@ class _DiaryAddState extends State<DiaryAdd> {
                     textAlertDialog(context, "일기가 등록되었습니다!");
                     title.dispose();
                     text.dispose();
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => HomePage()),
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => HomePage(),
+                      ),
+                      (route) => false,
                     );
                   }
                 },

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '/src/models/entity.dart';
-import '/src/widgets/style.dart';
+import 'package:codezza/src/models/entity.dart';
+import 'package:codezza/src/widgets/style.dart';
 
 typedef OnDelete();
 
@@ -106,7 +106,6 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                     ],
                   ),
                   onTap: () async {
-                    print('사진 추가 클릭!');
                     try {
                       _onImageAdd();
                     } catch (e) {
@@ -128,7 +127,6 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                       ? Image.network(_imageFileList![0].path)
                       : Image.file(File(_imageFileList![0].path)),
                   onTap: () async {
-                    print('사진 추가 클릭!');
                     try {
                       _onImageAdd();
                     } catch (e) {
@@ -149,7 +147,6 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                       ? Image.network(_imageFileList![0].path)
                       : Image.file(File(_imageFileList![0].path))),
                   onTap: () async {
-                    print('사진 변경 클릭!');
                     try {
                       _onImageAdd();
                     } catch (e) {

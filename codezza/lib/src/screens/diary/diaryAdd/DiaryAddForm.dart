@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '/src/models/entity.dart';
-import '/src/widgets/style.dart';
+import 'package:codezza/src/models/entity.dart';
+import 'package:codezza/src/widgets/style.dart';
 
 typedef void SetImgFile(PickedFile img);
 

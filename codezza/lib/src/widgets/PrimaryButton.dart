@@ -1,4 +1,4 @@
-import '/src/widgets/style.dart';
+import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
 // 다음 버튼 스타일

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '/src/widgets/style.dart';
-import '/src/models/entity.dart';
+import 'package:codezza/src/widgets/style.dart';
+import 'package:codezza/src/models/entity.dart';
 
 typedef OnDelete();
 
@@ -120,7 +120,6 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
                     ],
                   ),
                   onTap: () async {
-                    print('사진 추가 클릭!');
                     try {
                       _onImageAdd();
                     } catch (e) {
@@ -211,20 +210,5 @@ class _DiaryAddFormState extends State<DiaryAddForm> {
       return result;
     }
     return null;
-  }
-
-  ListView _onImageAdd2(PickedFile) {
-    return ListView.builder(
-      key: UniqueKey(),
-      itemBuilder: (context, index) {
-        return Semantics(
-          label: 'image_picker_example_picked_image',
-          child: kIsWeb
-              ? Image.network(PickedFile.path)
-              : Image.file(File(PickedFile.path)),
-        );
-      },
-      // itemCount: _imageFileList!.length,
-    );
   }
 }

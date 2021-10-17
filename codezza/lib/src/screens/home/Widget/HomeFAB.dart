@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/screens/diary/Widget/AddUserWidget.dart';
-import '/src/screens/profile/ProfileEditPage.dart';
-import '/src/screens/diary/diaryAdd/DiaryAddPage.dart';
-import '/src/widgets/style.dart';
+import 'package:codezza/src/screens/profile/ProfileEditPage.dart';
+import 'package:codezza/src/screens/diary/diaryAdd/DiaryAddPage.dart';
+import 'package:codezza/src/widgets/style.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -23,14 +23,12 @@ class _HomeFabState extends State<HomeFab> {
   final _gNm = TextEditingController(); // TextFormField Controller
   final _searchText = TextEditingController(); // TextFormField Controller
 
-  // List<User?>? searchUserList;
-  // List<User?>? groupAddUserList;
   List<dynamic>? searchUserList;
   List<dynamic>? groupAddUserList;
 
-  // set _searchUserList(List<dynamic>? value) {
-  //   searchUserList = (value == null) ? null : value;
-  // }
+  set _searchUserList(List<dynamic>? value) {
+    searchUserList = (value == null) ? null : value;
+  }
 
   set _groupAddUserList(List<dynamic>? value) {
     groupAddUserList = (value == null) ? null : value;
@@ -248,6 +246,9 @@ class _HomeFabState extends State<HomeFab> {
                         ),
                       ),
                       onChanged: (text) async {
+                        if (_searchText.text == "") {
+                          return;
+                        }
                         var params = {};
                         var sqlParams = {
                           'sessionUId': await uid(),
@@ -256,15 +257,13 @@ class _HomeFabState extends State<HomeFab> {
                         };
                         params['sqlParams'] = sqlParams;
                         params['sqlType'] = "S";
-                        print(params);
-/**/
+
                         dynamic result = await postHttp("searchUser", params);
-                        print(result['returnObj']['cnt']);
                         if (result['success'] == false) {
                           return;
                         } else if (result['success'] == true) {
                           dynamic returnList = result['returnObj']['list'];
-                          // _groupAddUserList = list;
+                          _searchUserList = returnList;
                         }
                       },
                     ),

@@ -1,7 +1,7 @@
-import '/src/sample/sampledb.dart';
-import '/src/widgets/style.dart';
-import '/src/models/entity.dart';
-import 'GroupDiaryCard.dart';
+import 'package:codezza/src/sample/sampledb.dart';
+import 'package:codezza/src/screens/diary/GroupDairy/GroupDiaryCard.dart';
+import 'package:codezza/src/widgets/style.dart';
+import 'package:codezza/src/models/entity.dart';
 import 'package:flutter/material.dart';
 
 class GroupDetail extends StatelessWidget {

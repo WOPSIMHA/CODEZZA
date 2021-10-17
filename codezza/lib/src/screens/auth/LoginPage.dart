@@ -1,13 +1,12 @@
 import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/common/AuthModule.dart';
+import 'package:codezza/src/screens/auth/SignupPage.dart';
+import 'package:codezza/src/screens/auth/widget/LoginPrimaryButton.dart';
+import 'package:codezza/src/screens/auth/widget/SignupNeutralButton.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '/src/widgets/style.dart';
-import '/src/screens/home/HomePage.dart';
-import 'widget/SignupNeutralButton.dart';
-import 'widget/LoginPrimaryButton.dart';
-import 'SignupPage.dart';
+import 'package:codezza/src/widgets/style.dart';
+import 'package:codezza/src/screens/home/HomePage.dart';
 
 // 로그인 페이지
 class LoginPage extends StatefulWidget {
@@ -16,7 +15,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  static final storage = new FlutterSecureStorage();
   bool _isHidePassword = true; // 비밀번호 보이기/숨기기
   final _uId = TextEditingController(); // TextFormField Controller
   final _uPw = TextEditingController(); // 텍스트필드 입력 값을 가져오기 위한 컨트롤러
@@ -34,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   secureStorageRead() async {
     // read 함수로 key값에 맞는 정보 호출
     // 정보가 있다면 Home 페이지로 넘어가게 합니다.
-    if (await uid() != null) {
+    if (await uid() != null && await uid() != "") {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => HomePage()));
     }
@@ -179,8 +177,12 @@ class _LoginPageState extends State<LoginPage> {
             await set_uphoto(returnList[0]['u_photo']);
 
             dispose();
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => HomePage()),
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => HomePage(),
+              ),
+              (route) => false,
             );
           }
         },
@@ -218,9 +220,7 @@ class _LoginPageState extends State<LoginPage> {
           size: 12,
         ),
         GestureDetector(
-          onTap: () {
-            print('아이디 찾기 클릭');
-          },
+          onTap: () {},
           child: FontMedium(
             color: kGreen2,
             title: '아이디 찾기',
@@ -232,9 +232,7 @@ class _LoginPageState extends State<LoginPage> {
           size: 12,
         ),
         GestureDetector(
-          onTap: () {
-            print('비밀번호 찾기 클릭');
-          },
+          onTap: () {},
           child: FontMedium(
             color: kGreen2,
             title: '비밀번호 찾기',

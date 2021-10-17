@@ -1,7 +1,5 @@
 import 'package:codezza/src/common/CommonModule.dart';
-
-import '/src/models/entity.dart';
-import '/src/widgets/style.dart';
+import 'package:codezza/src/widgets/style.dart';
 
 import 'package:flutter/material.dart';
 

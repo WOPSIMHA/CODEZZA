@@ -2,13 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:codezza/src/common/AuthModule.dart';
+import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 // import 'package:path/path.dart' as path;
-
-import '/src/widgets/style.dart';
-import 'AuthModule.dart';
 
 Future<String> uid() async {
   String? uId = await storage.read(key: "token");
@@ -139,7 +137,6 @@ Future<dynamic> getHttp(String path, dynamic params) async {
 }
 
 Future<dynamic> postHttp(String path, dynamic params) async {
-  print('1');
   bool success = false;
   var returnObj = {};
   Uri uri = Uri.parse(baseAPIUrl + path);

@@ -1,5 +1,5 @@
-import '/src/models/entity.dart';
-import '/src/widgets/style.dart';
+import 'package:codezza/src/models/entity.dart';
+import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
 // 일기 상세보기
