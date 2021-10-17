@@ -1,7 +1,7 @@
 import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/models/entity.dart';
 
-import '/src/sample/sampledb.dart';
+// import '/src/sample/sampledb.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'MyDiaryCard.dart';
@@ -54,8 +54,12 @@ class _MyDiaryListState extends State<MyDiaryList> {
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
               ),
               itemCount: diary.length,
-              itemBuilder: (context, index, index2) =>
-                  MyDiaryCard(diary: diary[index]),
+              itemBuilder: (context, index, index2) {
+                if (index == 0) {
+                  return Container();
+                }
+                return MyDiaryCard(diary: diary[index]);
+              },
               // Text(snapshot.data);
             ),
           );
