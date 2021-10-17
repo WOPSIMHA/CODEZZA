@@ -53,8 +53,12 @@ class _MyDiaryListState extends State<MyDiaryList> {
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
               ),
               itemCount: diary.length,
-              itemBuilder: (context, index, index2) =>
-                  MyDiaryCard(diary: diary[index]),
+              itemBuilder: (context, index, index2) {
+                if (index == 0) {
+                  return Container();
+                }
+                return MyDiaryCard(diary: diary[index]);
+              },
             ),
           );
         }
@@ -68,8 +72,3 @@ class _MyDiaryListState extends State<MyDiaryList> {
     );
   }
 }
-
-// 개인일기 List
-// class  extends StatelessWidget {
-//   ({Key? key, @required this.diary}) : super(key: key);
-// }
