@@ -15,7 +15,7 @@ Future<List<dynamic>>? getDiary() async {
     List<dynamic> returnList = result['returnObj']['list'];
     return returnList;
   } else {
-    return [new Diary()];
+    return [];
   }
 }
 
@@ -54,9 +54,11 @@ class _MyDiaryListState extends State<MyDiaryList> {
               ),
               itemCount: diary.length,
               itemBuilder: (context, index, index2) {
-                if (index == 0) {
+                if (diary == []) {
+                  print('diary List 없음 : ${diary.toList()}');
                   return Container();
                 }
+                print('diary List 있음 : ${diary.toList()}');
                 return MyDiaryCard(diary: diary[index]);
               },
             ),
