@@ -1,6 +1,7 @@
 import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/common/AuthModule.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '/src/widgets/style.dart';
 import '/src/screens/home/HomePage.dart';
@@ -15,9 +16,29 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  static final storage = new FlutterSecureStorage();
   bool _isHidePassword = true; // 비밀번호 보이기/숨기기
   final _uId = TextEditingController(); // TextFormField Controller
   final _uPw = TextEditingController(); // 텍스트필드 입력 값을 가져오기 위한 컨트롤러
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      // secure_storage에 저장된 정보 확인해 페이지 이동
+      secureStorageRead();
+    });
+  }
+
+  secureStorageRead() async {
+    // read 함수로 key값에 맞는 정보 호출
+    // 정보가 있다면 Home 페이지로 넘어가게 합니다.
+    if (await uid() != null) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => HomePage()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

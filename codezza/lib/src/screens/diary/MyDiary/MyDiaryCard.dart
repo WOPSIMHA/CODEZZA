@@ -1,12 +1,13 @@
+import 'package:codezza/src/common/CommonModule.dart';
+import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 
 import 'MyDiaryDetailPage.dart';
-import '/src/widgets/style.dart';
 import '/src/models/entity.dart';
 
 // 개인 일기 카드
 class MyDiaryCard extends StatefulWidget {
-  final Diary? diary;
+  final dynamic diary;
 
   const MyDiaryCard({Key? key, this.diary}) : super(key: key);
 
@@ -35,7 +36,7 @@ class _MyDiaryCardState extends State<MyDiaryCard> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Hero(
-                  tag: '${widget.diary!.dSEQ}',
+                  tag: '${widget.diary!['d_seq']}',
                   child: GestureDetector(
                     onTap: () => Navigator.of(context).push(
                       PageRouteBuilder(
@@ -46,7 +47,7 @@ class _MyDiaryCardState extends State<MyDiaryCard> {
                       ),
                     ),
                     child: Image.network(
-                      '${widget.diary!.dThumbnail}',
+                      '${baseAPIUrl}static/${widget.diary!['ins_id']}/${widget.diary!['d_photo']}',
                       height: h * 0.2,
                       width: w * 0.3,
                       fit: BoxFit.fill,
@@ -55,7 +56,7 @@ class _MyDiaryCardState extends State<MyDiaryCard> {
                 ),
                 SizedBox(height: 10),
                 FontMedium(
-                  title: '${widget.diary!.dTitle}',
+                  title: '${widget.diary!['d_title']}',
                   size: 20,
                   overflow: TextOverflow.fade,
                 ),

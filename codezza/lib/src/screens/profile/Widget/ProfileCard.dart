@@ -1,3 +1,5 @@
+import 'package:codezza/src/common/CommonModule.dart';
+
 import '/src/models/entity.dart';
 import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +59,7 @@ class _ProfileCardState extends State<ProfileCard> {
             ),
             FontBold(
               size: 20,
+              // title: (await uname()).toString()
               title: '${widget.user!.uName}',
             ),
           ],

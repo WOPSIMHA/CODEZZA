@@ -1,10 +1,9 @@
 import 'package:codezza/src/common/AuthModule.dart';
 import 'package:codezza/src/common/CommonModule.dart';
+import 'package:codezza/src/screens/home/HomePage.dart';
+import 'package:codezza/src/widgets/PrimaryButton.dart';
 import 'package:codezza/src/widgets/style.dart';
 import 'package:flutter/material.dart';
-
-import '../home/HomePage.dart';
-import '../../widgets/PrimaryButton.dart';
 
 // 프로필(회원정보) 업데이트 페이지
 // ProfileAuthPage  1. 닉네임

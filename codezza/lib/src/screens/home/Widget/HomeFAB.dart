@@ -9,7 +9,6 @@ import '/src/widgets/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:http/http.dart' as http;
-import 'package:codezza/src/widgets/flutter_session.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 // Home FAB 메뉴 버튼

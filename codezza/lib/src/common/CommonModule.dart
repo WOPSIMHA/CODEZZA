@@ -2,31 +2,32 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:codezza/src/widgets/flutter_session.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 // import 'package:path/path.dart' as path;
 
 import '/src/widgets/style.dart';
+import 'AuthModule.dart';
 
 Future<String> uid() async {
-  String uId = await FlutterSession().get("token");
+  String? uId = await storage.read(key: "token");
   if (uId == "" || uId == null || uId == "null") {
     uId = "";
   }
-  return uId;
+  return uId.toString();
 }
 
 Future<String> uname() async {
-  return await FlutterSession().get("uname");
+  return (await storage.read(key: "uname")).toString();
 }
 
-Future<dynamic> uphoto() async {
-  return await FlutterSession().get("uphoto");
+Future<String> uphoto() async {
+  return (await storage.read(key: "uphoto")).toString();
 }
 
-String baseAPIUrl = "http://172.30.1.5:5000/";
-// String baseAPIUrl = "http://192.168.0.110:5000/";
+// String baseAPIUrl = "http://172.30.1.2:5000/";
+String baseAPIUrl = "http://192.168.0.110:5000/";
 
 textAlertDialog(context, String message) {
   showDialog(
@@ -88,6 +89,9 @@ Future<dynamic> fileUpload(File file) async {
     if (resultObj['success']) {
       success = true;
     }
+  } else {
+    // textAlertDialog(context, "시스템 오류가 발생했습니다!.\n다시 시도해 주세요.");
+    throw Exception();
   }
 
   final returnObj = {
@@ -150,17 +154,16 @@ Future<dynamic> postHttp(String path, dynamic params) async {
   );
 
   if (response.statusCode == 200) {
-    dynamic result = json.decode(utf8.decode(response.bodyBytes));
+    // dynamic result = json.decode(utf8.decode(response.bodyBytes));
     // dynamic result = json.decode(response.body);
-    print(result);
-    print(result.runtimeType);
-    dynamic resultObj = jsonDecode(result);
+    String result = response.body;
+    final resultObj = jsonDecode(result);
     if (resultObj['success']) {
       success = true;
       returnObj = resultObj['result'];
     }
   } else {
-    textAlertDialog('0', "시스템 오류가 발생했습니다!.\n다시 시도해 주세요.");
+    // textAlertDialog(context, "시스템 오류가 발생했습니다!.\n다시 시도해 주세요.");
     throw Exception();
   }
 

@@ -79,7 +79,7 @@ class _DiaryAddState extends State<DiaryAdd> {
                   params['sqlParams'] = sqlParams;
                   params['sqlType'] = "I";
 
-                  dynamic result = await postHttp("/writeDiary", params);
+                  dynamic result = await postHttp("writeDiary", params);
                   if (result['success'] == false) {
                     textAlertDialog(context, "오류가 발생했습니다\n다시 시도해 주세요!");
                     return;
@@ -91,7 +91,6 @@ class _DiaryAddState extends State<DiaryAdd> {
                       MaterialPageRoute(builder: (_) => HomePage()),
                     );
                   }
-                  return;
                 },
                 child: FontMedium(
                   title: '작성',

@@ -1,3 +1,5 @@
+import 'package:codezza/src/common/CommonModule.dart';
+
 import '/src/models/entity.dart';
 import '/src/widgets/style.dart';
 
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 
 // 일기 상세보기
 class DiaryDetail extends StatefulWidget {
-  final Diary? diary;
+  final dynamic diary;
 
   const DiaryDetail({Key? key, this.diary}) : super(key: key);
 
@@ -51,11 +53,11 @@ class _DiaryDetailState extends State<DiaryDetail> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: '${widget.diary!.dSEQ}',
+                tag: '${widget.diary!['d_seq']}',
                 child: GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Image.network(
-                    '${widget.diary!.dThumbnail}',
+                    '${baseAPIUrl}static/${widget.diary!['ins_id']}/${widget.diary!['d_photo']}',
                     width: 360,
                     height: 240,
                     fit: BoxFit.fill,
@@ -64,7 +66,7 @@ class _DiaryDetailState extends State<DiaryDetail> {
               ),
               SizedBox(height: 16),
               FontBold(
-                title: '${widget.diary!.dTitle}',
+                title: '${widget.diary!['d_title']}',
                 size: 20,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -72,7 +74,7 @@ class _DiaryDetailState extends State<DiaryDetail> {
               SizedBox(height: 16),
               Expanded(
                 child: FontLight(
-                  title: '${widget.diary!.dText}',
+                  title: '${widget.diary!['d_text']}',
                   size: 16,
                 ),
               ),

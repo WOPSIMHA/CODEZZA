@@ -31,8 +31,12 @@ dependencies:
   equatable: ^2.0.3
 
   # session
-  # flutter_session:
-  shared_preferences: ^2.0.8
+  flutter_session:
+  flutter_secure_storage:
+
+  # permission
+  path_provider:
+  shared_preferences:
 
   # cookie
   cookie_jar: 3.0.1
@@ -50,9 +54,6 @@ dependencies:
 
   # alert
   rflutter_alert: ^2.0.4
-
-  # permission
-  path_provider: ^2.0.5
 
   # image upload, resize
   photo_manager: 0.4.8

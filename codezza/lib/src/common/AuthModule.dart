@@ -1,29 +1,34 @@
 import 'package:codezza/src/common/CommonModule.dart';
-import 'package:codezza/src/widgets/flutter_session.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_session/flutter_session.dart';
 
 // 회원가입
 // 로그인
 // 프로필
 
-// 로그인 세션/쿠키 (id, nickname, profileImage)
+// Create storage
+final storage = new FlutterSecureStorage();
 
-set_uid(uid) async {
+// 로그인 세션 (id, nickname, profileImage)
+set_uid(String uid) async {
   if (uid == "" || uid == null || uid == "null") {
     uid = "";
   }
-  await FlutterSession().set("token", uid);
+  await storage.write(key: "token", value: uid);
 }
 
-set_uname(uname) async {
+set_uname(String uname) async {
   if (uname == "" || uname == null || uname == "null") {
     uname = await uid();
   }
-  await FlutterSession().set("uname", uname);
+  await storage.write(key: "uname", value: uname);
 }
 
-set_uphoto(uphoto) async {
+set_uphoto(String uphoto) async {
   if (uphoto == "" || uphoto == null || uphoto == "null") {
     uphoto = "assets/images/Profile/User.png";
+    await storage.write(key: "uphoto", value: uphoto);
+  } else {
+    await storage.write(key: "uphoto", value: uphoto);
   }
-  await FlutterSession().set("uphoto", uphoto);
 }
