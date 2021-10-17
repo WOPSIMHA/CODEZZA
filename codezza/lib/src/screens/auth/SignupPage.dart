@@ -1,11 +1,11 @@
 import 'package:codezza/src/common/AuthModule.dart';
 import 'package:codezza/src/common/CommonModule.dart';
+import 'package:codezza/src/screens/auth/widget/SignUpCheckButton.dart';
 import 'package:flutter/material.dart';
 
-import '/src/widgets/PrimaryButton.dart';
-import '/src/widgets/style.dart';
-import '/src/screens/profile/ProfileAuthPage.dart';
-import 'widget/SignUpCheckButton.dart';
+import 'package:codezza/src/widgets/PrimaryButton.dart';
+import 'package:codezza/src/widgets/style.dart';
+import 'package:codezza/src/screens/profile/ProfileAuthPage.dart';
 
 // 회원가입 페이지
 // SignUpPage 1. 아이디 페이지
@@ -325,9 +325,8 @@ class SignUpPage3 extends StatelessWidget {
       padding: const EdgeInsets.only(top: 200),
       child: PrimaryButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => ProfileAuthPage()),
-          );
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => ProfileAuthPage()));
         },
         title: '프로필 작성하러 가기',
       ),

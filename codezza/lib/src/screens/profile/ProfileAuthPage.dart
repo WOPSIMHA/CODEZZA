@@ -115,8 +115,12 @@ class ProfileAuthPage2 extends StatelessWidget {
 
                       _uName.dispose();
                       _uComment.dispose();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => HomePage()),
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => HomePage(),
+                        ),
+                        (route) => false,
                       );
                     }
                   },
