@@ -1,10 +1,9 @@
 import 'package:codezza/src/common/CommonModule.dart';
 import 'package:codezza/src/models/entity.dart';
+import 'package:codezza/src/screens/diary/MyDiary/MyDiaryCard.dart';
 
-import '/src/sample/sampledb.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'MyDiaryCard.dart';
 
 Future<List<dynamic>>? getDiary() async {
   var params = {};
@@ -56,7 +55,6 @@ class _MyDiaryListState extends State<MyDiaryList> {
               itemCount: diary.length,
               itemBuilder: (context, index, index2) =>
                   MyDiaryCard(diary: diary[index]),
-              // Text(snapshot.data);
             ),
           );
         }
